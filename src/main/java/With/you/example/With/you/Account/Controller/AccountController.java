@@ -52,7 +52,15 @@ public class AccountController {
         session.setAttribute("LoginAccountName", account.get().getName());
 
         System.out.println("로그인 되었습니다.");
-        return "index";
+        return "redirect:/";
     }
 
+    // 로그아웃
+    @PostMapping("/logout")
+    @ResponseBody
+    public String logout(HttpSession session) {
+        // 전체 세션 무효화
+        session.invalidate();
+        return "ok";
+    }
 }
