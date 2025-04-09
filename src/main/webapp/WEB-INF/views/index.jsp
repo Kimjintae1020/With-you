@@ -1,10 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Index Page</title>
+    <script>
+        function handleLogout() {
+            fetch('/api/logout', {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("로그아웃 되었습니다."); // 토스트처럼 간단하게 alert 사용
+                        location.reload(); // 페이지 리로드
+                    } else {
+                        alert("로그아웃 실패");
+                    }
+                })
+                .catch(error => {
+                    console.error('에러:', error);
+                });
+        }
+    </script>
 </head>
 <body>
 <h1>index page</h1>
+
 <%
     String name = (String) session.getAttribute("LoginAccountName");
     if (name != null) {
@@ -14,11 +33,11 @@
     }
 %>
 
-<a href="/api/login" style="display: inline-block; padding: 8px 16px; background: #007bff; color: white; border-radius: 4px; text-decoration: none;">로그인</a>
+<a href="/api/login">로그인</a>
 <br><br>
-<a href="/api/register" style="display: inline-block; padding: 8px 16px; background: #28a745; color: white; border-radius: 4px; text-decoration: none;">회원가입</a>
+<a href="/api/register">회원가입</a>
 <br><br>
-<a href="/api/logout" style="display: inline-block; padding: 8px 16px; background: #dc3545; color: white; border-radius: 4px; text-decoration: none;">로그아웃</a>
+<a href="javascript:void(0);" onclick="handleLogout()">로그아웃</a>
 
 </body>
 </html>
