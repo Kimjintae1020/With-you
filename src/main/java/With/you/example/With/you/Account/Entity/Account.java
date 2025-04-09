@@ -1,11 +1,15 @@
 package With.you.example.With.you.Account.Entity;
 
 import With.you.example.With.you.Account.Role.Role;
+import With.you.example.With.you.Board.Entity.Board;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ACCOUNT")
@@ -29,6 +33,8 @@ public class Account {
     @Column(name = "ROLE", nullable = false)
     private Role role;
 
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Board> boards = new ArrayList<>();
 
     @Builder
     public Account(String name, String password, Role role) {
