@@ -37,6 +37,8 @@
 <br><br>
 <a href="/api/register">회원가입</a>
 <br><br>
+<a href="/api/board">게시글</a>
+<br><br>
 <a href="javascript:void(0);" onclick="handleLogout()">로그아웃</a>
 
 </body>
