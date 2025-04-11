@@ -143,6 +143,10 @@
         <div class="button-group">
             <button type="submit">가입하기</button>
         </div>
+        <select name="role" id="role">
+            <option value="ROLE_USER">일반 사용자</option>
+            <option value="ROLE_ADMIN">관리자</option>
+        </select><br/><br/>
 
         <p class="login-link">
             이미 계정이 있으신가요?
