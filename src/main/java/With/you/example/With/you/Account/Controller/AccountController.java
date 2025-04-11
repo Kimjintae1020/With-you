@@ -37,6 +37,11 @@ public class AccountController {
         return "login";
     }
 
+    @GetMapping("/main")
+    public String mainFrom() {
+        return "main";  // /WEB-INF/views/index.jsp 로 연결
+    }
+
     // 회원가입
     @PostMapping("/register")
     public String register(@ModelAttribute DtoRegister dtoRegister) {
@@ -63,4 +68,6 @@ public class AccountController {
         session.invalidate();
         return "ok";
     }
+
+
 }

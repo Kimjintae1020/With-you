@@ -5,7 +5,7 @@
 }
 
 body {
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,9 +25,8 @@ body {
     height: 40px;
     display: flex;
     flex-direction: row;
-    
+
     align-items: center;
-    justify-content: center;
 
     margin-top: 30px;
 }
@@ -35,17 +34,24 @@ body {
 .main_wrap .container_1 .box_1 {
     display: flex;
     flex-direction: row;
+    margin-left: 30px;
+}
+
+.main_wrap .container_1 .box_1 h2 {
+    margin-left: 10px;
+    color: #3B82F6;
 }
 
 .main_wrap .container_1 .box_2 {
-    margin-left: 400px;
+    margin-left: 300px;
 }
 
 
 .main_wrap .container_1 .box_2 a {
     margin-left: 30px;
-    font-size: 20px;
+    font-size: 15px;
     text-decoration: none;
+    color: black;
 }
 
 
@@ -63,7 +69,7 @@ body {
 }
 
 
-.main_wrap .container_1 .box_3 button img {
+.main_wrap .container_1 .box_3 button #btn_img {
     margin-left: 10px;
 }
 
@@ -88,23 +94,23 @@ body {
 .main_wrap .container_2 .left_box #div_top {
     display: flex;
     height: 40px;
-    
+
     align-items: center;
-    
+
 }
 
 .main_wrap .container_2 .left_box #div_top #p_1 {
     width: 130px;
     height: 100%;
-    
+
     background: #E9D5FF;
     border-radius: 25px;
-    
+
     text-align: center;
     padding-top: 8px;
     color: #6B21A8;
-    
-    
+
+
 }
 
 
@@ -157,12 +163,12 @@ body {
 .main_wrap .container_2 .left_box #div_bottom #right_btn {
     width: 200px;
     height: 50px;
-    
+
     border-radius: 25px;
     border: 0;
     background: white;
     border: 0.5px #D1D5DB solid;
-    
+
 }
 
 
@@ -170,4 +176,64 @@ body {
 
 .main_wrap .container_2 .right_box {
     width: 50%;
+}
+
+
+
+/* ------------------------- */
+
+.container_3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.container_3 .wrap {
+    width: 95%;
+    background: #F9FAFB;
+    margin-top: 100px;
+    border-radius: 25px;
+}
+
+
+.container_3 .wrap h2 {
+    text-align: center;
+    margin-top: 60px;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+
+.container_3 .wrap #p_1 {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.info_box {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background: white;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 60px;
+    border-radius: 25px;
+}
+
+
+.info_box h3 {
+    margin-top: 20px;
+}
+
+
+.info_box p {
+    margin-top: 20px;
+    line-height: 200%;
+}
+
+.wrap-box_1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
