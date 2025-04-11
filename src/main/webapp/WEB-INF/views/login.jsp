@@ -196,7 +196,7 @@
 <!-- ------------------------------------------- -->
 <div class="container_1">
     <div class="flex_center_box">
-        <img src="${pageContext.request.contextPath}/webapp/WEB-INF/views/images/Frame.png" alt="이미지 에러">
+        <img src="${pageContext.request.contextPath}/images/Frame.png" alt="이미지 에러">
         <h2>With You</h2>
     </div>
     <h3>로그인</h3>
