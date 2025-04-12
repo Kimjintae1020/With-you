@@ -54,7 +54,7 @@ public class AccountController {
     public String login(@ModelAttribute DtoLogin dtoLogin, HttpSession session) throws NotEqualAccountIdAndPwException, AccountNotFoundException, AccounNametNotFoundException {
         Optional<Account> account = accountService.accountLogin(dtoLogin);
 
-        session.setAttribute("LoginAccountName", account.get().getName());
+        session.setAttribute("LoginAccountName", account.get().getAccountname());
 
         System.out.println("로그인 되었습니다.");
         return "redirect:/";
