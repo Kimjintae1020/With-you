@@ -27,9 +27,16 @@ public class AccountService {
         String encodedPassword = passwordEncoder.encode(dtoRegister.getPassword());
 
         Account account = Account.builder()
-                .name(dtoRegister.getName())
+                .accountname(dtoRegister.getAccountname())
                 .password(encodedPassword)
+                .nickname(dtoRegister.getNickname())
+                .email(dtoRegister.getEmail())
+                .birthYear(dtoRegister.getBirthYear())
+                .grade(dtoRegister.getGrade())
+                .region(dtoRegister.getRegion())
                 .role(dtoRegister.getRole())
+                .score(dtoRegister.getScore())
+                .reviewCnt(dtoRegister.getReviewCnt())
                 .build();
 
         accountRepository.save(account);
@@ -38,13 +45,13 @@ public class AccountService {
 
     public Optional<Account> accountLogin(DtoLogin dtoLogin) throws NotEqualAccountIdAndPwException, AccountNotFoundException, AccounNametNotFoundException {
 
-        String accountName = dtoLogin.getName();
+        String accountName = dtoLogin.getAccountname();
         String accountPw = dtoLogin.getPassword();
 
         log.info("accountName:{}, accountPw:{}", accountName, accountPw);
 
-        Optional<Account> findaccount = accountRepository.findByName(dtoLogin.getName());
-        log.info("findaccountName:{}", findaccount.get().getName());
+        Optional<Account> findaccount = accountRepository.findByAccountname(dtoLogin.getAccountname());
+        log.info("findaccountName:{}", findaccount.get().getAccountname());
         if (accountName == null || accountPw == null) {
             throw new AccounNametNotFoundException("아이디 또는 비밀번호를 찾을 수 없습니다.");
         }

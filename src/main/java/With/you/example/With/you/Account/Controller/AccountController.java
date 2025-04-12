@@ -37,6 +37,11 @@ public class AccountController {
         return "login";
     }
 
+    @GetMapping("/main")
+    public String mainFrom() {
+        return "main";  // /WEB-INF/views/index.jsp 로 연결
+    }
+
     // 회원가입
     @PostMapping("/register")
     public String register(@ModelAttribute DtoRegister dtoRegister) {
@@ -49,7 +54,7 @@ public class AccountController {
     public String login(@ModelAttribute DtoLogin dtoLogin, HttpSession session) throws NotEqualAccountIdAndPwException, AccountNotFoundException, AccounNametNotFoundException {
         Optional<Account> account = accountService.accountLogin(dtoLogin);
 
-        session.setAttribute("LoginAccountName", account.get().getName());
+        session.setAttribute("LoginAccountName", account.get().getAccountname());
 
         System.out.println("로그인 되었습니다.");
         return "redirect:/";
@@ -63,4 +68,6 @@ public class AccountController {
         session.invalidate();
         return "ok";
     }
+
+
 }
