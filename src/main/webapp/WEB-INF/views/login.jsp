@@ -12,7 +12,7 @@
 <!-- ------------------------------------------- -->
 <div class="container_1">
     <div class="flex_center_box">
-        <img src="/images/login/Frame.png" alt="이미지 에러">
+        <img src="/images/Frame.png" alt="이미지 에러">
         <h2>With You</h2>
     </div>
     <h3>로그인</h3>

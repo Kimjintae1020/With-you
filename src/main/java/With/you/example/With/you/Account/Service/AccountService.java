@@ -50,20 +50,24 @@ public class AccountService {
 
         log.info("accountName:{}, accountPw:{}", accountName, accountPw);
 
-        Optional<Account> findaccount = accountRepository.findByAccountname(dtoLogin.getAccountname());
-        log.info("findaccountName:{}", findaccount.get().getAccountname());
+        Optional<Account> findAccount = accountRepository.findByAccountname(dtoLogin.getAccountname());
+
+//        log.info("findaccountName:{}", findaccount.get().getAccountname());
+
         if (accountName == null || accountPw == null) {
             throw new AccounNametNotFoundException("아이디 또는 비밀번호를 찾을 수 없습니다.");
         }
-        if (findaccount.isEmpty()) {
+        if (findAccount.isEmpty()) {
+            System.out.println("findAccount.get().getAccountname()" + findAccount.get().getAccountname());
+            System.out.println("findAccount.get().getPassword()" + findAccount.get().getPassword());
             throw new AccountNotFoundException("회원 정보가 없습니다.");
         }
 
         // 2. 비밀번호 매칭 확인
-        if (!passwordEncoder.matches(dtoLogin.getPassword(), findaccount.get().getPassword())) {
+        if (!passwordEncoder.matches(dtoLogin.getPassword(), findAccount.get().getPassword())) {
             throw new NotEqualAccountIdAndPwException("비밀번호가 일치하지 않습니다.");
         }
 
-        return findaccount;
+        return findAccount;
     }
 }

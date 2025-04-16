@@ -41,5 +41,9 @@
 <br><br>
 <a href="javascript:void(0);" onclick="handleLogout()">로그아웃</a>
 
+<br><br>
+<a href="/api/boards">게시글목록</a>
+<br><br>
+
 </body>
 </html>
