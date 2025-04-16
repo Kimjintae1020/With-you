@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
@@ -38,9 +39,9 @@ public class BoardController {
 
         //  게시글 목록 조회, 페이지당 10개
         @GetMapping("/boards")
-        public ResponseEntity<BoardPageResponse> getPosts(@RequestParam(defaultValue = "1") int page,
-                                                          @RequestParam(defaultValue = "10") int size,
-                                                          HttpSession session) throws NotLoginException {
+        public String  getPosts(@RequestParam(defaultValue = "1") int page,
+                                @RequestParam(defaultValue = "10") int size,
+                                HttpSession session, Model model) throws NotLoginException {
 
             if (session.getAttribute("LoginAccountName") == null) {
                 throw new NotLoginException("로그인 되어있지 않습니다.");
@@ -48,7 +49,12 @@ public class BoardController {
 
             Pageable pageable = PageRequest.of(page - 1, size);
             BoardPageResponse response = boardService.getBoardList(pageable);
-            return ResponseEntity.ok(response);
+
+            model.addAttribute("boards", response.getBoards());
+            model.addAttribute("totalPages", response.getTotal_pages());
+            model.addAttribute("currentPage", response.getPage());
+
+            return "boardlist";
 
 }
 }
