@@ -22,7 +22,7 @@
 <div class="container_2" >
     <form class="container_2_box_1" action="${pageContext.request.contextPath}/api/login" method="post">
         <p>아이디</p>
-        <input type="text" id="name" name="name" required placeholder="아이디를 입력해주세요">
+        <input type="text" id="name" name="accountname" required placeholder="아이디를 입력해주세요">
 
         <p>비밀번호</p>
         <input type="password" id="password" name="password" required placeholder="비밀번호를 입력해주세요">

@@ -23,6 +23,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final AccountRepository accountRepository;
 
+    // 게시글 생성
     @Transactional
     public String createBoard(DtoCreateBoard dtoCreateBoard, String loginName) {
 

@@ -44,6 +44,9 @@
 <br><br>
 <a href="/api/boards">게시글목록</a>
 <br><br>
-
+<a href="/api/main">메인</a>
+<br><br>
+<a href="/api/mypage">마이페이지</a>
+<br><br>
 </body>
 </html>
