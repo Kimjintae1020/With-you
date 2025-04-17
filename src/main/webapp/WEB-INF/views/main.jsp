@@ -16,7 +16,7 @@
         <div class="container_1">
             <!-- -------------------------------- -->
             <div class="box_1">
-                <img src="/images/main/Frame.png" alt="이미지가 없습니다">
+                <img src="/images/Frame.png" alt="이미지가 없습니다.">
                 <h2>With You</h2>
                 
             </div>

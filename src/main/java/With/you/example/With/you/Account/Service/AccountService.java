@@ -1,11 +1,13 @@
 package With.you.example.With.you.Account.Service;
 
 import With.you.example.With.you.Account.Dto.DtoLogin;
+import With.you.example.With.you.Account.Dto.DtoMypage;
 import With.you.example.With.you.Account.Dto.DtoRegister;
 import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Account.Repository.AccountRepository;
 import With.you.example.With.you.Exception.AccounNametNotFoundException;
 import With.you.example.With.you.Exception.NotEqualAccountIdAndPwException;
+import With.you.example.With.you.Exception.NotLoginException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,8 +54,6 @@ public class AccountService {
 
         Optional<Account> findAccount = accountRepository.findByAccountname(dtoLogin.getAccountname());
 
-//        log.info("findaccountName:{}", findaccount.get().getAccountname());
-
         if (accountName == null || accountPw == null) {
             throw new AccounNametNotFoundException("아이디 또는 비밀번호를 찾을 수 없습니다.");
         }
@@ -69,5 +69,33 @@ public class AccountService {
         }
 
         return findAccount;
+    }
+
+    // 마이페이지 로직
+    public DtoMypage getMypage(String loginAccountName) throws NotLoginException {
+        Optional<Account> optionalAccount = accountRepository.findByAccountname(loginAccountName);
+
+        if (optionalAccount.isEmpty()) {
+            throw new NotLoginException("로그인 되어 있지 않습니다.");
+        }
+
+        Account account = optionalAccount.get();
+
+        return new DtoMypage(
+                account.getAccountid(),
+                account.getAccountname(),
+                account.getPassword(),
+                account.getNickname(),
+                account.getEmail(),
+                account.getBirthYear(),
+                account.getGrade(),
+                account.getRegion(),
+                account.getRole(),
+                account.getScore(),
+                account.getReviewCnt(),
+                account.getCreatedAt(),
+                account.getUpdatedAt()
+        );
+
     }
 }

@@ -1,14 +1,17 @@
 package With.you.example.With.you.Account.Controller;
 
 import With.you.example.With.you.Account.Dto.DtoLogin;
+import With.you.example.With.you.Account.Dto.DtoMypage;
 import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Account.Service.AccountService;
 import With.you.example.With.you.Account.Dto.DtoRegister;
 import With.you.example.With.you.Exception.AccounNametNotFoundException;
 import With.you.example.With.you.Exception.NotEqualAccountIdAndPwException;
+import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.security.auth.login.AccountNotFoundException;
@@ -24,7 +27,7 @@ public class AccountController {
     // 페이지 이동
     @GetMapping("/")
     public String index() {
-        return "index";  // /WEB-INF/views/index.jsp 로 연결
+        return "index";
     }
 
     @GetMapping("/register")
@@ -39,7 +42,7 @@ public class AccountController {
 
     @GetMapping("/main")
     public String mainFrom() {
-        return "main";  // /WEB-INF/views/index.jsp 로 연결
+        return "main";
     }
 
     // 회원가입
@@ -70,5 +73,15 @@ public class AccountController {
         return "ok";
     }
 
+    // 마이페이지
+    @GetMapping("/mypage")
+    public String mypage(HttpSession session, Model model) throws NotLoginException {
+        String loginAccountName = (String) session.getAttribute("LoginAccountName");
 
+        DtoMypage response =  accountService.getMypage(loginAccountName);
+
+        model.addAttribute("mypage", response);
+
+        return "mypage";
+    }
 }
