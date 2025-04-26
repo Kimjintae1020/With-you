@@ -12,7 +12,7 @@
 <!-- ------------------------------------------- -->
 <div class="container_1">
     <div class="flex_center_box">
-        <img src="/images/Frame.png" alt="이미지 에러">
+        <img src="/images/login/Frame.png" alt="이미지 에러">
         <h2>With You</h2>
     </div>
     <h3>로그인</h3>
@@ -33,7 +33,7 @@
             <a id="findAcount" href="#">아이디/비밀번호 찾기</a>
         </div>
 
-        <button type="submit"id="LoginBtn">로그인</button>
+        <button type="submit" id="LoginBtn">로그인</button>
     </form>
 </div>
 <!-- ------------------------------------------- -->
