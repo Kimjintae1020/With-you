@@ -22,7 +22,7 @@ public class DtoBoardPage {
     private String writerNickname;
 
     public DtoBoardPage(Board board) {
-        this.boardid = board.getBoardid();
+        this.boardid = board.getBoardId();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.likecount = board.getLikecount();
