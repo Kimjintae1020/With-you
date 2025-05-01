@@ -6,6 +6,7 @@ import With.you.example.With.you.Board.Dto.BoardPageResponse;
 import With.you.example.With.you.Board.Entity.Board;
 import With.you.example.With.you.Board.Repository.BoardRepository;
 import With.you.example.With.you.Board.Dto.DtoCreateBoard;
+import With.you.example.With.you.Exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
+
+import static With.you.example.With.you.Exception.ErrorCode.BOARD_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -56,6 +59,12 @@ public class BoardService {
                 (int) boards.getTotalElements(),
                 boards.getContent()
         );
+    }
+
+    public Board findByBoardId(Long boardId) {
+        return boardRepository.findById(boardId)
+                .orElseThrow(() -> new CustomException(BOARD_NOT_FOUND));
+
     }
 
 }

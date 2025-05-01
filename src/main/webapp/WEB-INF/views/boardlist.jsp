@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <html>
 <head>
   <title>게시판 목록</title>
@@ -38,7 +39,11 @@
   <c:forEach var="board" items="${boards}">
     <tr>
       <td>${board.boardid}</td>
-      <td>${board.title}</td>
+      <td>
+        <a href="/api/board/detail/${board.boardid}">
+          ${board.title}
+        </a>
+      </td>
       <td>${board.writerName}</td>
       <td>${board.writerNickname}</td>
       <td>${board.likecount}</td>
