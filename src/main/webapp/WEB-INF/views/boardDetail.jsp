@@ -15,7 +15,15 @@
 
 <h2>댓글</h2>
 <c:forEach var="comment" items="${comments}">
-  <p><strong>${comment.account.nickname}</strong>: ${comment.content}</p>
+  <div>
+    <p>
+      <strong>${comment.account.nickname}</strong>:
+      <span id="date-comment-text-${comment.commentId}">${comment.content}</span>
+      <button class="edit-btn"
+              data-comment-id="${comment.commentId}"
+              data-comment-content="${comment.content}">수정</button>
+    </p>
+  </div>
 </c:forEach>
 
 <!-- 댓글 작성 폼 -->
@@ -28,36 +36,32 @@
 <div id="toast" style="display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
     background: #333; color: #fff; padding: 10px 20px; border-radius: 5px; z-index: 10000;"></div>
 
-<!-- 스크립트 -->
+<!-- 댓글 수정 팝업 -->
+<div id="edit-toast" style="display: none; position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+    background: #222; color: #fff; padding: 15px; border-radius: 8px; z-index: 10001;">
+  <textarea id="edit-toast-content" style="width: 250px; height: 60px;"></textarea>
+  <button id="edit-toast-save">💾 저장</button>
+</div>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const commentForm = document.getElementById("commentForm");
     const boardId = commentForm.dataset.boardId;
 
-    commentForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    let selectedCommentId = null;
 
-      fetch(`/api/comment/${boardId}`, {
-        method: 'POST',
-        body: new FormData(commentForm)
-      })
-              .then(response => response.text().then(text => {
-                return { status: response.status, message: text };
-              }))
-              .then(result => {
-                showToast(result.message);
-                if (result.status === 200) {
-                  setTimeout(() => {
-                    window.location.href = `/api/board/detail/${boardId}`;
-                  }, 1500);
-                }
-              })
-              .catch(error => {
-                showToast("댓글 작성 중 오류가 발생했습니다.");
-                console.error("Error:", error);
-              });
+    // 댓글 수정 버튼
+    document.querySelectorAll(".edit-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        selectedCommentId = this.dataset.commentId;
+        const content = this.dataset.commentContent;
+
+        console.log("🟡 선택된 댓글 ID:", selectedCommentId);
+
+        document.getElementById("edit-toast-content").value = content;
+        document.getElementById("edit-toast").style.display = "block";
+      });
     });
-  });
+
 
   function showToast(message) {
     const toast = document.getElementById("toast");
@@ -68,6 +72,7 @@
     }, 1500);
   }
 </script>
+
 
 </body>
 </html>
