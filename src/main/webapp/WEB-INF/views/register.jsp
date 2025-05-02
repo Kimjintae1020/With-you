@@ -235,18 +235,29 @@
 
         <div class="input-group">
             <label for="address">주소</label>
-            <div class="address-inputs">
-                <input type="text" id="address" name="address" placeholder="주소를 입력하세요" readonly />
-                <button type="button" onclick="execDaumPostcode()">우편번호 찾기</button>
-            </div>
+            <select id="address" name="address" onchange="setAddressCode(this)">
+                <option value="">시/도 선택</option>
+                <option value="SEOUL">서울특별시</option>
+                <option value="BUSAN">부산광역시</option>
+                <option value="DAEGU">대구광역시</option>
+                <option value="INCHEON">인천광역시</option>
+                <option value="GWANGJU">광주광역시</option>
+                <option value="DAEJEON">대전광역시</option>
+                <option value="ULSAN">울산광역시</option>
+                <option value="SEJONG">세종특별자치시</option>
+                <option value="GYEONGGI">경기도</option>
+                <option value="GANGWON">강원도</option>
+                <option value="CHUNGBUK">충청북도</option>
+                <option value="CHUNGNAM">충청남도</option>
+                <option value="JEONBUK">전라북도</option>
+                <option value="JEONNAM">전라남도</option>
+                <option value="GYEONGBUK">경상북도</option>
+                <option value="GYEONGNAM">경상남도</option>
+                <option value="JEJU">제주특별자치도</option>
+            </select>
         </div>
 
-        <div class="input-group">
-            <label for="addressDetail">상세주소</label>
-            <input type="text" id="addressDetail" name="addressDetail" placeholder="상세주소를 입력하세요" />
-        </div>
-
-        <input type="hidden" name="region" id="fullAddress" />
+        <input type="hidden" name="region" id="addressCode" />
 
         <div class="input-group">
             <label for="nickname">닉네임</label>
@@ -275,6 +286,11 @@
     const confirmInput = document.getElementById('confirm-password');
     const errorMsg = document.getElementById('password-error');
     const form1 = document.querySelector("form");
+
+    function setAddressCode(select) {
+        const selectedValue = select.value;
+        document.getElementById('addressCode').value = selectedValue;
+    }
 
     form1.addEventListener("submit", function (e) {
         const year = document.querySelector('input[name="year"]').value.padStart(4, '0');
