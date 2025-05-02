@@ -14,7 +14,7 @@
         <div class="container_1">
             <!-- -------------------------------- -->
             <div class="box_1">
-                <img src="images/Frame.png" alt="이미지가 없습니다">
+                <img src="images/admin/Frame.png" alt="이미지가 없습니다">
                 <h2>With You</h2>
                 
             </div>
@@ -27,13 +27,13 @@
             <ul class="menus">
                 <li>
                     <a href="#신고관리">
-                        <img src="./images/report_icon.png" alt="" height="15">
+                        <img src="./images/admin/report_icon.png" alt="" height="15">
                         <p>신고 관리</p>
                     </a>
                 </li>
                 <li>
                     <a href="#회원승인">
-                        <img src="./images/approve_icon.png" alt="" height="15">
+                        <img src="./images/admin/approve_icon.png" alt="" height="15">
                         <p>회원 승인</p>
                     </a>
                 </li>
