@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>gg</title>
+    <title>회원가입</title>
     <style>
         body {
             background-color: #EFF6FF;
@@ -46,31 +46,40 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
             background-color: white;
-            padding-top: 30px;
-            box-sizing: border-box;
+            padding: 30px 32px;
             border-radius: 16px;
             width: 448px;
-            height: 398px;
+            box-sizing: border-box;
         }
 
         .input-group {
-            width: 75%;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 50px;
+            border: 1px solid #d1d5db;
+            box-sizing: border-box;
+
         }
 
         .button-group {
             width: 100%;
-            max-width: 384px;
             display: flex;
             justify-content: flex-end;
+            margin-top: 10px;
         }
 
         label {
+            align-self: flex-start;
             font-weight: 500;
             font-size: 11.9px;
             color: #374151;
@@ -83,6 +92,7 @@
             padding: 10px;
             max-height: 50px;
             border: 1px solid #d1d5db;
+            box-sizing: border-box;
         }
 
         button {
@@ -93,6 +103,11 @@
             height: 48px;
             border: none;
             margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2563EB;
         }
 
         .login-link {
@@ -112,17 +127,86 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0 20px;
+            width: 100%;
+            max-width: 448px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            font-size: 14px;
+            font-weight: bold;
+            color: #9CA3AF;
+        }
+
+        .progress-step::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 4px;
+            background-color: #D1D5DB;
+            width: 100%;
+            z-index: -1;
+            transform: translateY(-50%);
+        }
+
+        .progress-step span {
+            background-color: #D1D5DB;
+            border-radius: 50%;
+            padding: 6px 12px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-step.active span {
+            background-color: #3B82F6;
+        }
+
+        .progress-step.active {
+            color: #3B82F6;
+        }
+
+        .progress-step:first-child::before {
+            width: 50%;
+            left: 50%;
+        }
+
+        .progress-step:last-child::before {
+            width: 50%;
+        }
+
+        .progress-step.completed span {
+            background-color: #3B82F6;
+        }
+
+        .progress-step.completed::before {
+            background-color: #3B82F6;
+        }
     </style>
 </head>
 
 <body>
 <div class="all">
     <div class="headline">
-<%--        <img src="Frame.png" />--%>
+        <img src="/images/register/Frame.png" />
         <h3 id="With-You">With You</h3>
     </div>
     <h3>회원가입</h3>
     <h5>계정 정보를 입력해주세요</h5>
+    <div class="progress-container">
+        <div class="progress-step active"><span>1</span></div>
+        <div class="progress-step"><span>2</span></div>
+        <div class="progress-step"><span>3</span></div>
+    </div>
 
     <form action="${pageContext.request.contextPath}/api/register" method="post">
         <div class="input-group">
@@ -136,20 +220,20 @@
         </div>
 
         <div class="input-group">
-            <label for="passwordConfirm">비밀번호 확인</label>
-            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="비밀번호를 다시 입력해주세요" required />
+            <label for="confirm-password">비밀번호 확인</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 다시 입력해주세요"
+                   required />
         </div>
 
         <div class="button-group">
-            <button type="submit">가입하기</button>
+            <button type="submit">다음으로 ➔</button>
         </div>
-
-        <p class="login-link">
-            이미 계정이 있으신가요?
-            <a href="/api/login">로그인하기</a>
-        </p>
-
     </form>
+
+    <p class="login-link">
+        이미 계정이 있으신가요?
+        <a href="/api/login">로그인하기</a>
+    </p>
 </div>
 </body>
 
