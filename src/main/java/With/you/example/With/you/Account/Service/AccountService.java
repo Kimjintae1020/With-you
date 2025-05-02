@@ -4,6 +4,7 @@ import With.you.example.With.you.Account.Dto.DtoLogin;
 import With.you.example.With.you.Account.Dto.DtoMypage;
 import With.you.example.With.you.Account.Dto.DtoRegister;
 import With.you.example.With.you.Account.Entity.Account;
+import With.you.example.With.you.Account.Enum.Grade;
 import With.you.example.With.you.Account.Repository.AccountRepository;
 import With.you.example.With.you.Exception.AccounNametNotFoundException;
 import With.you.example.With.you.Exception.NotEqualAccountIdAndPwException;
@@ -34,7 +35,7 @@ public class AccountService {
                 .nickname(dtoRegister.getNickname())
                 .email(dtoRegister.getEmail())
                 .birthYear(dtoRegister.getBirthYear())
-                .grade(dtoRegister.getGrade())
+                .grade(Grade.SEED)
                 .region(dtoRegister.getRegion())
                 .role(dtoRegister.getRole())
                 .score(dtoRegister.getScore())

@@ -19,7 +19,6 @@ public class DtoRegister {
     private String nickname;
     private String email;
     private int birthYear;
-    private Grade grade;
     private Region region;
     private Role role;
     private int score;
