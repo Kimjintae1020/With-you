@@ -7,7 +7,7 @@
 <h1>게시글 작성</h1>
 
 <form action="/api/create/board" method="post">
-    <label for="boardtitle">제목:</label>
+    <label for="boardtitle">제목ㅣ:</label>
     <input type="text" id="boardtitle" name="boardtitle" required>
     <br><br>
 
