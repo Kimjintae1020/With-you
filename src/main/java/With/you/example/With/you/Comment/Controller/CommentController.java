@@ -71,7 +71,6 @@ public class CommentController {
                                            @ModelAttribute DtoCommentUpdate dtoCommentUpdate,
                                            HttpSession session) throws NotLoginException {
 
-        log.info("commentId: {}" + commentId);
         String loginAccountName = (String) session.getAttribute("LoginAccountName");
         if (loginAccountName == null) {
             throw new NotLoginException("로그인되어 있지 않습니다.");
@@ -81,4 +80,17 @@ public class CommentController {
         return ResponseEntity.ok("댓글 수정이 완료되었습니다.");
     }
 
+    // 댓글삭제
+    @DeleteMapping("/comment/{commentId}/delete")
+    public ResponseEntity<?> deleteComment(@PathVariable Long commentId,
+                                           HttpSession session) throws NotLoginException {
+
+        String loginAccountName = (String) session.getAttribute("LoginAccountName");
+        if (loginAccountName == null) {
+            throw new NotLoginException("로그인되어 있지 않습니다.");
+        }
+
+        commentService.deleteComment(commentId, loginAccountName);
+        return ResponseEntity.ok("댓글 삭제되었습니다.");
+    }
 }
