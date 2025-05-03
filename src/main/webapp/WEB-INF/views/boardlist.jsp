@@ -263,6 +263,7 @@
 
 <div class="container">
 
+
   <div class="sidebar">
     <div class="section">
       <h3>👤 사용자 정보</h3>
