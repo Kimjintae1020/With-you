@@ -1,5 +1,3 @@
-
-
 * {
     margin: 0;
     padding: 0;
@@ -7,18 +5,18 @@
 }
 
 body {
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
     background: #EFF6FF;
 }
 
 /* --------------------------- */
 .container_1 {
-    
+
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -80,10 +78,10 @@ body {
 .container_2 .container_2_box_2 {
     width: 100%;
     height: 40px;
-    
+
     align-items: center;
     text-align: left;
-    
+
     margin-top: 20px;
 
 }
@@ -99,10 +97,10 @@ body {
 }
 
 
-.container_2 .container_2_box_1 .container_2_box_2 #findAcount 
+.container_2 .container_2_box_1 .container_2_box_2 #findAcount
 
 {margin-left: 85px;
-    
+
     font-size: 11px;
 }
 
@@ -128,13 +126,13 @@ body {
     display: flex;
     margin-top: 30px;
     margin-left: 200px;
-    
-    
+
+
 
 }
 
 .container_3 p {
-    
+
     font-size: 11px;
 }
 
@@ -178,7 +176,7 @@ body {
     width: 170px;
     height: 40px;
     background-color: transparent;
-    
+
     opacity: 0.7;
 }
 
