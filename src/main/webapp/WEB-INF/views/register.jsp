@@ -190,7 +190,8 @@
 <body>
 <div class="all">
     <div class="headline">
-        <img src="/images/Frame.png" />
+        <img src="/images/main/Frame.png" />
+<%--        <img src="/images/login/Frame.png" alt="이미지 에러">--%>
         <h3 id="With-You">With You</h3>
     </div>
     <h3>회원가입</h3>
