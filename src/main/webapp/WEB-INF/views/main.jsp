@@ -16,8 +16,7 @@
     <div class="container_1">
         <!-- -------------------------------- -->
         <div class="box_1">
-            <img src="/images/login/Frame.png" alt="이미지가 없습니다">
-
+            <img src="/images/main/Frame.png" alt="이미지가 없습니다">
             <h2>With You</h2>
 
         </div>
@@ -33,7 +32,6 @@
         </div>
         <div class="box_3">
             <button>시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
-
         </div>
 
 
@@ -44,7 +42,7 @@
     <div class="container_2">
         <div class="left_box">
             <div id="div_top">
-                <p id="p_1">이웃과 함께</p>
+                <p id="p_2">이웃과 함께</p>
                 <p>우리 동네 최고의 커뮤니티</p>
             </div>
 
