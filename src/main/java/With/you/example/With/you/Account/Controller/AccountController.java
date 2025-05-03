@@ -49,7 +49,7 @@ public class AccountController {
     @PostMapping("/register")
     public String register(@ModelAttribute DtoRegister dtoRegister) {
         accountService.register(dtoRegister);
-        return "index";
+        return "registerCompleted";
     }
 
     // 로그인

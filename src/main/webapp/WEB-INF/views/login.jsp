@@ -16,7 +16,7 @@
         <h2>With You</h2>
     </div>
     <h3>로그인</h3>
-    <p>이웃들과 함께 하는 즐거운 동네생활</p>
+    <p>이웃들과 함께 하는 즐운 동네생활</p>
 </div>
 <!-- ------------------------------------------- -->
 <div class="container_2" >
@@ -33,7 +33,7 @@
             <a id="findAcount" href="#">아이디/비밀번호 찾기</a>
         </div>
 
-        <button type="submit"id="LoginBtn">로그인</button>
+        <button type="submit" id="LoginBtn">로그인</button>
     </form>
 </div>
 <!-- ------------------------------------------- -->
