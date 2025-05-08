@@ -67,4 +67,11 @@ public class BoardService {
 
     }
 
+    public void likeBoardCount(Long boardId) {
+
+        Optional<Board> optionalBoard = boardRepository.findById(boardId);
+
+        optionalBoard.get().setLikecount(optionalBoard.get().getLikecount() + 1);
+
+    }
 }

@@ -263,12 +263,13 @@
 
 <div class="container">
 
+
   <div class="sidebar">
     <div class="section">
       <h3>👤 사용자 정보</h3>
       <p><strong>이름:</strong> 홍길동</p>
       <p><strong>등급:</strong> 골드</p>
-      <a href="/boards/write" class="button">✏️ 글쓰기</a>
+      <a href="/api/board" class="button">✏️ 글쓰기</a>
       <a href="/boards/my" class="button">📄 내 글 보기</a>
     </div>
   </div>
