@@ -54,6 +54,21 @@ public class BoardController {
             model.addAttribute("currentPage", response.getPage());
 
             return "boardlist";
+        }
 
-}
+        @PostMapping("/board/like/{boardId}")
+        public String  likeBoardCount(@PathVariable Long boardId,
+                                      HttpSession session, Model model) throws NotLoginException {
+
+            if (session.getAttribute("LoginAccountName") == null) {
+                throw new NotLoginException("로그인 되어있지 않습니다.");
+            }
+
+            boardService.likeBoardCount(boardId);
+            return "boardlist";
+        }
+
+
+
+
 }
