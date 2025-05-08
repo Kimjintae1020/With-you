@@ -1,22 +1,292 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
+
 <head>
     <title>게시글 작성</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .top-navbar {
+            height: 88px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .headline {
+            display: flex;
+            align-items: center;
+        }
+
+        .headline h3 {
+            color: #3B82F6;
+            margin-left: 15px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu-button {
+            text-decoration: none;
+            color: #374151;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .menu-button:hover {
+            color: #1d4ed8;
+        }
+
+        .start-button {
+            background-color: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .navbar {
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            background-color: #3b82f6;
+        }
+
+        .nav-button {
+            width: 126px;
+            height: 28px;
+            border: none;
+            border-radius: 29.5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: #c5d7f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: #111827;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 200px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #2563eb;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .form-row input[type="text"] {
+            flex: 1;
+        }
+
+        .post-type-tabs {
+            display: flex;
+            gap: 12px;
+            position: relative;
+        }
+
+        .list-button {
+            float: left;
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #ffffff;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            text-decoration: none;
+        }
+
+        .list-button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .post-type-tab {
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-bottom: 2px solid transparent;
+            color: #6b7280;
+            transition: all 0.3s ease;
+        }
+
+        .post-type-tab.active {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .submit-button {
+            float: right;
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .submit-button:hover {
+            background-color: #2563eb;
+        }
+
+        F textarea,
+        input[type="text"] {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .button-wrapper {
+            margin-top: 30px;
+            width: 100%;
+            position: relative;
+        }
+    </style>
 </head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll(".post-type-tab");
+        const typeInput = document.getElementById("type");
+
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                tabs.forEach((t) => t.classList.remove("active"));
+                tab.classList.add("active");
+                typeInput.value = tab.dataset.value;
+            });
+        });
+    });
+</script>
+
 <body>
-<h1>게시글 작성</h1>
 
-<form action="/api/create/board" method="post">
-    <label for="boardtitle">제목ㅣ:</label>
-    <input type="text" id="boardtitle" name="boardtitle" required>
-    <br><br>
+<div class="top-navbar">
+    <div class="headline">
+        <img src="/images/Frame.png" />
+        <h3>With You</h3>
+    </div>
+    <div class="menu">
+        <a href="/" class="menu-button">홈</a>
+        <a href="/about" class="menu-button">소개</a>
+        <a href="/boards" class="menu-button">커뮤니티</a>
+        <a href="/map" class="menu-button">지도</a>
+        <a href="/ranking" class="menu-button">랭킹</a>
+        <a href="/contact" class="menu-button">문의하기</a>
+    </div>
+    <a href="/start" class="start-button">시작하기 ⟶</a>
+</div>
 
-    <label for="boardcontent">내용:</label>
-    <textarea id="boardcontent" name="boardcontent" rows="5" cols="30" required></textarea>
-    <br><br>
+<div class="navbar">
+    <a href="/boards?type=전체" class="nav-button">전체</a>
+    <a href="/boards?type=인기" class="nav-button">인기</a>
+    <a href="/boards?type=자유" class="nav-button">자유</a>
+    <a href="/boards?type=유머" class="nav-button">유머</a>
+    <a href="/boards?type=질문" class="nav-button">질문</a>
+    <a href="/boards?type=소통" class="nav-button">소통</a>
+</div>
 
-    <button type="submit">작성</button>
-</form>
+<div class="container">
+    <h1>게시글 작성</h1>
+    <form action="/api/create/board" method="post">
+        <div class="form-group form-row">
+            <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required />
+            <div class="post-type-tabs">
+                <div class="post-type-tab active" data-value="자유">자유</div>
+                <div class="post-type-tab" data-value="유머">유머</div>
+                <div class="post-type-tab" data-value="질문">질문</div>
+                <div class="post-type-tab" data-value="소통">소통</div>
+            </div>
+            <input type="hidden" id="type" name="type" value="자유" />
+        </div>
+
+        <div class="form-group">
+            <textarea id="content" name="content" placeholder="이곳을 클릭해 게시글 작성..." required></textarea>
+        </div>
+
+        <div class="button-wrapper">
+            <a href="/boards" class="list-button">목록</a>
+            <button type="submit" class="submit-button">게시글 작성</button>
+        </div>
+    </form>
+</div>
 
 </body>
+
 </html>
