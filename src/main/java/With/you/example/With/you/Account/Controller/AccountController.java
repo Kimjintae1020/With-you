@@ -45,6 +45,18 @@ public class AccountController {
         return "main";
     }
 
+    @GetMapping("/rank")
+    public String rankForm() { return "rank"; }
+
+    @GetMapping("/map")
+    public String mapForm() { return "map"; }
+
+    @GetMapping("/admin_1_main")
+    public String admin_1_mainForm() {return "admin_1_main"; }
+
+    @GetMapping("/admin_2_approve")
+    public String admin_2_approveForm() {return "admin_2_approve"; }
+
     // 회원가입
     @PostMapping("/register")
     public String register(@ModelAttribute DtoRegister dtoRegister) {
