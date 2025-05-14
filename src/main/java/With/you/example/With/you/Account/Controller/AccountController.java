@@ -3,6 +3,7 @@ package With.you.example.With.you.Account.Controller;
 import With.you.example.With.you.Account.Dto.DtoLogin;
 import With.you.example.With.you.Account.Dto.DtoMypage;
 import With.you.example.With.you.Account.Entity.Account;
+import With.you.example.With.you.Account.Repository.AccountRepository;
 import With.you.example.With.you.Account.Service.AccountService;
 import With.you.example.With.you.Account.Dto.DtoRegister;
 import With.you.example.With.you.Exception.AccounNametNotFoundException;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.security.auth.login.AccountNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -23,6 +25,7 @@ import java.util.Optional;
 public class AccountController {
 
     private final AccountService accountService;
+    private final AccountRepository accountRepository;
 
     // 페이지 이동
     @GetMapping("/")
@@ -52,11 +55,18 @@ public class AccountController {
     public String mapForm() { return "map"; }
 
     @GetMapping("/admin_1_main")
-    public String admin_1_mainForm() {return "admin_1_main"; }
+    public String admin_1_mainFrom(Model model) {
+        List<Account> accounts = accountRepository.findAll();
+        model.addAttribute("accounts", accounts);
+        return "admin_1_main";
+    }
 
     @GetMapping("/admin_2_approve")
-    public String admin_2_approveForm() {return "admin_2_approve"; }
-
+    public String admin_2_approveForm(Model model) {
+        List<Account> accounts = accountRepository.findAll();
+        model.addAttribute("accounts", accounts);
+        return "admin_2_approve";
+    }
     // 회원가입
     @PostMapping("/register")
     public String register(@ModelAttribute DtoRegister dtoRegister) {
