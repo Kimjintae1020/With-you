@@ -28,21 +28,6 @@ public class CommentController {
     private final CommentService commentService;
     private final BoardService boardService;
 
-    // 페이지 이동
-    @GetMapping("/board/detail/{boardId}")
-    public String boardDetail(@PathVariable Long boardId, Model model) {
-
-        Board board = boardService.findByBoardId(boardId);
-        List<Comment> comments = commentService.getCommentsByBoard(boardId);
-
-        model.addAttribute("board", board);
-        model.addAttribute("comments", comments);
-
-        return "boardDetail";
-    }
-
-
-
     // 댓글작성
     @PostMapping("/comment/{boardId}")
     public ResponseEntity<?> createComment(@PathVariable Long boardId,
