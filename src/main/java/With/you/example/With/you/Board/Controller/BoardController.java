@@ -5,6 +5,7 @@ import With.you.example.With.you.Board.Entity.Board;
 import With.you.example.With.you.Board.Service.BoardService;
 import With.you.example.With.you.Board.Dto.DtoCreateBoard;
 import With.you.example.With.you.Comment.Entity.Comment;
+import With.you.example.With.you.Comment.Service.CommentService;
 import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
 
     @GetMapping("/board")
     public String boardForm() {
@@ -90,4 +92,16 @@ public class BoardController {
         }
 
 
+    // 페이지 이동
+    @GetMapping("/board/detail/{boardId}")
+    public String boardDetail(@PathVariable Long boardId, Model model) {
+
+        Board board = boardService.findByBoardId(boardId);
+        List<Comment> comments = commentService.getCommentsByBoard(boardId);
+
+        model.addAttribute("board", board);
+        model.addAttribute("comments", comments);
+
+        return "boardDetail";
+    }
 }
