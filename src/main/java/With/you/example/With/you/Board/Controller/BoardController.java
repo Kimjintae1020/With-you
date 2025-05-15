@@ -42,55 +42,38 @@ public class BoardController {
         return "redirect:/";
     }
 
-        //  게시글 목록 조회, 페이지당 10개
-        @GetMapping("/boards")
-        public String  getPosts(@RequestParam(defaultValue = "1") int page,
-                                @RequestParam(defaultValue = "10") int size,
-                                HttpSession session, Model model) throws NotLoginException {
+    //  게시글 목록 조회, 페이지당 10개
+    @GetMapping("/boards")
+    public String  getPosts(@RequestParam(defaultValue = "1") int page,
+                            @RequestParam(defaultValue = "10") int size,
+                            HttpSession session, Model model) throws NotLoginException {
 
-            if (session.getAttribute("LoginAccountName") == null) {
-                throw new NotLoginException("로그인 되어있지 않습니다.");
-            }
-
-            Pageable pageable = PageRequest.of(page - 1, size);
-            BoardPageResponse response = boardService.getBoardList(pageable);
-
-            model.addAttribute("boards", response.getBoards());
-            model.addAttribute("totalPages", response.getTotal_pages());
-            model.addAttribute("currentPage", response.getPage());
-
-            return "boardlist";
+        if (session.getAttribute("LoginAccountName") == null) {
+            throw new NotLoginException("로그인 되어있지 않습니다.");
         }
 
-        // 좋아요 수 증가
-        @PostMapping("/board/like/{boardId}")
-        public String  likeBoardCount(@PathVariable Long boardId,
-                                      HttpSession session, Model model) throws NotLoginException {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        BoardPageResponse response = boardService.getBoardList(pageable);
 
-            if (session.getAttribute("LoginAccountName") == null) {
-                throw new NotLoginException("로그인 되어있지 않습니다.");
-            }
+        model.addAttribute("boards", response.getBoards());
+        model.addAttribute("totalPages", response.getTotal_pages());
+        model.addAttribute("currentPage", response.getPage());
 
-            boardService.likeBoardCount(boardId);
-            return "boardlist";
+        return "boardlist";
+    }
+
+    // 좋아요 수 증가
+    @PostMapping("/board/like/{boardId}")
+    public String  likeBoardCount(@PathVariable Long boardId,
+                                  HttpSession session, Model model) throws NotLoginException {
+
+        if (session.getAttribute("LoginAccountName") == null) {
+            throw new NotLoginException("로그인 되어있지 않습니다.");
         }
 
-
-        // 게시글 상세 조회
-        @GetMapping("/api/board/{boardId}")
-        public String  boardDeail(@PathVariable Long boardId,
-                                      HttpSession session, Model model) throws NotLoginException {
-
-            if (session.getAttribute("LoginAccountName") == null) {
-                throw new NotLoginException("로그인 되어있지 않습니다.");
-            }
-
-            Board board = boardService.getBoardDetail(boardId);
-
-            model.addAttribute("board", board);
-            return "boarddetail";
-        }
-
+        boardService.likeBoardCount(boardId);
+        return "boardlist";
+    }
 
     // 페이지 이동
     @GetMapping("/board/detail/{boardId}")
@@ -102,6 +85,6 @@ public class BoardController {
         model.addAttribute("board", board);
         model.addAttribute("comments", comments);
 
-        return "boardDetail";
+        return "boardDetail/";
     }
 }
