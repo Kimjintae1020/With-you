@@ -74,4 +74,9 @@ public class BoardService {
         optionalBoard.get().setLikecount(optionalBoard.get().getLikecount() + 1);
 
     }
+
+    public Board getBoardDetail(Long boardId) {
+        Optional<Board> board = boardRepository.findById(boardId);
+        return board.orElseThrow(() -> new CustomException(BOARD_NOT_FOUND));
+    }
 }

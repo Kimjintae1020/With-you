@@ -55,6 +55,18 @@ public class AccountService {
 
         Optional<Account> findAccount = accountRepository.findByAccountname(dtoLogin.getAccountname());
 
+
+        if (dtoLogin.getAccountname() == "admin") {
+
+            Optional<Account> adminAccount = accountRepository.findByAccountname(dtoLogin.getAccountname());
+
+            if (!passwordEncoder.matches(dtoLogin.getPassword(), adminAccount.get().getPassword())) {
+                throw new NotEqualAccountIdAndPwException("관리자 비밀번호가 일치하지 않습니다.");
+            }
+
+            return adminAccount;
+        }
+
         if (accountName == null || accountPw == null) {
             throw new AccounNametNotFoundException("아이디 또는 비밀번호를 찾을 수 없습니다.");
         }
@@ -64,7 +76,6 @@ public class AccountService {
             throw new AccountNotFoundException("회원 정보가 없습니다.");
         }
 
-        // 2. 비밀번호 매칭 확인
         if (!passwordEncoder.matches(dtoLogin.getPassword(), findAccount.get().getPassword())) {
             throw new NotEqualAccountIdAndPwException("비밀번호가 일치하지 않습니다.");
         }

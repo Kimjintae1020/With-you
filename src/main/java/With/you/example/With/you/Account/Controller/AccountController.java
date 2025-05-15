@@ -3,6 +3,8 @@ package With.you.example.With.you.Account.Controller;
 import With.you.example.With.you.Account.Dto.DtoLogin;
 import With.you.example.With.you.Account.Dto.DtoMypage;
 import With.you.example.With.you.Account.Entity.Account;
+import With.you.example.With.you.Account.Repository.AccountRepository;
+import With.you.example.With.you.Account.Role.Role;
 import With.you.example.With.you.Account.Service.AccountService;
 import With.you.example.With.you.Account.Dto.DtoRegister;
 import With.you.example.With.you.Exception.AccounNametNotFoundException;
@@ -10,19 +12,23 @@ import With.you.example.With.you.Exception.NotEqualAccountIdAndPwException;
 import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.security.auth.login.AccountNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/api")
+@Slf4j
 public class AccountController {
 
     private final AccountService accountService;
+    private final AccountRepository accountRepository;
 
     // 페이지 이동
     @GetMapping("/")
@@ -45,6 +51,26 @@ public class AccountController {
         return "main";
     }
 
+    @GetMapping("/rank")
+    public String rankForm() { return "rank"; }
+
+    @GetMapping("/map")
+    public String mapForm() { return "map"; }
+
+    @GetMapping("/admin_1_main")
+    public String admin_1_mainFrom(Model model) {
+        List<Account> accounts = accountRepository.findAll();
+        model.addAttribute("accounts", accounts);
+        return "admin_1_main";
+    }
+
+    @GetMapping("/admin_2_approve")
+    public String admin_2_approveForm(Model model) {
+        List<Account> accounts = accountRepository.findAll();
+        model.addAttribute("accounts", accounts);
+        return "admin_2_approve";
+    }
+
     // 회원가입
     @PostMapping("/register")
     public String register(@ModelAttribute DtoRegister dtoRegister) {
@@ -59,6 +85,13 @@ public class AccountController {
 
         System.out.println(account.get().getAccountname());
         session.setAttribute("LoginAccountName", dtoLogin.getAccountname());
+
+        // 관리자 일시 Role 값 추가
+        if ("admin".equals(account.get().getAccountname())) {
+            session.setAttribute("Role", Role.ROLE_ADMIN);
+            log.info("관리자 로그인");
+        }
+
 
         System.out.println("로그인 되었습니다.");
         return "redirect:/";

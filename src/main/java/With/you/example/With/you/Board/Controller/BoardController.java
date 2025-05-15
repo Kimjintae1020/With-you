@@ -1,8 +1,10 @@
 package With.you.example.With.you.Board.Controller;
 
 import With.you.example.With.you.Board.Dto.BoardPageResponse;
+import With.you.example.With.you.Board.Entity.Board;
 import With.you.example.With.you.Board.Service.BoardService;
 import With.you.example.With.you.Board.Dto.DtoCreateBoard;
+import With.you.example.With.you.Comment.Entity.Comment;
 import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 
 @Slf4j
@@ -56,6 +60,7 @@ public class BoardController {
             return "boardlist";
         }
 
+        // 좋아요 수 증가
         @PostMapping("/board/like/{boardId}")
         public String  likeBoardCount(@PathVariable Long boardId,
                                       HttpSession session, Model model) throws NotLoginException {
@@ -69,6 +74,20 @@ public class BoardController {
         }
 
 
+        // 게시글 상세 조회
+        @GetMapping("/api/board/{boardId}")
+        public String  boardDeail(@PathVariable Long boardId,
+                                      HttpSession session, Model model) throws NotLoginException {
+
+            if (session.getAttribute("LoginAccountName") == null) {
+                throw new NotLoginException("로그인 되어있지 않습니다.");
+            }
+
+            Board board = boardService.getBoardDetail(boardId);
+
+            model.addAttribute("board", board);
+            return "boarddetail";
+        }
 
 
 }
