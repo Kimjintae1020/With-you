@@ -239,7 +239,7 @@
 
 <div class="top-navbar">
     <div class="headline">
-        <img src="/images/Frame.png" />
+        <img src="/images/login/Frame.png" />
         <h3>With You</h3>
     </div>
     <div class="menu">
@@ -281,7 +281,7 @@
         </div>
 
         <div class="button-wrapper">
-            <a href="/boards" class="list-button">목록</a>
+            <a href="/api/boards" class="list-button">목록</a>
             <button type="submit" class="submit-button">게시글 작성</button>
         </div>
     </form>

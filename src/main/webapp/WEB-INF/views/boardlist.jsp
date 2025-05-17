@@ -111,6 +111,7 @@
       padding: 16px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       transition: box-shadow 0.2s;
+      cursor: pointer;
     }
 
     .post:hover {
@@ -238,7 +239,7 @@
 
 <div class="top-navbar">
   <div class="headline">
-    <img src="/images/Frame.png" />
+    <img src="/images/login/Frame.png" />
     <h3 id="With-You">With You</h3>
   </div>
   <div class="menu">
@@ -284,20 +285,20 @@
 
     <div class="board">
       <c:forEach var="post" items="${boards}">
-        <div class="post">
-          <h2 class="post-title">${post.title}</h2>
+        <a href="/api/board/detail/${post.boardid}" style="text-decoration: none;">
+          <div class="post">
+            <h2 class="post-title">${post.title}</h2>
 
-          <div class="post-info">
-            <span class="time">${post.createdAt}</span>
-            <span class="writer">${post.writerNickname}</span>
-<%--            <span class="location">${post.location}</span>--%>
-          </div>
+            <div class="post-info">
+              <span class="time">${post.createdAt}</span>
+              <span class="writer">${post.writerNickname}</span>
+            </div>
 
-          <div class="post-stats">
-<%--            <div class="comments">💬 ${post.comment}</div>--%>
-            <div class="likes">❤️ ${post.likecount}</div>
+            <div class="post-stats">
+              <div class="likes">❤️ ${post.likecount}</div>
+            </div>
           </div>
-        </div>
+        </a>
       </c:forEach>
     </div>
 
