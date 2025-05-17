@@ -67,19 +67,21 @@ public class BoardService {
 
     }
 
-    public Board likeBoardCount(Long boardId) {
+    public Board likeBoardCount(Long boardId, String loginAccountName) {
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
-        Optional<Board> optionalBoard = boardRepository.findById(boardId);
-
-        if (optionalBoard.isPresent()) {
-            Board board = optionalBoard.get();
-            board.setLikecount(board.getLikecount() + 1);
-            boardRepository.save(board); // 👍 변경사항 반영
-            return board;
-        } else {
-            throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
+        // 중복 확인
+        if (board.getLikedAccountNames().contains(loginAccountName)) {
+            throw new IllegalStateException("이미 좋아요한 게시글입니다.");
         }
+
+        // 좋아요 처리
+        board.setLikecount(board.getLikecount() + 1);
+        board.getLikedAccountNames().add(loginAccountName);
+        return boardRepository.save(board);
     }
+
 
     public Board getBoardDetail(Long boardId) {
         Optional<Board> board = boardRepository.findById(boardId);

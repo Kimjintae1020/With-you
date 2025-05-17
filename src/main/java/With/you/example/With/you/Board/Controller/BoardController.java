@@ -10,6 +10,8 @@ import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -64,18 +66,23 @@ public class BoardController {
 
     // 좋아요 수 증가
     @PostMapping("/board/like/{boardId}")
-    public String  likeBoardCount(@PathVariable Long boardId,
-                                  HttpSession session, Model model) throws NotLoginException {
-
-        if (session.getAttribute("LoginAccountName") == null) {
-            throw new NotLoginException("로그인 되어있지 않습니다.");
+    public ResponseEntity<?> likeBoardCount(@PathVariable Long boardId,
+                                            HttpSession session, Model model) throws NotLoginException {
+        String loginAccountName = (String) session.getAttribute("LoginAccountName");
+        if (loginAccountName == null) {
+            throw new NotLoginException("로그인되어 있지 않습니다.");
         }
 
-        Board response = boardService.likeBoardCount(boardId);
-        model.addAttribute("board", response);
+        try {
+            Board updatedBoard = boardService.likeBoardCount(boardId, loginAccountName);
+            model.addAttribute("board", updatedBoard);
+            return ResponseEntity.ok("게시글을 좋아요 눌렀습니다.");
 
-        return "boardlist";
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 좋아요한 게시글입니다.");
+        }
     }
+
 
     // 페이지 이동
     @GetMapping("/board/detail/{boardId}")

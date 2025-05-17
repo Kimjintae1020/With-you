@@ -235,11 +235,9 @@
   <div class="button-group">
     <a href="/api/boards" class="list-button">게시글 목록</a>
 
-    <form method="post" action="/api/board/like/${board.boardId}" style="margin: 0;">
-      <button type="submit" class="like-button">
+      <button type="button" class="like-button" onclick="likePost(${board.boardId})">
         좋아요 ❤️ <span id="like-count">${board.likecount}</span>
       </button>
-    </form>
   </div>
 
 
@@ -326,6 +324,28 @@
               });
     });
   });
+
+  function likePost(boardId) {
+    fetch(`/api/board/like/${boardId}`, {
+      method: 'POST'
+    })
+            .then(response => {
+              if (!response.ok) throw new Error("좋아요 실패");
+              return response.text();
+            })
+            .then(message => {
+              showToastMessage(message);
+
+              // 좋아요 수 1 증가 (화면에 바로 반영)
+              const countSpan = document.getElementById('like-count');
+              const currentCount = parseInt(countSpan.textContent);
+              countSpan.textContent = currentCount + 1;
+            })
+            .catch(err => {
+              showToastMessage("이미 좋아요 누른 게시글입니다!");
+              console.error(err);
+            });
+  }
 
   function startEdit(commentId) {
     console.log(commentId);

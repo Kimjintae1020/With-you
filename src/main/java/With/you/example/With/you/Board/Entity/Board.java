@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "BOARD")
@@ -34,6 +36,12 @@ public class Board {
 
     @Column(name = "BOARD_UPDATED_AT", nullable = false)
     private LocalDateTime updatedAt;
+
+    @ElementCollection(fetch = FetchType.EAGER) // 항상 조회하기 위해 EAGER 전략 선택
+    @CollectionTable(name = "BOARD_LIKED_ACCOUNTS", joinColumns = @JoinColumn(name = "BOARD_ID"))
+    @Column(name = "ACCOUNT_NAME")
+    private Set<String> likedAccountNames = new HashSet<>();
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_ID", nullable = false) // FK 컬럼명 지정
