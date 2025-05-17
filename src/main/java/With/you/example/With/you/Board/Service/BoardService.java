@@ -67,12 +67,18 @@ public class BoardService {
 
     }
 
-    public void likeBoardCount(Long boardId) {
+    public Board likeBoardCount(Long boardId) {
 
         Optional<Board> optionalBoard = boardRepository.findById(boardId);
 
-        optionalBoard.get().setLikecount(optionalBoard.get().getLikecount() + 1);
-
+        if (optionalBoard.isPresent()) {
+            Board board = optionalBoard.get();
+            board.setLikecount(board.getLikecount() + 1);
+            boardRepository.save(board); // 👍 변경사항 반영
+            return board;
+        } else {
+            throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
+        }
     }
 
     public Board getBoardDetail(Long boardId) {

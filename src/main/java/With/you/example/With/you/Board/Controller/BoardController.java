@@ -71,7 +71,9 @@ public class BoardController {
             throw new NotLoginException("로그인 되어있지 않습니다.");
         }
 
-        boardService.likeBoardCount(boardId);
+        Board response = boardService.likeBoardCount(boardId);
+        model.addAttribute("board", response);
+
         return "boardlist";
     }
 
