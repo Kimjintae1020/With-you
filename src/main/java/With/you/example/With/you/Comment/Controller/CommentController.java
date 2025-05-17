@@ -45,7 +45,7 @@ public class CommentController {
         Board board = boardService.findByBoardId(boardId);
 
         model.addAttribute("board", board);
-        model.addAttribute("reviews", reviews);
+        model.addAttribute("comments", reviews);
 
         return ResponseEntity.ok("댓글 작성이 완료되었습니다.");
     }

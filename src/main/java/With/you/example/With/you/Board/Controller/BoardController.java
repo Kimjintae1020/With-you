@@ -82,9 +82,10 @@ public class BoardController {
         Board board = boardService.findByBoardId(boardId);
         List<Comment> comments = commentService.getCommentsByBoard(boardId);
 
+        System.out.printf(board.toString());
         model.addAttribute("board", board);
         model.addAttribute("comments", comments);
 
-        return "boardDetail/";
+        return "boardDetail";
     }
 }
