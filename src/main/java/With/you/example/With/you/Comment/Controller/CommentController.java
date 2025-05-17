@@ -8,6 +8,7 @@ import With.you.example.With.you.Comment.Dto.DtoComment;
 import With.you.example.With.you.Comment.Entity.Comment;
 import With.you.example.With.you.Exception.NotLoginException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpSession;
@@ -45,9 +46,9 @@ public class CommentController {
         Board board = boardService.findByBoardId(boardId);
 
         model.addAttribute("board", board);
-        model.addAttribute("reviews", reviews);
+        model.addAttribute("comments", reviews);
 
-        return ResponseEntity.ok("댓글 작성이 완료되었습니다.");
+        return ResponseEntity.status(HttpStatus.OK).body("댓글 작성이 완료되었습니다.");
     }
 
     // 댓글수정

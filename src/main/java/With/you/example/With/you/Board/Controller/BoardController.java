@@ -10,6 +10,8 @@ import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,54 +44,44 @@ public class BoardController {
         return "redirect:/";
     }
 
-        //  게시글 목록 조회, 페이지당 10개
-        @GetMapping("/boards")
-        public String  getPosts(@RequestParam(defaultValue = "1") int page,
-                                @RequestParam(defaultValue = "10") int size,
-                                HttpSession session, Model model) throws NotLoginException {
+    //  게시글 목록 조회, 페이지당 10개
+    @GetMapping("/boards")
+    public String  getPosts(@RequestParam(defaultValue = "1") int page,
+                            @RequestParam(defaultValue = "10") int size,
+                            HttpSession session, Model model) throws NotLoginException {
 
-            if (session.getAttribute("LoginAccountName") == null) {
-                throw new NotLoginException("로그인 되어있지 않습니다.");
-            }
-
-            Pageable pageable = PageRequest.of(page - 1, size);
-            BoardPageResponse response = boardService.getBoardList(pageable);
-
-            model.addAttribute("boards", response.getBoards());
-            model.addAttribute("totalPages", response.getTotal_pages());
-            model.addAttribute("currentPage", response.getPage());
-
-            return "boardlist";
+        if (session.getAttribute("LoginAccountName") == null) {
+            throw new NotLoginException("로그인 되어있지 않습니다.");
         }
 
-        // 좋아요 수 증가
-        @PostMapping("/board/like/{boardId}")
-        public String  likeBoardCount(@PathVariable Long boardId,
-                                      HttpSession session, Model model) throws NotLoginException {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        BoardPageResponse response = boardService.getBoardList(pageable);
 
-            if (session.getAttribute("LoginAccountName") == null) {
-                throw new NotLoginException("로그인 되어있지 않습니다.");
-            }
+        model.addAttribute("boards", response.getBoards());
+        model.addAttribute("totalPages", response.getTotal_pages());
+        model.addAttribute("currentPage", response.getPage());
 
-            boardService.likeBoardCount(boardId);
-            return "boardlist";
+        return "boardlist";
+    }
+
+    // 좋아요 수 증가
+    @PostMapping("/board/like/{boardId}")
+    public ResponseEntity<?> likeBoardCount(@PathVariable Long boardId,
+                                            HttpSession session, Model model) throws NotLoginException {
+        String loginAccountName = (String) session.getAttribute("LoginAccountName");
+        if (loginAccountName == null) {
+            throw new NotLoginException("로그인되어 있지 않습니다.");
         }
 
+        try {
+            Board updatedBoard = boardService.likeBoardCount(boardId, loginAccountName);
+            model.addAttribute("board", updatedBoard);
+            return ResponseEntity.ok("게시글을 좋아요 눌렀습니다.");
 
-        // 게시글 상세 조회
-        @GetMapping("/api/board/{boardId}")
-        public String  boardDeail(@PathVariable Long boardId,
-                                      HttpSession session, Model model) throws NotLoginException {
-
-            if (session.getAttribute("LoginAccountName") == null) {
-                throw new NotLoginException("로그인 되어있지 않습니다.");
-            }
-
-            Board board = boardService.getBoardDetail(boardId);
-
-            model.addAttribute("board", board);
-            return "boarddetail";
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 좋아요한 게시글입니다.");
         }
+    }
 
 
     // 페이지 이동
@@ -99,6 +91,7 @@ public class BoardController {
         Board board = boardService.findByBoardId(boardId);
         List<Comment> comments = commentService.getCommentsByBoard(boardId);
 
+        System.out.printf(board.toString());
         model.addAttribute("board", board);
         model.addAttribute("comments", comments);
 
