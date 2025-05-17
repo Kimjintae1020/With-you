@@ -265,16 +265,67 @@
 
 
     <!-- 댓글 작성 폼 -->
-    <form id="commentForm" data-board-id="${board.boardId}" method="post" action="/api/comment/${board.boardId}">
+    <form id="commentForm" data-board-id="${board.boardId}">
       <textarea name="content" placeholder="댓글을 작성하세요..." required></textarea>
       <button type="submit">댓글 작성</button>
     </form>
+
   </div>
 </div>
 
 
 </body>
 <script>
+
+  // 토스트 메시지 띄우기
+  function showToastMessage(message) {
+    const toast = document.createElement("div");
+    toast.innerText = message;
+    toast.style.position = "fixed";
+    toast.style.bottom = "30px";
+    toast.style.left = "50%";
+    toast.style.transform = "translateX(-50%)";
+    toast.style.backgroundColor = "#333";
+    toast.style.color = "#fff";
+    toast.style.padding = "10px 20px";
+    toast.style.borderRadius = "6px";
+    toast.style.zIndex = "9999";
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 1500);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const commentForm = document.getElementById("commentForm");
+    const boardId = commentForm.dataset.boardId;
+
+    commentForm.addEventListener("submit", function (e) {
+      e.preventDefault(); // 기본 전송 막기
+
+      const formData = new FormData(commentForm);
+
+      fetch(`/api/comment/${boardId}`, {
+        method: "POST",
+        body: formData
+      })
+              .then(response => {
+                if (!response.ok) throw new Error("댓글 작성 실패");
+                return response.text();
+              })
+              .then(message => {
+                showToastMessage(message);
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1500);
+              })
+              .catch(err => {
+                showToastMessage("댓글 작성 중 오류 발생");
+                console.error(err);
+              });
+    });
+  });
 
   function startEdit(commentId) {
     console.log(commentId);
