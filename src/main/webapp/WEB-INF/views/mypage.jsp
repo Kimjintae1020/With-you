@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                                 <td align="right">비밀번호 : &nbsp;</td>
-                                <td>${mypage.password}</td>
+                                <td>********</td>
                             </tr>
                             <tr>
                                 <td align="right">닉네임 : &nbsp;</td>
