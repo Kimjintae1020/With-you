@@ -11,10 +11,13 @@
 <body>
 <!-- ------------------------------------------- -->
 <div class="container_1">
-    <div class="flex_center_box">
-        <img src="/images/login/Frame.png" alt="이미지 에러">
+
+
+    <a href="${pageContext.request.contextPath}/api/main" id="logo">
+        <img src="/images/login/Frame.png" alt="경로 에러">
         <h2>With You</h2>
-    </div>
+    </a>
+
     <h3>로그인</h3>
     <p>이웃들과 함께 하는 즐운 동네생활</p>
 </div>
@@ -39,17 +42,17 @@
 <!-- ------------------------------------------- -->
 <div class="container_3">
     <p>아직 계정이 없으신가요?</p>
-    <a href="#">회원가입하기</a>
+    <a href="${pageContext.request.contextPath}/api/register">회원가입하기</a>
 </div>
 
 <!-- ------------------------------------------- -->
 <div class="container_4">
-    <a href="#메인 페이지">With You 둘러보기</a>
+    <a href="${pageContext.request.contextPath}/api/main">With You 둘러보기</a>
 </div>
 <!-- ------------------------------------------- -->
 <div class="container_5">
-    <button id="goTo_nPage_Btn" onclick="location.href='#인기 동네 페이지'">인기 동네 구경하기</button>
-    <button id="goTo_nnPage_Btn" onclick="location.href='#인기 글 페이지'">실시간 인기 글 보기</button>
+    <button id="goTo_nPage_Btn" onclick="location.href='${pageContext.request.contextPath}/api/rank'">인기 동네 구경하기</button>
+    <button id="goTo_nnPage_Btn" onclick="location.href='${pageContext.request.contextPath}/api/map'">지도 보기</button>
 
 </div>
 

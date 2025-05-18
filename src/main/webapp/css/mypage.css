@@ -10,13 +10,12 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #F9FAFB;
 }
 
 .main_wrap {
     width: 1400px;
     height: 100%;
-    background: white;
+
 
 }
 
@@ -29,6 +28,7 @@ body {
     align-items: center;
 
     margin-top: 30px;
+    background: white;
 }
 
 .main_wrap .container_1 .box_1 {
@@ -97,11 +97,39 @@ body {
     margin-bottom: 40px;
 }
 
+
+
+.wrapInside {
+
+    background: #F3F4F6;
+}
+
+
+
+/* -------------- warp css------------------ */
+
+.wrap {
+    width: 800px;
+    margin: auto;
+    background: white;
+}
+
+
 /* --------------hr 관련 css------------------ */
 
-.container_2 {
-    margin-top: 40px;
+
+#profile {
+    padding-top: 40px;
 }
+
+.container_2 {
+    /* margin-top: 40px; */
+    padding-top: 40px;
+
+    /* background: #F3F4F6; */
+}
+
+
 
 /* --------------내 정보 css------------------ */
 
@@ -111,12 +139,17 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background: #F3F4F6;
+
+
 }
 
 .container_3 {
     margin-bottom: 40px;
-    width: 700px;
+    width: 800px;
     display: flex;
+    background: white;
+
 
 }
 
@@ -134,6 +167,7 @@ body {
 
 .container_3 table{
     font-size: 20px;
+
 }
 
 
@@ -142,12 +176,15 @@ body {
 
 .container_4 {
     margin-top: 40px;
+    background: white;
+    width: 800px;
 }
 
 .container_4 table {
     display: flex;
     justify-content: center;
     font-size: 25px;
+
 }
 
 .container_4 table td {
@@ -157,14 +194,30 @@ body {
 
 .container_4 {
     margin-bottom: 40px;
+    border-radius: 25px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+#config_my {
+    width: 200px;
+    height: 60px;
+    border-radius: 25px;
+    background: #3B82F6;
+    color: white;
+    font-size: 20px;
+
 }
 
 /* --------------내가 쓴 게시글 css------------------ */
 
 .container_5 table {
+    background: white;
     display: flex;
     justify-content: center;
     font-size: 25px;
+    border-radius: 25px;
 }
 
 .container_5 table td {
@@ -175,14 +228,21 @@ body {
 
 .container_5 {
     margin-bottom: 40px;
+    width: 800px;
+    background: white;
+    border-radius: 25px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 /* --------------내가 쓴 댓글 css------------------ */
 
 .container_6 table {
+    background: white;
     display: flex;
     justify-content: center;
     font-size: 25px;
+    border-radius: 25px;
 }
 
 .container_6 table td {
@@ -193,14 +253,51 @@ body {
 
 .container_6 {
     margin-bottom: 40px;
+    width: 800px;
+    background: white;
+    border-radius: 25px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 /* --------------참여한 소모임 css------------------ */
 
-#edit {
-    display: block;
-    text-align: center;
-    font-size: 20px;
+
+
+td {
+    max-width: 150px;
 }
 
 
+/* ----------------- */
+
+#wrap_box_1 {
+    background: white;
+    margin-bottom: 40px;
+    border-radius: 25px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+
+
+
+td {
+    max-width: 150px;
+    word-break: break-all;
+}
+
+
+#logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration-line: none;
+    margin-left: 100px;
+}
+
+#logo h2 {
+    margin-left: 10px;
+    color: #3B82F6;
+}
