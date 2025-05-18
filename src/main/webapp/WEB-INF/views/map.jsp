@@ -14,23 +14,24 @@
     <!-- -------------------------------- -->
     <div class="container_1">
         <!-- -------------------------------- -->
-        <div class="box_1">
-            <img src="/images/map/Frame.png" alt="이미지가 없습니다">
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
             <h2>With You</h2>
+        </a>
 
-        </div>
+
 
         <div class="box_2">
-            <a href="#홈">홈</a>
+            <a href="${pageContext.request.contextPath}/api/main">홈</a>
             <a href="#소개">소개</a>
-            <a href="#커뮤니티">커뮤니티</a>
-            <a href="#지도">지도</a>
-            <a href="#랭킹">랭킹</a>
+            <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
+            <a href="${pageContext.request.contextPath}/api/map">지도</a>
+            <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
             <a href="#문의하기">문의하기</a>
 
         </div>
         <div class="box_3">
-            <button>시작하기<img id="btn_img" src="/images/map/arrow.png" alt="" width="16"></button>
+            <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
         </div>
     </div>
     <!-- -------------------------------- -->
@@ -59,12 +60,6 @@
 
     </div>
 
-    <div class="container_3">
-        <button id="link">동네 게시판 이동하기</button>
-
-
-
-    </div>
 
 
 

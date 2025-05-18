@@ -12,11 +12,10 @@
 <div class="main_wrap">
 
     <nav>
-        <div class="box_1">
-            <img src="/images/admin/Frame.png" alt="이미지가 없습니다">
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
             <h2>With You</h2>
-
-        </div>
+        </a>
         <h1>관리자 페이지</h1>
         <ul class="menus">
             <li>

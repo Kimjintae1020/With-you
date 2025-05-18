@@ -224,3 +224,18 @@ body {
     font-weight: bold;
 
 }
+
+
+#logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration-line: none;
+    margin-left: 100px;
+}
+
+#logo h2 {
+    margin-left: 10px;
+    color: #3B82F6;
+}
