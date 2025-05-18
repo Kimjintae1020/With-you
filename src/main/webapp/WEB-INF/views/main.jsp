@@ -14,24 +14,24 @@
 <div class="main_wrap">
     <!-- -------------------------------- -->
     <div class="container_1">
-        <!-- -------------------------------- -->
-        <div class="box_1">
-            <img src="/images/main/Frame.png" alt="이미지가 없습니다">
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
             <h2>With You</h2>
+        </a>
 
-        </div>
+
 
         <div class="box_2">
-            <a href="#홈">홈</a>
+            <a href="${pageContext.request.contextPath}/api/main">홈</a>
             <a href="#소개">소개</a>
-            <a href="#커뮤니티">커뮤니티</a>
-            <a href="#지도">지도</a>
-            <a href="#랭킹">랭킹</a>
+            <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
+            <a href="${pageContext.request.contextPath}/api/map">지도</a>
+            <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
             <a href="#문의하기">문의하기</a>
 
         </div>
         <div class="box_3">
-            <button>시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
+            <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
         </div>
 
 
@@ -53,8 +53,8 @@
             <p>참여하세요. 모든 것이 한곳에서 이루어집니다.</p>
 
             <div id="div_bottom">
-                <button id="left_btn"><img src="/images/main/communityStart.png" alt="이미지가 없습니다.">커뮤니티 시작하기</button>
-                <button id="right_btn"><img src="/images/main/map.png" alt="이미지가 없습니다.">동네 둘러보기</button>
+                <button id="left_btn" onclick="location.href='${pageContext.request.contextPath}/api/boards'">커뮤니티 시작하기</button>
+                <button id="right_btn" onclick="location.href='${pageContext.request.contextPath}/api/boards'">동네 둘러보기</button>
             </div>
 
         </div>

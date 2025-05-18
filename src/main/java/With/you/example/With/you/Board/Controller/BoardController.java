@@ -10,6 +10,7 @@ import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -38,21 +40,18 @@ public class BoardController {
 
     // 게시글 생성
     @PostMapping("/create/board")
-    public String createBoard(@ModelAttribute DtoCreateBoard dtoCreateBoard, HttpSession session) {
+    public ResponseEntity<?> createBoard(@ModelAttribute DtoCreateBoard dtoCreateBoard, HttpSession session) {
         String Loginname = (String) session.getAttribute("LoginAccountName");
         boardService.createBoard(dtoCreateBoard,Loginname);
-        return "redirect:/";
+        return ResponseEntity.status(HttpStatus.OK).body("게시글이 작성되었습니다.");
     }
 
     //  게시글 목록 조회, 페이지당 10개
     @GetMapping("/boards")
-    public String  getPosts(@RequestParam(defaultValue = "1") int page,
+    public String getPosts(@RequestParam(defaultValue = "1") int page,
                             @RequestParam(defaultValue = "10") int size,
-                            HttpSession session, Model model) throws NotLoginException {
+                            Model model)   {
 
-        if (session.getAttribute("LoginAccountName") == null) {
-            throw new NotLoginException("로그인 되어있지 않습니다.");
-        }
 
         Pageable pageable = PageRequest.of(page - 1, size);
         BoardPageResponse response = boardService.getBoardList(pageable);
@@ -67,10 +66,14 @@ public class BoardController {
     // 좋아요 수 증가
     @PostMapping("/board/like/{boardId}")
     public ResponseEntity<?> likeBoardCount(@PathVariable Long boardId,
-                                            HttpSession session, Model model) throws NotLoginException {
+                                            HttpSession session, Model model)  {
         String loginAccountName = (String) session.getAttribute("LoginAccountName");
         if (loginAccountName == null) {
-            throw new NotLoginException("로그인되어 있지 않습니다.");
+            return ResponseEntity
+                    .status(HttpStatus.FOUND) // 302 Found (리다이렉트용)
+                    .header(HttpHeaders.LOCATION, "/login-required") // 이동할 URL
+                    .build();
+
         }
 
         try {
@@ -94,6 +97,10 @@ public class BoardController {
         System.out.printf(board.toString());
         model.addAttribute("board", board);
         model.addAttribute("comments", comments);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String createdDate = board.getCreatedAt().format(formatter);
+        model.addAttribute("createdDate", createdDate);
 
         return "boardDetail";
     }

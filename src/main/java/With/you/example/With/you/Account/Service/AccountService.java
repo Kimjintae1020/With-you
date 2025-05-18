@@ -110,4 +110,8 @@ public class AccountService {
         );
 
     }
+
+    public Account getAccountByName(String accountName) {
+        return accountRepository.findByAccountname(accountName).orElse(null);
+    }
 }

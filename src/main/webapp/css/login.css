@@ -16,21 +16,19 @@ body {
 
 /* --------------------------- */
 .container_1 {
-
     text-align: center;
-    align-items: center;
-    justify-content: center;
     margin-top: 40px;
 }
 
-.flex_center_box {
+#logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    width: 100%;
+    text-decoration-line: none;
 }
 
-.flex_center_box h2 {
+#logo h2 {
     margin-left: 10px;
     color: #3B82F6;
 }

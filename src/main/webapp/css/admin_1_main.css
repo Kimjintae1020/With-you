@@ -131,15 +131,31 @@ h1 {
 
 table tr td {
     text-align: center;
+    font-size: 18px;
 }
 
 .reason_1 {
-    text-align: left;
+    /*text-align: left;*/
     padding-left: 10px;
-    font-size: 18px;
 
 }
 
 .data {
     height: 50px;
+}
+
+
+#logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    text-decoration-line: none;
+    margin: auto;
+    margin-top: 30px;
+}
+
+#logo h2 {
+    margin-left: 10px;
+    color: #3B82F6;
 }

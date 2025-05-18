@@ -87,4 +87,9 @@ public class BoardService {
         Optional<Board> board = boardRepository.findById(boardId);
         return board.orElseThrow(() -> new CustomException(BOARD_NOT_FOUND));
     }
+
+    public Board getBoard(Long boardId) {
+        Optional<Board> board = boardRepository.findById(boardId);
+        return board.orElseThrow(() -> new CustomException(BOARD_NOT_FOUND));
+    }
 }

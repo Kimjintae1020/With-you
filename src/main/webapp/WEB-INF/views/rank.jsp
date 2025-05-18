@@ -14,23 +14,24 @@
     <!-- -------------------------------- -->
     <div class="container_1">
         <!-- -------------------------------- -->
-        <div class="box_1">
-            <img src="/images/rank/Frame.png" alt="이미지가 없습니다">
-            <h2>With You</h2>
 
-        </div>
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
+            <h2>With You</h2>
+        </a>
 
         <div class="box_2">
-            <a href="#홈">홈</a>
+            <a href="${pageContext.request.contextPath}/api/main">홈</a>
             <a href="#소개">소개</a>
-            <a href="#커뮤니티">커뮤니티</a>
-            <a href="#지도">지도</a>
-            <a href="#랭킹">랭킹</a>
+            <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
+            <a href="${pageContext.request.contextPath}/api/map">지도</a>
+            <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
             <a href="#문의하기">문의하기</a>
+
 
         </div>
         <div class="box_3">
-            <button>시작하기<img id="btn_img" src="/images/rank/arrow.png" alt="" width="16"></button>
+            <button>시작하기</button>
         </div>
     </div>
     <!-- -------------------------------- -->
@@ -72,54 +73,103 @@
         </div>
         <!-- -------------------------------- -->
 
-        <table class="other_box">
-            <tr>
-                <td>등수</td>
-                <td>동네 이름</td>
-                <td>회원 수</td>
-                <td>좋아요 수</td>
-                <td>평점</td>
-            </tr>
-
-            <tr>
-                <td>4</td>
-                <td>성정동</td>
-                <td>100</td>
-                <td>100</td>
-                <td>78점</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>성정동</td>
-                <td>100</td>
-                <td>100</td>
-                <td>78점</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>성정동</td>
-                <td>100</td>
-                <td>100</td>
-                <td>78점</td>
-            </tr>
-        </table>
-
-        <!--
-            <div class="other_box">
-                <p class="other_rank">등수</p>
-                <p class="other_name">동네 이름</p>
-                <p class="other_account">회원 수</p>
-                <p class="other_like">좋아요 수</p>
-                <p class="other_point">평점</p>
+        <div class="container_4">
+            <div class="left_box">
+                <p>4</p>
             </div>
+            <div class="center_box">
+                <p class="title1">서북구 부성1동</p>
+                <p class="content1">활동 128건</p>
+            </div>
+            <div class="right_box">
+                <p class="title2">78점</p>
+                <p class="content2">-1 순위</p>
+            </div>
+        </div>
 
-            <div class="other_box">
-                <p class="other_rank">4</p>
-                <p class="other_name">성정동</p>
-                <p class="other_account">78</p>
-                <p class="other_like">78</p>
-                <p class="other_point">78점</p>
-            </div> -->
+        <div class="container_4">
+            <div class="left_box">
+                <p>5</p>
+            </div>
+            <div class="center_box">
+                <p class="title1">서북구 성정1동</p>
+                <p class="content1">활동 110건</p>
+            </div>
+            <div class="right_box">
+                <p class="title2">70점</p>
+                <p class="content2">+1 순위</p>
+            </div>
+        </div>
+
+        <div class="container_4">
+            <div class="left_box">
+                <p>6</p>
+            </div>
+            <div class="center_box">
+                <p class="title1">서북구 불당2동</p>
+                <p class="content1">활동 98건</p>
+            </div>
+            <div class="right_box">
+                <p class="title2">65점</p>
+                <p class="content2">-1 순위</p>
+            </div>
+        </div>
+
+        <div class="container_4">
+            <div class="left_box">
+                <p>7</p>
+            </div>
+            <div class="center_box">
+                <p class="title1">서북구 쌍용2동</p>
+                <p class="content1">활동 84건</p>
+            </div>
+            <div class="right_box">
+                <p class="title2">61점</p>
+                <p class="content2">-2 순위</p>
+            </div>
+        </div>
+
+        <div class="container_4">
+            <div class="left_box">
+                <p>8</p>
+            </div>
+            <div class="center_box">
+                <p class="title1">동남구 문성동</p>
+                <p class="content1">활동 79건</p>
+            </div>
+            <div class="right_box">
+                <p class="title2">59점</p>
+                <p class="content2">+2 순위</p>
+            </div>
+        </div>
+
+        <div class="container_4">
+            <div class="left_box">
+                <p>9</p>
+            </div>
+            <div class="center_box">
+                <p class="title1">서북구 쌍용1동</p>
+                <p class="content1">활동 73건</p>
+            </div>
+            <div class="right_box">
+                <p class="title2">57점</p>
+                <p class="content2">-1 순위</p>
+            </div>
+        </div>
+
+        <div class="container_4">
+            <div class="left_box">
+                <p>10</p>
+            </div>
+            <div class="center_box">
+                <p class="title1">서북구 백석동</p>
+                <p class="content1">활동 68건</p>
+            </div>
+            <div class="right_box">
+                <p class="title2">54점</p>
+                <p class="content2">-3 순위</p>
+            </div>
+        </div>
     </div>
 
 </div>

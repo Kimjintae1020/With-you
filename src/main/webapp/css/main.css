@@ -42,6 +42,28 @@ body {
     color: #3B82F6;
 }
 
+
+
+#logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration-line: none;
+
+    margin-left: 100px;
+}
+
+#logo h2 {
+    margin-left: 10px;
+    color: #3B82F6;
+}
+
+
+
+
+
+
+
 .main_wrap .container_1 .box_2 {
     margin-left: 300px;
 }
@@ -155,7 +177,8 @@ body {
     border-radius: 25px;
     border: 0;
     background: #3B82F6;
-    font-size: 11px;
+    font-size: 15px;
+    color: white;
 
 }
 
@@ -168,6 +191,8 @@ body {
     border: 0;
     background: white;
     border: 0.5px #D1D5DB solid;
+
+    font-size: 15px;
 
 }
 
