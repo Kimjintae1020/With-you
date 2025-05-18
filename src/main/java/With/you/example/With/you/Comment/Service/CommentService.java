@@ -10,7 +10,6 @@ import With.you.example.With.you.Comment.Dto.DtoCommentUpdate;
 import With.you.example.With.you.Comment.Entity.Comment;
 import With.you.example.With.you.Comment.Repository.CommentRepository;
 import With.you.example.With.you.Exception.CustomException;
-import With.you.example.With.you.Exception.UnauthorizedException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -227,7 +227,7 @@
   <h1>${board.title}</h1>
   <div class="meta-info">
     작성자: ${board.account.nickname} | 댓글 ${comments.size()}개
-<%--    | 작성일: ${board.createdDate}--%>
+    | 작성일: ${createdDate}
   </div>
 
   <div class="content">${board.content}</div>

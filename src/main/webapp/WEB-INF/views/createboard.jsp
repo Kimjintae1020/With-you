@@ -264,8 +264,8 @@
 
 <div class="container">
     <h1>게시글 작성</h1>
-    <form action="/api/create/board" method="post">
-        <div class="form-group form-row">
+    <form id="createBoardForm">
+    <div class="form-group form-row">
             <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required />
             <div class="post-type-tabs">
                 <div class="post-type-tab active" data-value="자유">자유</div>
@@ -286,6 +286,60 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("createBoardForm");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // 기본 제출 막기
+
+            const formData = new FormData(form);
+
+            fetch("/api/create/board", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.text().then(text => {
+                    return { status: response.status, message: text };
+                }))
+                .then(result => {
+                    showToast(result.message);
+
+                    if (result.status === 200) {
+                        setTimeout(() => {
+                            window.location.href = "/api/boards"; //
+                        }, 1500);
+                    }
+                })
+                .catch(err => {
+                    showToast("❗ 게시글 작성 중 오류가 발생했습니다.");
+                    console.error(err);
+                });
+        });
+
+        function showToast(message) {
+            const toast = document.createElement("div");
+            toast.innerText = message;
+            toast.style.position = "fixed";
+            toast.style.bottom = "30px";
+            toast.style.left = "50%";
+            toast.style.transform = "translateX(-50%)";
+            toast.style.backgroundColor = "#333";
+            toast.style.color = "#fff";
+            toast.style.padding = "10px 20px";
+            toast.style.borderRadius = "6px";
+            toast.style.zIndex = "10000";
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 1500);
+            return toast;
+        }
+    });
+</script>
+
 
 </body>
 
