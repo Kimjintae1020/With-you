@@ -11,25 +11,26 @@
 <body>
 <div class="main_wrap">
     <!-- -------------------------------- -->
-    <a href="${pageContext.request.contextPath}/api/main" id="logo">
-        <img src="/images/login/Frame.png" alt="경로 에러">
-        <h2>With You</h2>
-    </a>
+    <div class="container_1">
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
+            <h2>With You</h2>
+        </a>
 
 
 
-    <div class="box_2">
-        <a href="${pageContext.request.contextPath}/api/main">홈</a>
-        <a href="#소개">소개</a>
-        <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
-        <a href="${pageContext.request.contextPath}/api/map">지도</a>
-        <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
-        <a href="#문의하기">문의하기</a>
+        <div class="box_2">
+            <a href="${pageContext.request.contextPath}/api/main">홈</a>
+            <a href="#소개">소개</a>
+            <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
+            <a href="${pageContext.request.contextPath}/api/map">지도</a>
+            <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
+            <a href="#문의하기">문의하기</a>
 
-    </div>
-    <div class="box_3">
-        <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
-    </div>
+        </div>
+        <div class="box_3">
+            <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
+        </div>
     </div>
     <!-- -------------------------------- -->
 
@@ -59,7 +60,7 @@
                             </tr>
                             <tr>
                                 <td align="right">비밀번호 : &nbsp;</td>
-                                <td>${mypage.password}</td>
+                                <td>********</td>
                             </tr>
                             <tr>
                                 <td align="right">닉네임 : &nbsp;</td>
