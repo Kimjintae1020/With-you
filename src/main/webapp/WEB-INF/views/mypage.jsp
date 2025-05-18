@@ -11,6 +11,7 @@
 <body>
 <div class="main_wrap">
     <!-- -------------------------------- -->
+    <div class="container_1">
     <a href="${pageContext.request.contextPath}/api/main" id="logo">
         <img src="/images/login/Frame.png" alt="경로 에러">
         <h2>With You</h2>
@@ -27,9 +28,9 @@
         <a href="#문의하기">문의하기</a>
 
     </div>
-    <div class="box_3">
-        <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
-    </div>
+        <div class="box_3">
+            <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
+        </div>
     </div>
     <!-- -------------------------------- -->
 
