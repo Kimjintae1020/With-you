@@ -2,6 +2,7 @@ package With.you.example.With.you.Club.Service;
 
 import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Account.Service.AccountService;
+import With.you.example.With.you.Club.Dto.ClubListResponse;
 import With.you.example.With.you.Club.Repository.ClubMemberRepository;
 import With.you.example.With.you.Club.Repository.ClubRepository;
 import With.you.example.With.you.Club.Dto.DtoCreateClub;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -67,4 +70,36 @@ public class ClubService {
         clubMemberRepository.save(clubMember);
     }
 
+    // 동호회 목록 조회
+    public List<ClubListResponse> getClubList(String accountName) {
+
+        Account account = accountService.getAccountByName(accountName);
+        if (account == null) {
+            throw new IllegalArgumentException("사용자 정보를 찾을 수 없습니다.");
+        }
+
+        List<Club> clubs = clubRepository.findByStatusAndIsPublicOrderByCreatedAtDesc("ACTIVE", true);
+
+        return clubs.stream()
+                .map(club -> {
+                    boolean isMember = clubMemberRepository.existsByClubAndAccount(club, account);
+                    boolean isLeader = club.getLeader().getAccountid().equals(account.getAccountid());
+
+                    return ClubListResponse.builder()
+                            .clubId(club.getClubId())
+                            .clubName(club.getClubName())
+                            .category(club.getCategory())
+                            .region(club.getRegion())
+                            .currentMembers(club.getCurrentMembers())
+                            .maxMembers(club.getMaxMembers())
+                            .leaderNickname(club.getLeader().getNickname())
+                            .meetingFrequency(club.getMeetingFrequency())
+                            .meetingLocation(club.getMeetingLocation())
+                            .isMember(isMember)
+                            .isLeader(isLeader)
+                            .createdAt(club.getCreatedAt())
+                            .build();
+                })
+                .collect(Collectors.toList());
+    }
 }
