@@ -1,5 +1,6 @@
 package With.you.example.With.you.Club.Dto;
 
+import With.you.example.With.you.Account.Enum.Region;
 import With.you.example.With.you.Club.Enum.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ public class DtoCreateClub {
     private String clubName;           // 동호회 이름
     private String description;        // 동호회 소개/설명
     private Category category;           // 동호회 카테고리 (운동, 취미, 스터디 등)
-    private String region;             // 활동 지역
+    private Region region;             // 활동 지역
 
     private int maxMembers;           // 최대 인원 수
 

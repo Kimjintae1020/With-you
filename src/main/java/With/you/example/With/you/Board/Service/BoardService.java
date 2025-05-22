@@ -42,6 +42,7 @@ public class BoardService {
         board.setAccount(account);
         board.setTitle(dtoCreateBoard.getTitle());
         board.setContent(dtoCreateBoard.getContent());
+        board.setRegion(dtoCreateBoard.getRegion());
         board.setLikecount(0);
 
         boardRepository.save(board);

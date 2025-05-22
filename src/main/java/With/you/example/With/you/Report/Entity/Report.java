@@ -34,10 +34,10 @@
         @JoinColumn(name = "REPORTED_ACCOUNT_ID", nullable = false)
         private Account reportedAccount;
 
-        @Enumerated(EnumType.STRING) // ← 이게 핵심입니다!
+        @Enumerated(EnumType.STRING)
         @Column(name = "REPORT_TYPE", nullable = false)
         private ReportType reportType;
-    
+
         @Column(name = "REPORT_REASON")
         private String reportReason;
 
