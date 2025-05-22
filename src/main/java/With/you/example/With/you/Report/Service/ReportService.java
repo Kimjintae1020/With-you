@@ -1,10 +1,12 @@
 package With.you.example.With.you.Report.Service;
 
 import With.you.example.With.you.Account.Entity.Account;
+import With.you.example.With.you.Account.Enum.ReportType;
 import With.you.example.With.you.Account.Service.AccountService;
 import With.you.example.With.you.Board.Entity.Board;
 import With.you.example.With.you.Board.Service.BoardService;
 import With.you.example.With.you.Report.Dto.DtoReportRequest;
+import With.you.example.With.you.Report.Entity.Report;
 import With.you.example.With.you.Report.Repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +25,7 @@ public class ReportService {
     private final BoardService boardService;
     private final AccountService accountService;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void processReport(Long boardId, String accountName, DtoReportRequest dtoReportRequest, Model model) {
 
         Board board = boardService.getBoard(boardId);
@@ -44,6 +46,20 @@ public class ReportService {
         if (reporter.getAccountid().equals(boardWriter.getAccountid())) {
             throw new IllegalArgumentException("자기 자신을 신고할 수 없습니다.");
         }
+
+        Report report = new Report();
+        report.setBoard(board);
+        report.setReporter(reporter);
+        report.setReportedAccount(boardWriter);
+        report.setReportType(ReportType.valueOf(String.valueOf(dtoReportRequest.getReportType())));
+        report.setReportReason(dtoReportRequest.getReportReason());
+        report.setEvidenceFiles(dtoReportRequest.getEvidenceText());
+        report.setStatus("PENDING");
+
+        reportRepository.save(report);
+
+        model.addAttribute("reportStatus", "PENDING");
+
 
         model.addAttribute("boardId", boardId);
         model.addAttribute("boardTitle", board.getTitle());

@@ -1,7 +1,5 @@
 package With.you.example.With.you.Report.Controller;
 
-import With.you.example.With.you.Account.Service.AccountService;
-import With.you.example.With.you.Board.Service.BoardService;
 import With.you.example.With.you.Report.Dto.DtoReportRequest;
 import With.you.example.With.you.Report.Service.ReportService;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +25,7 @@ public class ReportController {
                                             Model model,
                                             HttpSession session,
                                             @ModelAttribute DtoReportRequest dtoReportRequest) {
-        String accountName = (String) session.getAttribute("accountName");
+        String accountName = (String) session.getAttribute("LoginAccountName");
 
         reportService.processReport(boardId, accountName, dtoReportRequest, model);
 
