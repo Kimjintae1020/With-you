@@ -24,6 +24,11 @@ public class ClubController {
 
     private final ClubService clubService;
 
+    @GetMapping("/clubCreate")
+    public String clubCreateP() {
+        return "clubCreate";
+    }
+
     // 동호회 생성하기
     @PostMapping("/create/club")
     public ResponseEntity<?> createClub(Model model,

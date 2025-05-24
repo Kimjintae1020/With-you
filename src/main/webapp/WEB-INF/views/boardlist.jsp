@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -232,6 +234,66 @@
       font-weight: bold;
       color: #007bff;
     }
+
+     .post-link {
+       text-decoration: none;
+       color: inherit;
+     }
+
+    .post-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background-color: #f9fafb;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s;
+    }
+
+    .post-item:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .post-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .post-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      color: #1f2937;
+    }
+
+    .post-meta {
+      font-size: 14px;
+      color: #6b7280;
+      display: flex;
+      gap: 12px;
+    }
+
+    .post-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .icon {
+      font-size: 16px;
+    }
+
   </style>
 </head>
 
@@ -263,8 +325,6 @@
 </div>
 
 <div class="container">
-
-
   <div class="sidebar">
     <div class="section">
       <h3>👤 사용자 정보</h3>
@@ -285,22 +345,34 @@
 
     <div class="board">
       <c:forEach var="post" items="${boards}">
-        <a href="/api/board/detail/${post.boardid}" style="text-decoration: none;">
-          <div class="post">
-            <h2 class="post-title">${post.title}</h2>
+        <a href="/api/board/detail/${post.boardid}" class="post-link">
+          <div class="post-item">
+            <div class="post-content">
+              <h2 class="post-title">${post.title}</h2>
+              <div class="post-meta">
+            <span class="date">
+              작성일: <fmt:parseDate value="${post.createdAt}" pattern="yyyy-MM-dd" var="parsedDate" />
 
-            <div class="post-info">
-              <span class="time">${post.createdAt}</span>
-              <span class="writer">${post.writerNickname}</span>
+              <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" /> |
+            </span>
+                직성자: <span class="nickname">${post.writerNickname}</span> |
+                <span class="region">${post.regionLabel}</span>
+              </div>
             </div>
-
             <div class="post-stats">
-              <div class="likes">❤️ ${post.likecount}</div>
+              <div class="stat">
+                <span class="icon">💬</span>
+              </div>
+              <div class="stat">
+                <span class="icon">❤️</span>
+                <span class="count">${post.likecount}</span>
+              </div>
             </div>
           </div>
         </a>
       </c:forEach>
     </div>
+
 
     <div class="pagination">
       <c:forEach begin="1" end="${totalPages}" var="i">
@@ -334,5 +406,7 @@
 </script>
 
 </body>
+
+
 
 </html>

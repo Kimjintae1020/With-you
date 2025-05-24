@@ -60,6 +60,7 @@ public class BoardController {
         model.addAttribute("totalPages", response.getTotal_pages());
         model.addAttribute("currentPage", response.getPage());
 
+
         return "boardlist";
     }
 
