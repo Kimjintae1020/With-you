@@ -10,6 +10,8 @@ public enum Category {
     FOOD("맛집"),
     LANGUAGE("어학"),
     CAREER("직무"),
+    VOLUNTEER("봉사"),
+    SOCIAL("친목"),
     OTHER("기타");
 
     private final String description;
@@ -21,4 +23,14 @@ public enum Category {
     public String getDescription() {
         return description;
     }
+
+    public static Category fromDescription(String description) {
+        for (Category category : Category.values()) {
+            if (category.getDescription().equals(description)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("잘못된 카테고리 입력: " + description);
+    }
+
 }

@@ -1,12 +1,8 @@
 package With.you.example.With.you.Board.Dto;
 
-import With.you.example.With.you.Account.Entity.Account;
-import With.you.example.With.you.Account.Enum.Region;
 import With.you.example.With.you.Board.Entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
