@@ -37,25 +37,25 @@
     <!-- -------------------------------- -->
     <div class="container_2">
         <div class="map">
-            <img id="map1" src="/images/map/map_1.svg" alt="">
-            <img id="map2" src="/images/map/map_2.svg" alt="">
-            <img id="map3" src="/images/map/map_3.svg" alt="">
-            <img id="map4" src="/images/map/map_4.svg" alt="">
-            <img id="map5" src="/images/map/map_5.svg" alt="">
-            <img id="map6" src="/images/map/map_6.svg" alt="">
-            <img id="map7" src="/images/map/map_7.svg" alt="">
-            <img id="map8" src="/images/map/map_8.svg" alt="">
-            <img id="map9" src="/images/map/map_9.svg" alt="">
-            <img id="map10" src="/images/map/map_10.svg" alt="">
-            <img id="map11" src="/images/map/map_11.svg" alt="">
-            <img id="map12" src="/images/map/map_12.svg" alt="">
-            <img id="map13" src="/images/map/map_13.svg" alt="">
-            <img id="map14" src="/images/map/map_14.svg" alt="">
-            <img id="map15" src="/images/map/map_15.svg" alt="">
-            <img id="map16" src="/images/map/map_16.svg" alt="">
-            <img id="map17" src="/images/map/map_17.svg" alt="">
-            <img id="map18" src="/images/map/map_18.svg" alt="">
-            <img id="map19" src="/images/map/map_19.svg" alt="">
+            <img id="map1" src="/images/map/map_1.svg" alt="" onclick="goToDetail(this)">
+            <img id="map2" src="/images/map/map_2.svg" alt="" onclick="goToDetail(this)">
+            <img id="map3" src="/images/map/map_3.svg" alt="" onclick="goToDetail(this)">
+            <img id="map4" src="/images/map/map_4.svg" alt="" onclick="goToDetail(this)">
+            <img id="map5" src="/images/map/map_5.svg" alt="" onclick="goToDetail(this)">
+            <img id="map6" src="/images/map/map_6.svg" alt="" onclick="goToDetail(this)">
+            <img id="map7" src="/images/map/map_7.svg" alt="" onclick="goToDetail(this)">
+            <img id="map8" src="/images/map/map_8.svg" alt="" onclick="goToDetail(this)">
+            <img id="map9" src="/images/map/map_9.svg" alt="" onclick="goToDetail(this)">
+            <img id="map10" src="/images/map/map_10.svg" alt="" onclick="goToDetail(this)">
+            <img id="map11" src="/images/map/map_11.svg" alt="" onclick="goToDetail(this)">
+            <img id="map12" src="/images/map/map_12.svg" alt="" onclick="goToDetail(this)">
+            <img id="map13" src="/images/map/map_13.svg" alt="" onclick="goToDetail(this)">
+            <img id="map14" src="/images/map/map_14.svg" alt="" onclick="goToDetail(this)">
+            <img id="map15" src="/images/map/map_15.svg" alt="" onclick="goToDetail(this)">
+            <img id="map16" src="/images/map/map_16.svg" alt="" onclick="goToDetail(this)">
+            <img id="map17" src="/images/map/map_17.svg" alt="" onclick="goToDetail(this)">
+            <img id="map18" src="/images/map/map_18.svg" alt="" onclick="goToDetail(this)">
+            <img id="map19" src="/images/map/map_19.svg" alt="" onclick="goToDetail(this)">
         </div>
 
     </div>
@@ -64,5 +64,13 @@
 
 
 </div>
+
+<script>
+    function goToDetail(img) {
+        const id = img.id;
+        window.location.href = "main?" + encodeURIComponent(id);
+
+    }
+</script>
 </body>
 </html>

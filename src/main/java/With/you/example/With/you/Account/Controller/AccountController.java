@@ -57,9 +57,6 @@ public class AccountController {
     @GetMapping("/map")
     public String mapForm() { return "map"; }
 
-    @GetMapping("/faq")
-    public String faqForm() { return "faq"; }
-
     @GetMapping("/admin_1_main")
     public String admin_1_mainFrom(Model model) {
         List<Account> accounts = accountRepository.findAll();
