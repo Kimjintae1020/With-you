@@ -18,6 +18,7 @@ body {
     height: 100%;
     background: white;
 
+
 }
 
 .main_wrap .container_1 {
@@ -104,7 +105,7 @@ body {
 
 
 .container_3 {
-    width: 100%;
+    width: 70%;
     display: flex;
     text-align: center;
     margin-top: 30px;
@@ -209,12 +210,20 @@ body {
 
 }
 
+.bottom_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
 
 .container_4 {
-    width: 100%;
+    width: 50%;
     display: flex;
 
-    font-size: 30px;
+    font-size: 20px;
 
     text-align: center;
 
@@ -233,7 +242,7 @@ body {
 .left_box {
     width: 10%;
     margin: auto;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 
 }
@@ -249,7 +258,7 @@ body {
 }
 
 .content1 {
-    font-size: 25px;
+    font-size: 15px;
     color: #6B7280;
 }
 
@@ -267,7 +276,7 @@ body {
 
 .content2 {
     color: red;
-    font-size: 25px;
+    font-size: 15px;
 }
 
 
