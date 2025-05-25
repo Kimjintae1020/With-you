@@ -68,7 +68,7 @@
 <script>
     function goToDetail(img) {
         const id = img.id;
-        window.location.href = "main?" + encodeURIComponent(id);
+        window.location.href = "boards?" + encodeURIComponent(id);
 
     }
 </script>

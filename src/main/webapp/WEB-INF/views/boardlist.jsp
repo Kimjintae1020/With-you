@@ -336,7 +336,7 @@
   </div>
 
   <div class="main">
-    <h1 style="color:#111827;">인기</h1>
+    <h1 style="color:#111827;" id="main_title"></h1>
 
     <form id="searchForm" action="/boards" method="get" class="search-container">
       <input type="text" name="keyword" id="keywordInput" placeholder="게시글 제목 검색" />
@@ -396,6 +396,38 @@
 <script>
   const input = document.getElementById("keywordInput");
   const form = document.getElementById("searchForm");
+
+
+  const params = location.href.split("?")[1];
+  console.log(params);
+
+  const regionList = {
+    map1: "서북구 부성1동",
+    map2: "서북구 부성2동",
+    map3: "동남구 신안동",
+    map4: "서북구 성정2동",
+    map5: "서북구 백석동",
+    map6: "서북구 성정1동",
+    map7: "동남구 문성동",
+    map8: "동남구 원성1동",
+    map9: "서북구 불당2동",
+    map10: "서북구 불당1동",
+    map11: "서북구 쌍용3동",
+    map12: "동남구 봉명동",
+    map13: "동남구 중앙동",
+    map14: "동남구 원성2동",
+    map15: "서북구 쌍용1동",
+    map16: "서북구 쌍용2동",
+    map17: "동남구 일봉동",
+    map18: "동남구 청룡동",
+    map19: "동남구 신방동"
+  }
+
+  const eleTitle = document.getElementById("main_title");
+
+  (params === undefined) ? eleTitle.innerHTML = "인기" :
+    eleTitle.innerHTML = regionList[params];
+
 
   input.addEventListener("input", function () {
     clearTimeout(window.searchTimeout);
