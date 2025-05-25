@@ -48,5 +48,6 @@
 <br><br>
 <a href="/api/mypage">마이페이지</a>
 <br><br>
+<a href="/api/clublist">동호회 목록</a>
 </body>
 </html>

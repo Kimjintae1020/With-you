@@ -267,6 +267,30 @@
     <form id="createBoardForm">
     <div class="form-group form-row">
             <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required />
+
+            <div>
+                <select name="region" id="region" required>
+                    <option value="" disabled selected>-- 활동 지역 선택 --</option>
+                    <option value="SEOUL">서울특별시</option>
+                    <option value="BUSAN">부산광역시</option>
+                    <option value="DAEGU">대구광역시</option>
+                    <option value="INCHEON">인천광역시</option>
+                    <option value="GWANGJU">광주광역시</option>
+                    <option value="DAEJEON">대전광역시</option>
+                    <option value="ULSAN">울산광역시</option>
+                    <option value="SEJONG">세종특별자치시</option>
+                    <option value="GYEONGGI">경기도</option>
+                    <option value="GANGWON">강원도</option>
+                    <option value="CHUNGBUK">충청북도</option>
+                    <option value="CHUNGNAM">충청남도</option>
+                    <option value="JEONBUK">전라북도</option>
+                    <option value="JEONNAM">전라남도</option>
+                    <option value="GYEONGBUK">경상북도</option>
+                    <option value="GYEONGNAM">경상남도</option>
+                    <option value="JEJU">제주특별자치도</option>
+                </select>
+            </div>
+
             <div class="post-type-tabs">
                 <div class="post-type-tab active" data-value="자유">자유</div>
                 <div class="post-type-tab" data-value="유머">유머</div>

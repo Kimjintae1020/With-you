@@ -45,129 +45,133 @@
             </div>
         </div>
         <!-- -------------------------------- -->
-        <div class="container_3">
-            <div id="rank_2">
-                <img src="/images/rank/rank_2.png" alt="">
-                <h2>2위</h2>
-                <p class="name">성북동</p>
-                <p class="point">85점</p>
-                <p class="play">활동 142건</p>
-            </div>
-            <div id="rank_1">
-                <div>
-                    <img src="/images/rank/rank_1.png" alt="">
-                    <h2>1위</h2>
-                    <p class="name">안서동</p>
-                    <p class="point">89점</p>
-                    <p class="play">활동 156건</p>
+        <div class="bottom_wrap">
+            <div class="container_3">
+                <div id="rank_2">
+                    <img src="/images/rank/rank_2.png" alt="">
+                    <h2>2위</h2>
+                    <p class="name">성북동</p>
+                    <p class="point">85점</p>
+                    <p class="play">활동 142건</p>
                 </div>
+                <div id="rank_1">
+                    <div>
+                        <img src="/images/rank/rank_1.png" alt="">
+                        <h2>1위</h2>
+                        <p class="name">안서동</p>
+                        <p class="point">89점</p>
+                        <p class="play">활동 156건</p>
+                    </div>
 
-            </div>
-            <div id="rank_3">
-                <img src="/images/rank/rank_3.png" alt="">
-                <h2>3위</h2>
-                <p class="name">월곡동</p>
-                <p class="point">82점</p>
-                <p class="play">활동 132건</p>
+                </div>
+                <div id="rank_3">
+                    <img src="/images/rank/rank_3.png" alt="">
+                    <h2>3위</h2>
+                    <p class="name">월곡동</p>
+                    <p class="point">82점</p>
+                    <p class="play">활동 132건</p>
+                </div>
             </div>
         </div>
         <!-- -------------------------------- -->
 
-        <div class="container_4">
-            <div class="left_box">
-                <p>4</p>
+        <div class="bottom_wrap">
+            <div class="container_4">
+                <div class="left_box">
+                    <p>4</p>
+                </div>
+                <div class="center_box">
+                    <p class="title1">서북구 부성1동</p>
+                    <p class="content1">활동 128건</p>
+                </div>
+                <div class="right_box">
+                    <p class="title2">78점</p>
+                    <p class="content2">-1 순위</p>
+                </div>
             </div>
-            <div class="center_box">
-                <p class="title1">서북구 부성1동</p>
-                <p class="content1">활동 128건</p>
-            </div>
-            <div class="right_box">
-                <p class="title2">78점</p>
-                <p class="content2">-1 순위</p>
-            </div>
-        </div>
 
-        <div class="container_4">
-            <div class="left_box">
-                <p>5</p>
+            <div class="container_4">
+                <div class="left_box">
+                    <p>5</p>
+                </div>
+                <div class="center_box">
+                    <p class="title1">서북구 성정1동</p>
+                    <p class="content1">활동 110건</p>
+                </div>
+                <div class="right_box">
+                    <p class="title2">70점</p>
+                    <p class="content2">+1 순위</p>
+                </div>
             </div>
-            <div class="center_box">
-                <p class="title1">서북구 성정1동</p>
-                <p class="content1">활동 110건</p>
-            </div>
-            <div class="right_box">
-                <p class="title2">70점</p>
-                <p class="content2">+1 순위</p>
-            </div>
-        </div>
 
-        <div class="container_4">
-            <div class="left_box">
-                <p>6</p>
+            <div class="container_4">
+                <div class="left_box">
+                    <p>6</p>
+                </div>
+                <div class="center_box">
+                    <p class="title1">서북구 불당2동</p>
+                    <p class="content1">활동 98건</p>
+                </div>
+                <div class="right_box">
+                    <p class="title2">65점</p>
+                    <p class="content2">-1 순위</p>
+                </div>
             </div>
-            <div class="center_box">
-                <p class="title1">서북구 불당2동</p>
-                <p class="content1">활동 98건</p>
-            </div>
-            <div class="right_box">
-                <p class="title2">65점</p>
-                <p class="content2">-1 순위</p>
-            </div>
-        </div>
 
-        <div class="container_4">
-            <div class="left_box">
-                <p>7</p>
+            <div class="container_4">
+                <div class="left_box">
+                    <p>7</p>
+                </div>
+                <div class="center_box">
+                    <p class="title1">서북구 쌍용2동</p>
+                    <p class="content1">활동 84건</p>
+                </div>
+                <div class="right_box">
+                    <p class="title2">61점</p>
+                    <p class="content2">-2 순위</p>
+                </div>
             </div>
-            <div class="center_box">
-                <p class="title1">서북구 쌍용2동</p>
-                <p class="content1">활동 84건</p>
-            </div>
-            <div class="right_box">
-                <p class="title2">61점</p>
-                <p class="content2">-2 순위</p>
-            </div>
-        </div>
 
-        <div class="container_4">
-            <div class="left_box">
-                <p>8</p>
+            <div class="container_4">
+                <div class="left_box">
+                    <p>8</p>
+                </div>
+                <div class="center_box">
+                    <p class="title1">동남구 문성동</p>
+                    <p class="content1">활동 79건</p>
+                </div>
+                <div class="right_box">
+                    <p class="title2">59점</p>
+                    <p class="content2">+2 순위</p>
+                </div>
             </div>
-            <div class="center_box">
-                <p class="title1">동남구 문성동</p>
-                <p class="content1">활동 79건</p>
-            </div>
-            <div class="right_box">
-                <p class="title2">59점</p>
-                <p class="content2">+2 순위</p>
-            </div>
-        </div>
 
-        <div class="container_4">
-            <div class="left_box">
-                <p>9</p>
+            <div class="container_4">
+                <div class="left_box">
+                    <p>9</p>
+                </div>
+                <div class="center_box">
+                    <p class="title1">서북구 쌍용1동</p>
+                    <p class="content1">활동 73건</p>
+                </div>
+                <div class="right_box">
+                    <p class="title2">57점</p>
+                    <p class="content2">-1 순위</p>
+                </div>
             </div>
-            <div class="center_box">
-                <p class="title1">서북구 쌍용1동</p>
-                <p class="content1">활동 73건</p>
-            </div>
-            <div class="right_box">
-                <p class="title2">57점</p>
-                <p class="content2">-1 순위</p>
-            </div>
-        </div>
 
-        <div class="container_4">
-            <div class="left_box">
-                <p>10</p>
-            </div>
-            <div class="center_box">
-                <p class="title1">서북구 백석동</p>
-                <p class="content1">활동 68건</p>
-            </div>
-            <div class="right_box">
-                <p class="title2">54점</p>
-                <p class="content2">-3 순위</p>
+            <div class="container_4">
+                <div class="left_box">
+                    <p>10</p>
+                </div>
+                <div class="center_box">
+                    <p class="title1">서북구 백석동</p>
+                    <p class="content1">활동 68건</p>
+                </div>
+                <div class="right_box">
+                    <p class="title2">54점</p>
+                    <p class="content2">-3 순위</p>
+                </div>
             </div>
         </div>
     </div>

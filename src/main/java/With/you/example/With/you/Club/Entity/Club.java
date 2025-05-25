@@ -1,6 +1,7 @@
 package With.you.example.With.you.Club.Entity;
 
 import With.you.example.With.you.Account.Entity.Account;
+import With.you.example.With.you.Account.Enum.Region;
 import With.you.example.With.you.Club.Enum.Category;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -32,8 +33,9 @@ public class Club {
     @Column(name = "CATEGORY", nullable = false)
     private Category category;         // 동호회 카테고리
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "REGION", nullable = false)
-    private String region;             // 활동 지역
+    private Region region;             // 활동 지역
 
     @Column(name = "MAX_MEMBERS", nullable = false)
     private int maxMembers;           // 최대 인원 수
@@ -72,7 +74,7 @@ public class Club {
     private LocalDateTime updatedAt;  // 수정일시
 
     @Builder
-    public Club(String clubName, String description, Category category, String region,
+    public Club(String clubName, String description, Category category, Region region,
                 int maxMembers, int currentMembers, boolean isPublic,
                 String meetingFrequency, String meetingTime, String meetingLocation,
                 int dues, Account leader, String status) {

@@ -90,6 +90,7 @@ public class AccountController {
         if ("admin".equals(account.get().getAccountname())) {
             session.setAttribute("Role", Role.ROLE_ADMIN);
             log.info("관리자 로그인");
+            return "admin_1_main";
         }
 
 

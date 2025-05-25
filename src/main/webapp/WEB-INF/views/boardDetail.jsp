@@ -2,6 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
+<%
+  String accountName = (String) session.getAttribute("LoginAccountName");
+%>
+
 <html lang="ko">
 <head>
   <title>게시글 상세</title>
@@ -227,7 +231,7 @@
   <h1>${board.title}</h1>
   <div class="meta-info">
     작성자: ${board.account.nickname} | 댓글 ${comments.size()}개
-    | 작성일: ${createdDate}
+    | ${createdDate}
   </div>
 
   <div class="content">${board.content}</div>
@@ -235,9 +239,25 @@
   <div class="button-group">
     <a href="/api/boards" class="list-button">게시글 목록</a>
 
+    <div style="display: flex; gap: 10px;">
       <button type="button" class="like-button" onclick="likePost(${board.boardId})">
         좋아요 ❤️ <span id="like-count">${board.likecount}</span>
       </button>
+      <select id="reportType">
+        <option value="INAPPROPRIATE_BEHAVIOR">부적절한 행동</option>
+        <option value="HARASSMENT">괴롭힘</option>
+        <option value="SPAM">스팸</option>
+        <option value="FAKE_ACCOUNT">가짜 계정</option>
+        <option value="OFFENSIVE_LANGUAGE">공격적인 언어 사용</option>
+        <option value="OTHER">기타</option>
+      </select>
+
+      <input type="text" id="reportReason" placeholder="신고 사유 입력">
+      <textarea id="evidenceText" placeholder="증거 내용을 입력하세요"></textarea>
+
+      <button onclick="reportPost(${board.boardId})">신고하기</button>
+
+    </div>
   </div>
 
 
@@ -409,6 +429,43 @@
             })
             .catch(err => {
               alert("댓글 삭제에 실패했습니다.");
+              console.error(err);
+            });
+  }
+
+  function reportPost(boardId) {
+    const accountName = "<%= accountName %>";
+    if (!accountName || accountName === "null") {
+      alert("로그인 후 신고하실 수 있습니다.");
+      return;
+    }
+
+    if (!confirm("해당 게시글을 신고하시겠습니까?")) return;
+
+    const reportType = document.getElementById('reportType').value;
+    const reportReason = document.getElementById('reportReason').value;
+    const evidenceText = document.getElementById('evidenceText').value;
+
+    // FormData 객체 생성
+    const formData = new FormData();
+    formData.append('reportType', reportType);
+    formData.append('reportReason', reportReason);
+    formData.append('evidenceText', evidenceText);
+
+    fetch(`/api/report/board/${boardId}`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include'
+    })
+            .then(response => {
+              if (!response.ok) throw new Error("신고 실패");
+              return response.text();
+            })
+            .then(message => {
+              showToastMessage(message || "신고가강ㅎㅎ 접수되었습니다.");
+            })
+            .catch(err => {
+              showToastMessage("이미 신고한 게시글이거나 오류가 발생했습니다.");
               console.error(err);
             });
   }

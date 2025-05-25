@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -232,6 +234,66 @@
       font-weight: bold;
       color: #007bff;
     }
+
+     .post-link {
+       text-decoration: none;
+       color: inherit;
+     }
+
+    .post-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background-color: #f9fafb;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s;
+    }
+
+    .post-item:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .post-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .post-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      color: #1f2937;
+    }
+
+    .post-meta {
+      font-size: 14px;
+      color: #6b7280;
+      display: flex;
+      gap: 12px;
+    }
+
+    .post-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .icon {
+      font-size: 16px;
+    }
+
   </style>
 </head>
 
@@ -263,8 +325,6 @@
 </div>
 
 <div class="container">
-
-
   <div class="sidebar">
     <div class="section">
       <h3>👤 사용자 정보</h3>
@@ -276,7 +336,7 @@
   </div>
 
   <div class="main">
-    <h1 style="color:#111827;">인기</h1>
+    <h1 style="color:#111827;" id="main_title"></h1>
 
     <form id="searchForm" action="/boards" method="get" class="search-container">
       <input type="text" name="keyword" id="keywordInput" placeholder="게시글 제목 검색" />
@@ -285,22 +345,34 @@
 
     <div class="board">
       <c:forEach var="post" items="${boards}">
-        <a href="/api/board/detail/${post.boardid}" style="text-decoration: none;">
-          <div class="post">
-            <h2 class="post-title">${post.title}</h2>
+        <a href="/api/board/detail/${post.boardid}" class="post-link">
+          <div class="post-item">
+            <div class="post-content">
+              <h2 class="post-title">${post.title}</h2>
+              <div class="post-meta">
+            <span class="date">
+              작성일: <fmt:parseDate value="${post.createdAt}" pattern="yyyy-MM-dd" var="parsedDate" />
 
-            <div class="post-info">
-              <span class="time">${post.createdAt}</span>
-              <span class="writer">${post.writerNickname}</span>
+              <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" /> |
+            </span>
+                직성자: <span class="nickname">${post.writerNickname}</span> |
+                <span class="region">${post.regionLabel}</span>
+              </div>
             </div>
-
             <div class="post-stats">
-              <div class="likes">❤️ ${post.likecount}</div>
+              <div class="stat">
+                <span class="icon">💬</span>
+              </div>
+              <div class="stat">
+                <span class="icon">❤️</span>
+                <span class="count">${post.likecount}</span>
+              </div>
             </div>
           </div>
         </a>
       </c:forEach>
     </div>
+
 
     <div class="pagination">
       <c:forEach begin="1" end="${totalPages}" var="i">
@@ -325,6 +397,38 @@
   const input = document.getElementById("keywordInput");
   const form = document.getElementById("searchForm");
 
+
+  const params = location.href.split("?")[1];
+  console.log(params);
+
+  const regionList = {
+    map1: "서북구 부성1동",
+    map2: "서북구 부성2동",
+    map3: "동남구 신안동",
+    map4: "서북구 성정2동",
+    map5: "서북구 백석동",
+    map6: "서북구 성정1동",
+    map7: "동남구 문성동",
+    map8: "동남구 원성1동",
+    map9: "서북구 불당2동",
+    map10: "서북구 불당1동",
+    map11: "서북구 쌍용3동",
+    map12: "동남구 봉명동",
+    map13: "동남구 중앙동",
+    map14: "동남구 원성2동",
+    map15: "서북구 쌍용1동",
+    map16: "서북구 쌍용2동",
+    map17: "동남구 일봉동",
+    map18: "동남구 청룡동",
+    map19: "동남구 신방동"
+  }
+
+  const eleTitle = document.getElementById("main_title");
+
+  (params === undefined) ? eleTitle.innerHTML = "인기" :
+    eleTitle.innerHTML = regionList[params];
+
+
   input.addEventListener("input", function () {
     clearTimeout(window.searchTimeout);
     window.searchTimeout = setTimeout(() => {
@@ -334,5 +438,7 @@
 </script>
 
 </body>
+
+
 
 </html>

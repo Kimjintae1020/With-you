@@ -1,5 +1,6 @@
 package With.you.example.With.you.Club.Dto;
 
+import With.you.example.With.you.Account.Enum.Region;
 import With.you.example.With.you.Club.Enum.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +15,7 @@ public class ClubListResponse {
     private Long clubId;
     private String clubName;
     private Category category;
-    private String region;
+    private Region region;
     private int currentMembers;
     private int maxMembers;
     private String leaderNickname;

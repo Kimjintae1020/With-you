@@ -1,6 +1,7 @@
 package With.you.example.With.you.Board.Entity;
 
 import With.you.example.With.you.Account.Entity.Account;
+import With.you.example.With.you.Account.Enum.Region;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,10 @@ public class Board {
 
     @Column(name = "BOARD_LIKE_COUNT", nullable = false)
     private int likecount;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "REGION", nullable = false)
+    private Region region;             // 활동 지역
 
     @Column(name = "BOARD_CREATED_AT", nullable = false)
     private LocalDateTime createdAt;
