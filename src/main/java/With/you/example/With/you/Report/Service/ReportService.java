@@ -5,6 +5,7 @@ import With.you.example.With.you.Account.Enum.ReportType;
 import With.you.example.With.you.Account.Service.AccountService;
 import With.you.example.With.you.Board.Entity.Board;
 import With.you.example.With.you.Board.Service.BoardService;
+import With.you.example.With.you.Report.Dto.DtoReport;
 import With.you.example.With.you.Report.Dto.DtoReportRequest;
 import With.you.example.With.you.Report.Entity.Report;
 import With.you.example.With.you.Report.Repository.ReportRepository;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -73,4 +75,22 @@ public class ReportService {
 
         model.addAttribute("reportStatus", "PENDING");
     }
+
+    public List<DtoReport> getAllReports() {
+        List<Report> reports = reportRepository.findAll();
+
+        return reports.stream()
+                .map(report -> DtoReport.builder()
+                        .reportId(report.getReportId())
+                        .reportedAccountName(report.getReportedAccount().getAccountname())
+                        .reporterName(report.getReporter().getAccountname())
+                        .reportType(report.getReportType().name())
+                        .reportReason(report.getReportReason())
+                        .status(report.getStatus())
+                        .createdAt(report.getCreatedAt().toString()) // 날짜 형식은 필요에 따라 포맷
+                        .build())
+                .toList();
+    }
+
+
 }
