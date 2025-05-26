@@ -2,13 +2,10 @@ package With.you.example.With.you.Club.Service;
 
 import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Account.Repository.AccountRepository;
-import With.you.example.With.you.Club.Dto.ClubPageResponse;
-import With.you.example.With.you.Club.Dto.DtoClubDetail;
-import With.you.example.With.you.Club.Dto.DtoClubPage;
+import With.you.example.With.you.Club.Dto.*;
 import With.you.example.With.you.Club.Enum.Category;
 import With.you.example.With.you.Club.Repository.ClubMemberRepository;
 import With.you.example.With.you.Club.Repository.ClubRepository;
-import With.you.example.With.you.Club.Dto.DtoCreateClub;
 import With.you.example.With.you.Club.Entity.Club;
 import With.you.example.With.you.Club.Entity.ClubMember;
 import With.you.example.With.you.Club.Enum.ClubMemberRole;
@@ -133,5 +130,53 @@ public class ClubService {
                 club.getUpdatedAt()
         );
     }
+
+    // 동호회 맴버 조회
+    // 동호회 멤버 조회
+    public List<DtoClubMember> getClubMembers(Long clubId) {
+        Club club = clubRepository.findById(clubId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 동호회를 찾을 수 없습니다."));
+
+        // 전체 멤버 조회 (상태 무관)
+        List<ClubMember> clubMembers = clubMemberRepository.findByClub(club);
+
+        return clubMembers.stream()
+                .map(cm -> new DtoClubMember(
+                        cm.getAccount().getNickname(),
+                        cm.getRole().name(),                           // 역할 (LEADER, MEMBER)
+                        cm.getJoinedAt().toLocalDate().toString(),      // 가입일 (yyyy-MM-dd)
+                        cm.getStatus().name()              // 상태 (활성, 비활성, 차단됨)
+                ))
+                .collect(Collectors.toList());
+    }
+
+
+    // 동호회 가입신청
+    @Transactional
+    public void joinClub(String accountName, Long clubId) {
+        Account account = accountRepository.findByAccountname(accountName)
+                .orElseThrow(() -> new IllegalArgumentException("계정을 찾을 수 없습니다."));
+
+        Club club = clubRepository.findById(clubId)
+                .orElseThrow(() -> new IllegalArgumentException("동호회를 찾을 수 없습니다."));
+
+        // 중복 가입 여부 확인
+        boolean alreadyJoined = clubMemberRepository.existsByClubAndAccount(club, account);
+        if (alreadyJoined) {
+            throw new IllegalStateException("이미 가입한 동호회입니다.");
+        }
+
+        // 가입
+        ClubMember clubMember = ClubMember.builder()
+                .club(club)
+                .account(account)
+                .role(ClubMemberRole.MEMBER)
+                .status(ClubMemberStatus.INACTIVE)
+                .joinedAt(LocalDateTime.now())
+                .build();
+
+        clubMemberRepository.save(clubMember);
+    }
+
 
 }
