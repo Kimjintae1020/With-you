@@ -3,6 +3,7 @@ package With.you.example.With.you.Club.Service;
 import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Account.Repository.AccountRepository;
 import With.you.example.With.you.Club.Dto.ClubPageResponse;
+import With.you.example.With.you.Club.Dto.DtoClubDetail;
 import With.you.example.With.you.Club.Dto.DtoClubPage;
 import With.you.example.With.you.Club.Enum.Category;
 import With.you.example.With.you.Club.Repository.ClubMemberRepository;
@@ -98,6 +99,38 @@ public class ClubService {
                 clubsPage.getTotalPages(),
                 (int) clubsPage.getTotalElements(),
                 clubs
+        );
+    }
+
+    // ClubService.java
+
+    @Transactional(readOnly = true)
+    public DtoClubDetail getClubDetail(String accountName, Long clubId) {
+        // 1. 동호회 조회
+        Club club = clubRepository.findById(clubId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 동호회입니다."));
+
+        // 2. 로그인한 유저 정보 조회
+        Account account = accountRepository.findByAccountnameIgnoreCase(accountName)
+                .orElseThrow(() -> new IllegalArgumentException("회원 정보를 찾을 수 없습니다."));
+
+        return new DtoClubDetail(
+                club.getClubId(),
+                club.getClubName(),
+                club.getDescription(),
+                club.getCategory(),
+                club.getRegion(),
+                club.getMaxMembers(),
+                club.getCurrentMembers(),
+                club.isPublic(),
+                club.getMeetingFrequency(),
+                club.getMeetingTime(),
+                club.getMeetingLocation(),
+                club.getDues(),
+                club.getLeader(),
+                club.getStatus(),
+                club.getCreatedAt(),
+                club.getUpdatedAt()
         );
     }
 

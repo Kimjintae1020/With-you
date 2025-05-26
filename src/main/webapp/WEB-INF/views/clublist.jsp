@@ -258,7 +258,14 @@
                     <span>🗓️ ${club.meetingFrequency}</span>
                 </div>
 
-                <a href="/club/detail/${club.clubId}" class="details-button">자세히 보기 →</a>
+                <c:url var="clubDetailUrl" value="/api/club/detail/${club.clubId}" />
+                <a href="${clubDetailUrl}" class="details-button">자세히 보기</a>
+
+
+
+
+
+
             </div>
         </c:forEach>
     </div>

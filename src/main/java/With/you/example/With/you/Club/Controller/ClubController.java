@@ -1,6 +1,7 @@
 package With.you.example.With.you.Club.Controller;
 
 import With.you.example.With.you.Club.Dto.ClubPageResponse;
+import With.you.example.With.you.Club.Dto.DtoClubDetail;
 import With.you.example.With.you.Club.Service.ClubService;
 import With.you.example.With.you.Club.Dto.DtoCreateClub;
 import jakarta.servlet.http.HttpSession;
@@ -57,5 +58,20 @@ public class ClubController {
 
         return ResponseEntity.ok("동호회 생성되었습니다.");
     }
+
+    // 동호회 상세조회
+    @GetMapping("/club/detail/{clubId}")
+    public String getClubDetail(Model model,
+                                @PathVariable Long clubId,
+                                HttpSession session) {
+        String accountName = (String) session.getAttribute("LoginAccountName");
+
+        DtoClubDetail response = clubService.getClubDetail(accountName, clubId);
+
+        model.addAttribute("club", response);
+
+        return "clubdetail";
+    }
+
 
 }
