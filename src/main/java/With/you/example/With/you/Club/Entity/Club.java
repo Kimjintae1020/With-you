@@ -95,4 +95,9 @@ public class Club {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public void updateStatus(String newStatus) {
+        this.status = newStatus;
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }

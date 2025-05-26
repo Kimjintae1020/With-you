@@ -57,13 +57,6 @@ public class AccountController {
     @GetMapping("/map")
     public String mapForm() { return "map"; }
 
-    @GetMapping("/admin_1_main")
-    public String admin_1_mainFrom(Model model) {
-        List<Account> accounts = accountRepository.findAll();
-        model.addAttribute("accounts", accounts);
-        return "admin_1_main";
-    }
-
     @GetMapping("/admin_2_approve")
     public String admin_2_approveForm(Model model) {
         List<Account> accounts = accountRepository.findAll();
@@ -90,7 +83,7 @@ public class AccountController {
         if ("admin".equals(account.get().getAccountname())) {
             session.setAttribute("Role", Role.ROLE_ADMIN);
             log.info("관리자 로그인");
-            return "admin_1_main";
+            return "admin_main";
         }
 
 
@@ -118,4 +111,5 @@ public class AccountController {
 
         return "mypage";
     }
+
 }
