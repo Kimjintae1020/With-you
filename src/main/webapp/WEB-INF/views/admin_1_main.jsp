@@ -30,6 +30,13 @@
                     <p>회원 승인</p>
                 </a>
             </li>
+
+            <li>
+                <a href="${pageContext.request.contextPath}/api/admin/club/list">
+                    <img src="/images/admin/approve_icon.png" alt="" height="15">
+                    <p>동호회 관리</p>
+                </a>
+            </li>
         </ul>
     </nav>
 

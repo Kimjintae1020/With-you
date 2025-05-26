@@ -1,6 +1,7 @@
 package With.you.example.With.you.Club.Service;
 
 import With.you.example.With.you.Account.Entity.Account;
+import With.you.example.With.you.Account.Enum.Grade;
 import With.you.example.With.you.Account.Repository.AccountRepository;
 import With.you.example.With.you.Club.Dto.*;
 import With.you.example.With.you.Club.Enum.Category;
@@ -35,7 +36,6 @@ public class ClubService {
     // 동호회 생성 기능
     @Transactional
     public void createClub(String accountName, DtoCreateClub dtoCreateClub) {
-
         Optional<Account> optionalAccount = accountRepository.findByAccountnameIgnoreCase(accountName);
 
         if (optionalAccount.isEmpty()) {
@@ -53,6 +53,9 @@ public class ClubService {
             throw new IllegalArgumentException("카테고리를 선택해주세요.");
         }
 
+        // 🌱 등급 여부 확인
+        String status = account.getGrade() == Grade.SEED ? "INACTIVE" : "ACTIVE";
+
         Club club = Club.builder()
                 .clubName(dtoCreateClub.getClubName())
                 .description(dtoCreateClub.getDescription())
@@ -66,12 +69,12 @@ public class ClubService {
                 .meetingLocation(dtoCreateClub.getMeetingLocation())
                 .dues(dtoCreateClub.getDues())
                 .leader(account)
-                .status("ACTIVE")
+                .status(status)
                 .build();
 
         clubRepository.save(club);
 
-
+        // 동호회 멤버 추가 (리더)
         ClubMember clubMember = ClubMember.builder()
                 .club(club)
                 .account(account)
@@ -82,6 +85,7 @@ public class ClubService {
 
         clubMemberRepository.save(clubMember);
     }
+
 
     // 동호회 목록 조회
     public ClubPageResponse getClubList(Pageable pageable) {
@@ -178,5 +182,46 @@ public class ClubService {
         clubMemberRepository.save(clubMember);
     }
 
+
+    // 관리자용 전체 동호회 목록 조회
+    public List<DtoClubDetail> getAllClubsForAdmin() {
+        List<Club> clubs = clubRepository.findAll();
+
+        return clubs.stream()
+                .map(club -> new DtoClubDetail(
+                        club.getClubId(),
+                        club.getClubName(),
+                        club.getDescription(),
+                        club.getCategory(),
+                        club.getRegion(),
+                        club.getMaxMembers(),
+                        club.getCurrentMembers(),
+                        club.isPublic(),
+                        club.getMeetingFrequency(),
+                        club.getMeetingTime(),
+                        club.getMeetingLocation(),
+                        club.getDues(),
+                        club.getLeader(),
+                        club.getStatus(),
+                        club.getCreatedAt(),
+                        club.getUpdatedAt()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void updateClubStatus(Long clubId, String newStatus) {
+        Club club = clubRepository.findById(clubId)
+                .orElseThrow(() -> new IllegalArgumentException("동호회를 찾을 수 없습니다."));
+
+        // 상태 값 유효성 검사 (필요 시)
+        if (!newStatus.equals("ACTIVE") && !newStatus.equals("INACTIVE")) {
+            throw new IllegalArgumentException("잘못된 상태 값입니다.");
+        }
+
+        club.updateStatus(newStatus); // Club 엔티티에 메서드 추가
+
+        clubRepository.save(club);
+    }
 
 }

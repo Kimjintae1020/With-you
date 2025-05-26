@@ -31,10 +31,10 @@ public class ClubController {
         return "clubcreate"; // JSP 파일명
     }
 
-    //  동호회 목록 조회, 페이지당 3개
-    @GetMapping("/clublist")
+    //  동호회 목록 조회, 페이지당 9개
+    @GetMapping("/club/list/account")
     public String clubList(@RequestParam(defaultValue = "1") int page,
-                           @RequestParam(defaultValue = "3") int size,
+                           @RequestParam(defaultValue = "9") int size,
                            Model model)   {
 
 
@@ -86,5 +86,28 @@ public class ClubController {
 
         return "redirect:/api/club/detail/" + clubId;
     }
+
+
+    // 관리자 동호회 목록 조회
+    @GetMapping("/admin/club/list")
+    public String getAdminClubList(Model model, HttpSession session) {
+        String accountName = (String) session.getAttribute("LoginAccountName");
+
+        List<DtoClubDetail> clubs = clubService.getAllClubsForAdmin();
+
+        model.addAttribute("clubs", clubs);
+
+        return "admin_3_club";
+    }
+
+    // 관리자 - 동호회 상태 변경
+    @PostMapping("/admin/club/status/{clubId}")
+    public String updateClubStatus(@PathVariable Long clubId, @RequestParam("status") String status) {
+        clubService.updateClubStatus(clubId, status);
+        return "redirect:/api/admin/club/list";
+    }
+
+
+
 
 }
