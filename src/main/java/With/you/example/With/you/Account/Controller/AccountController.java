@@ -71,6 +71,9 @@ public class AccountController {
         return "registerCompleted";
     }
 
+    @GetMapping("/faq")
+    public String faqForm() { return "faq"; }
+
     // 로그인
     @PostMapping("/login")
     public String login(@ModelAttribute DtoLogin dtoLogin, HttpSession session) throws NotEqualAccountIdAndPwException, AccountNotFoundException, AccounNametNotFoundException {
