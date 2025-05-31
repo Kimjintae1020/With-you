@@ -88,6 +88,8 @@ body {
     border-radius: 25px;
     border: 0px black solid;
     color: white;
+    cursor: pointer;
+
 }
 
 
@@ -179,6 +181,8 @@ body {
     background: #3B82F6;
     font-size: 15px;
     color: white;
+    cursor: pointer;
+
 
 }
 
@@ -193,6 +197,8 @@ body {
     border: 0.5px #D1D5DB solid;
 
     font-size: 15px;
+    cursor: pointer;
+
 
 }
 
@@ -211,6 +217,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
 
 }
 

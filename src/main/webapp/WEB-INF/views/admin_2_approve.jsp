@@ -20,7 +20,7 @@
         <h1>관리자 페이지</h1>
         <ul class="menus">
             <li>
-                <a id="menu_1" href="${pageContext.request.contextPath}/api/admin_1_main">
+                <a id="menu_1" href="${pageContext.request.contextPath}/api/admin_1_report">
                     <img src="/images/admin/report_icon.png" alt="" height="15">
                     <p>신고 관리</p>
                 </a>
@@ -29,6 +29,12 @@
                 <a id="menu_2" href=${pageContext.request.contextPath}/api/admin_2_approve">
                     <img src="/images/admin/approve_icon.png" alt="" height="15">
                     <p>회원 승인</p>
+                </a>
+            </li>
+            <li>
+                <a id="menu_3" href="${pageContext.request.contextPath}/api/admin/club/list">
+                    <img src="/images/admin/approve_icon.png" alt="" height="15">
+                    <p>동호회 관리</p>
                 </a>
             </li>
         </ul>

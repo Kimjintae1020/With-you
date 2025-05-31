@@ -82,14 +82,30 @@
         .btn-next:hover {
             background-color: #2563EB;
         }
+
+
+        #logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration-line: none;
+
+        }
+
+        #logo h2 {
+            margin-left: 10px;
+            color: #3B82F6;
+        }
     </style>
 </head>
 
 <body>
 <div class="container">
     <div class="headline">
-        <img src="/images/Frame.png" />
-        <h3 id="With-You">With You</h3>
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
+            <h2>With You</h2>
+        </a>
     </div>
 
     <div class="title">계정 생성 완료</div>
