@@ -28,6 +28,7 @@
             <a href="${pageContext.request.contextPath}/api/map">지도</a>
             <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
             <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
+            <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
 
         </div>
         <div class="box_3">

@@ -184,15 +184,36 @@
             margin-top: 5px;
             display: none;
         }
+
+
+        #logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: #2563eb;
+        }
+
+        #logo img {
+            height: 28px;
+            margin-right: 10px;
+        }
+
+        #logo h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
     </style>
 </head>
 
 <body>
 <div class="all">
     <div class="headline">
-        <img src="/images/main/Frame.png" />
-<%--        <img src="/images/login/Frame.png" alt="이미지 에러">--%>
-        <h3 id="With-You">With You</h3>
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
+            <h2>With You</h2>
+        </a>
     </div>
     <h3>회원가입</h3>
     <h5>계정 정보를 입력해주세요</h5>

@@ -28,10 +28,12 @@
             <a href="${pageContext.request.contextPath}/api/map">지도</a>
             <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
             <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
+            <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
+
 
         </div>
         <div class="box_3">
-            <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기<img id="btn_img" src="/images/main/arrow.png" alt="" width="16"></button>
+            <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기</button>
         </div>
     </div>
     <!-- -------------------------------- -->

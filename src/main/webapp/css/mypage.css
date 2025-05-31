@@ -21,7 +21,6 @@ body {
 
 .main_wrap .container_1 {
     width: 100%;
-    height: 40px;
     display: flex;
     flex-direction: row;
 
@@ -29,6 +28,8 @@ body {
 
     margin-top: 30px;
     background: white;
+
+    padding-bottom: 30px;
 }
 
 .main_wrap .container_1 .box_1 {
@@ -66,6 +67,7 @@ body {
     border-radius: 25px;
     border: 0px black solid;
     color: white;
+    cursor: pointer;
 }
 
 
