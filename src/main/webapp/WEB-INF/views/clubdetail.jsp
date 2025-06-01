@@ -157,10 +157,116 @@
             background-color: #fee2e2;
         }
 
+    /*    --------------------------- */
+
+
+        #logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration-line: none;
+
+            margin-left: 100px;
+        }
+
+        #logo h2 {
+            margin-left: 10px;
+            color: #3B82F6;
+        }
+
+
+        .top-navbar {
+            height: 88px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu-button {
+            text-decoration: none;
+            color: #374151;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .menu-button:hover {
+            color: #1d4ed8;
+        }
+
+        .start-button {
+            background-color: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .start-button:hover {
+            background-color: #2563eb;
+        }
+
+
+        .headline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
     </style>
 </head>
 <body>
+<div class="top-navbar">
+    <div class="headline">
+        <a href="${pageContext.request.contextPath}/api/main" id="logo">
+            <img src="/images/login/Frame.png" alt="경로 에러">
+            <h2>With You</h2>
+        </a>
+    </div>
+    <div class="menu">
+        <a href="${pageContext.request.contextPath}/api/main" class="menu-button">홈</a>
+        <a href="#연결필요" class="menu-button">소개</a>
+        <a href="${pageContext.request.contextPath}/api/boards" class="menu-button">커뮤니티</a>
+        <a href="${pageContext.request.contextPath}/api/map" class="menu-button">지도</a>
+        <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>
+        <a href="${pageContext.request.contextPath}/api/faq" class="menu-button">문의하기</a>
+        <a href="${pageContext.request.contextPath}/api/club/list/account" class="menu-button">동호회</a>
+
+        <a href="${pageContext.request.contextPath}/api/login" class="menu-button">로그인</a>
+        <a href="${pageContext.request.contextPath}/api/register" class="menu-button">회원가입</a>
+        <a href="${pageContext.request.contextPath}/api/mypage" class="menu-button">마이페이지</a>
+
+    </div>
+    <a href="${pageContext.request.contextPath}/api/boards" class="start-button">시작하기 ⟶</a>
+</div>
+
+
+
+
+
+
+
+
 
 <div class="container">
     <!-- 왼쪽 박스 -->

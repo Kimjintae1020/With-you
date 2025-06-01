@@ -234,6 +234,9 @@
     <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>
     <a href="${pageContext.request.contextPath}/api/faq" class="menu-button">문의하기</a>
     <a href="${pageContext.request.contextPath}/api/club/list/account" class="menu-button">동호회</a>
+    <a href="${pageContext.request.contextPath}/api/login" class="menu-button">로그인</a>
+    <a href="${pageContext.request.contextPath}/api/register" class="menu-button">회원가입</a>
+    <a href="${pageContext.request.contextPath}/api/mypage" class="menu-button">마이페이지</a>
 
   </div>
   <a href="${pageContext.request.contextPath}/api/boards" class="start-button">시작하기 ⟶</a>
