@@ -370,7 +370,7 @@
 
       if (response.ok) {
         alert("동호회 생성되었습니다.");
-        window.location.href = "/api/clublist";
+        window.location.href = "/api/club/list/account";
       } else {
         const errorData = await response.json();
         alert("동호회 생성 실패: " + (errorData.message || "서버 오류"));

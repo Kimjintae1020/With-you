@@ -27,7 +27,7 @@ public class ReportController {
     public String getReports(Model model) {
         List<DtoReport> reports = reportService.getAllReports();
         model.addAttribute("reports", reports);
-        return "admin_1_report"; // JSP 이름 그대로
+        return "admin_1_report";
     }
 
 

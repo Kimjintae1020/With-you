@@ -91,7 +91,7 @@ public class AccountController {
 
 
         System.out.println("로그인 되었습니다.");
-        return "redirect:/";
+        return "main";
     }
 
     // 로그아웃
