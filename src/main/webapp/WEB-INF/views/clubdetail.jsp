@@ -318,8 +318,7 @@
     <div class="right-box">
         <div class="card">
             <h3>동호회장</h3>
-            <p>${club.leaderNickname} (${club.leaderAccountName})</p>
-            <button class="join-button">연락처 보기</button>
+            <p>${club.leaderNickname} (${club.leaderAccountName}) 👑</p>
         </div>
 
         <div class="card">

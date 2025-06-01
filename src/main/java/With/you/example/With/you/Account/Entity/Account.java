@@ -4,6 +4,8 @@ import With.you.example.With.you.Account.Enum.Grade;
 import With.you.example.With.you.Account.Enum.Region;
 import With.you.example.With.you.Account.Role.Role;
 import With.you.example.With.you.Board.Entity.Board;
+import With.you.example.With.you.Club.Entity.ClubMember;
+import With.you.example.With.you.Comment.Entity.Comment;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -67,6 +69,14 @@ public class Account {
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Board> boards = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ClubMember> clubMembers = new ArrayList<>();
+
+
 
     @PrePersist
     protected void onCreate() {
