@@ -27,7 +27,11 @@
             <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
             <a href="${pageContext.request.contextPath}/api/map">지도</a>
             <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
-            <a href="#문의하기">문의하기</a>
+            <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
+            <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
+            <a href="${pageContext.request.contextPath}/api/login">로그인</a>
+            <a href="${pageContext.request.contextPath}/api/register">회원가입</a>
+            <a href="${pageContext.request.contextPath}/api/mypage">마이페이지</a>
 
         </div>
         <div class="box_3">

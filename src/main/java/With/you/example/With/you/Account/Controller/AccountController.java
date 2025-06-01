@@ -71,6 +71,9 @@ public class AccountController {
         return "registerCompleted";
     }
 
+    @GetMapping("/faq")
+    public String faqForm() { return "faq"; }
+
     // 로그인
     @PostMapping("/login")
     public String login(@ModelAttribute DtoLogin dtoLogin, HttpSession session) throws NotEqualAccountIdAndPwException, AccountNotFoundException, AccounNametNotFoundException {
@@ -83,12 +86,12 @@ public class AccountController {
         if ("admin".equals(account.get().getAccountname())) {
             session.setAttribute("Role", Role.ROLE_ADMIN);
             log.info("관리자 로그인");
-            return "admin_main";
+            return "redirect:/api/admin_1_report";
         }
 
 
         System.out.println("로그인 되었습니다.");
-        return "redirect:/";
+        return "main";
     }
 
     // 로그아웃

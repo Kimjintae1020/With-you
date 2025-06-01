@@ -294,6 +294,75 @@
       font-size: 16px;
     }
 
+    /* ------------------ */
+    /* ---short rank ---- */
+
+    .wrap_R {
+      border: 1px black solid;
+      /* padding: 25px; */
+      padding-left: 25px;
+      padding-right: 25px;
+      padding-bottom: 25px;
+
+      width: 266px;
+      border-radius: 40px;
+      box-sizing: border-box;
+    }
+
+
+    .content_R {
+      display: flex;
+      height: 55px;
+      padding: 5px;
+      margin:auto;
+      text-align: center;
+
+
+    }
+
+    .left_R {
+      width: 20%;
+    }
+
+    .center_R {
+      width: 50%;
+    }
+
+
+    .right_R {
+      width: 30%;
+    }
+
+    .title_R {
+      width: 100%;
+      font-size: 25px;
+      font-weight: bold;
+
+    }
+
+    .setContent_R {
+      background: #2563EB;
+      color: white;
+      transition: all 1s;
+    }
+
+    /* ---short rank ---- */
+    /* ------------------ */
+
+    #logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration-line: none;
+
+      margin-left: 100px;
+    }
+
+    #logo h2 {
+      margin-left: 10px;
+      color: #3B82F6;
+    }
+
   </style>
 </head>
 
@@ -301,18 +370,27 @@
 
 <div class="top-navbar">
   <div class="headline">
-    <img src="/images/login/Frame.png" />
-    <h3 id="With-You">With You</h3>
+    <a href="${pageContext.request.contextPath}/api/main" id="logo">
+      <img src="/images/login/Frame.png" alt="경로 에러">
+      <h2>With You</h2>
+    </a>
   </div>
   <div class="menu">
-    <a href="/" class="menu-button">홈</a>
-    <a href="/about" class="menu-button">소개</a>
-    <a href="/boards" class="menu-button">커뮤니티</a>
-    <a href="/map" class="menu-button">지도</a>
-    <a href="/ranking" class="menu-button">랭킹</a>
-    <a href="/contact" class="menu-button">문의하기</a>
+    <a href="${pageContext.request.contextPath}/api/main" class="menu-button">홈</a>
+    <a href="#연결필요" class="menu-button">소개</a>
+    <a href="${pageContext.request.contextPath}/api/boards" class="menu-button">커뮤니티</a>
+    <a href="${pageContext.request.contextPath}/api/map" class="menu-button">지도</a>
+    <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>
+    <a href="${pageContext.request.contextPath}/api/faq" class="menu-button">문의하기</a>
+    <a href="${pageContext.request.contextPath}/api/club/list/account" class="menu-button">동호회</a>
+    <a href="${pageContext.request.contextPath}/api/login" class="menu-button">로그인</a>
+    <a href="${pageContext.request.contextPath}/api/register" class="menu-button">회원가입</a>
+    <a href="${pageContext.request.contextPath}/api/mypage" class="menu-button">마이페이지</a>
+
+
+
   </div>
-  <a href="/start" class="start-button">시작하기 ⟶</a>
+  <a href="${pageContext.request.contextPath}/api/boards" class="start-button">시작하기 ⟶</a>
 </div>
 
 <div class="navbar">
@@ -333,6 +411,8 @@
       <a href="/api/board" class="button">✏️ 글쓰기</a>
       <a href="/boards/my" class="button">📄 내 글 보기</a>
     </div>
+
+
   </div>
 
   <div class="main">
@@ -390,6 +470,48 @@
       <p>같은 관심사를 가진 사람들끼리 자유롭게 모이고 소통하는 공간이에요.</p>
       <p>당신의 취미를 공유해보세요!</p>
     </div>
+    <%-- short rank   --%>
+    <div class="wrap_R">
+      <div class="content_R">
+        <p class="title_R">동네 랭킹</p>
+      </div>
+
+
+      <div class="content_R" id="c-1">
+        <p class="left_R">1</p>
+        <p class="center_R">서북구 성정2동</p>
+        <p class="right_R">89점</p>
+      </div>
+
+      <div class="content_R" id="c-2">
+        <p class="left_R">2</p>
+        <p class="center_R">동남구 봉명동</p>
+        <p class="right_R">85점</p>
+      </div>
+
+      <div class="content_R" id="c-3">
+        <p class="left_R">3</p>
+        <p class="center_R">동남구 신안동</p>
+        <p class="right_R">82점</p>
+      </div>
+
+      <div class="content_R" id="c-4">
+        <p class="left_R">4</p>
+        <p class="center_R">서북구 부성1동</p>
+        <p class="right_R">78점</p>
+      </div>
+
+      <div class="content_R" id="c-5">
+        <p class="left_R">5</p>
+        <p class="center_R">서북구 성정1동</p>
+        <p class="right_R">70점</p>
+      </div>
+
+    </div>
+
+
+
+    <%--    --%>
   </div>
 </div>
 
@@ -435,6 +557,59 @@
       form.submit();
     }, 1000);
   });
+
+  /* ------------------ */
+  /* ---short rank ---- */
+  var n = 0;
+  var eleContent = null;
+
+
+  const ele1 = document.getElementById('c-1');
+  const ele2 = document.getElementById('c-2');
+  const ele3 = document.getElementById('c-3');
+  const ele4 = document.getElementById('c-4');
+  const ele5 = document.getElementById('c-5');
+
+
+  function setContent() {
+
+    setClear();
+
+    n += 1;
+
+    eleContent = document.getElementById('c-' + n);
+    eleContent.style.background = "#2563EB";
+    eleContent.style.color = "white";
+    eleContent.style.transition = "all 1s";
+
+    if (n >= 5) {
+      n = 0;
+    }
+
+  }
+
+  function setClear() {
+    ele1.style.background = "white";
+    ele1.style.color = "black";
+
+    ele2.style.background = "white";
+    ele2.style.color = "black";
+
+    ele3.style.background = "white";
+    ele3.style.color = "black";
+
+    ele4.style.background = "white";
+    ele4.style.color = "black";
+
+    ele5.style.background = "white";
+    ele5.style.color = "black";
+  }
+
+  setInterval(() => { setContent() }, 3000);
+
+
+  /* ---short rank ---- */
+  /* ------------------ */
 </script>
 
 </body>

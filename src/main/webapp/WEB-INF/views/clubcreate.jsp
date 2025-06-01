@@ -131,7 +131,7 @@
       font-size: 14px;
       border: 1px solid #d1d5db;
       border-radius: 6px;
-      width: 100%;
+      width: 95%;
     }
 
     textarea {
@@ -211,24 +211,47 @@
     }
 
 
+
+    #logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration-line: none;
+
+      margin-left: 100px;
+    }
+
+    #logo h2 {
+      margin-left: 10px;
+      color: #3B82F6;
+    }
+
   </style>
 </head>
 <body>
 
 <div class="top-navbar">
   <div class="headline">
-    <img src="/images/login/Frame.png" />
-    <h3 id="With-You">With You</h3>
+    <a href="${pageContext.request.contextPath}/api/main" id="logo">
+      <img src="/images/login/Frame.png" alt="경로 에러">
+      <h2>With You</h2>
+    </a>
   </div>
   <div class="menu">
-    <a href="/" class="menu-button">홈</a>
-    <a href="/about" class="menu-button">소개</a>
-    <a href="/boards" class="menu-button">커뮤니티</a>
-    <a href="/map" class="menu-button">지도</a>
-    <a href="/ranking" class="menu-button">랭킹</a>
-    <a href="/contact" class="menu-button">문의하기</a>
+    <a href="${pageContext.request.contextPath}/api/main" class="menu-button">홈</a>
+    <a href="#연결필요" class="menu-button">소개</a>
+    <a href="${pageContext.request.contextPath}/api/boards" class="menu-button">커뮤니티</a>
+    <a href="${pageContext.request.contextPath}/api/map" class="menu-button">지도</a>
+    <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>
+    <a href="${pageContext.request.contextPath}/api/faq" class="menu-button">문의하기</a>
+    <a href="${pageContext.request.contextPath}/api/club/list/account" class="menu-button">동호회</a>
+
+    <a href="${pageContext.request.contextPath}/api/login" class="menu-button">로그인</a>
+    <a href="${pageContext.request.contextPath}/api/register" class="menu-button">회원가입</a>
+    <a href="${pageContext.request.contextPath}/api/mypage" class="menu-button">마이페이지</a>
+
   </div>
-  <a href="/start" class="start-button">시작하기 ⟶</a>
+  <a href="${pageContext.request.contextPath}/api/boards" class="start-button">시작하기 ⟶</a>
 </div>
 
 <div class="container">
@@ -347,7 +370,7 @@
 
       if (response.ok) {
         alert("동호회 생성되었습니다.");
-        window.location.href = "/api/clublist";
+        window.location.href = "/api/club/list/account";
       } else {
         const errorData = await response.json();
         alert("동호회 생성 실패: " + (errorData.message || "서버 오류"));

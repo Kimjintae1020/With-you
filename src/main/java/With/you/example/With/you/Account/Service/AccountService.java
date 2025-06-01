@@ -1,8 +1,6 @@
 package With.you.example.With.you.Account.Service;
 
-import With.you.example.With.you.Account.Dto.DtoLogin;
-import With.you.example.With.you.Account.Dto.DtoMypage;
-import With.you.example.With.you.Account.Dto.DtoRegister;
+import With.you.example.With.you.Account.Dto.*;
 import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Account.Enum.Grade;
 import With.you.example.With.you.Account.Repository.AccountRepository;
@@ -15,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.security.auth.login.AccountNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -85,31 +84,57 @@ public class AccountService {
 
     // 마이페이지 로직
     public DtoMypage getMypage(String loginAccountName) throws NotLoginException {
-        Optional<Account> optionalAccount = accountRepository.findByAccountname(loginAccountName);
+        Account account = accountRepository.findByAccountname(loginAccountName)
+                .orElseThrow(() -> new NotLoginException("로그인 되어 있지 않습니다."));
 
-        if (optionalAccount.isEmpty()) {
-            throw new NotLoginException("로그인 되어 있지 않습니다.");
-        }
+        // 작성한 게시글
+        List<DtoBoardSummary> boardSummaries = account.getBoards().stream()
+                .map(board -> new DtoBoardSummary(
+                        board.getTitle(),
+                        board.getContent(),
+                        board.getCreatedAt().toLocalDate().toString()
+                ))
+                .toList();
 
-        Account account = optionalAccount.get();
+        // 작성한 댓글
+        List<DtoCommentSummary> commentSummaries = account.getComments().stream()
+                .map(comment -> new DtoCommentSummary(
+                        comment.getContent(),
+                        comment.getBoard().getTitle(),
+                        comment.getUpdateAt().toString(),
+                        comment.getUpdateAt().toString()
+                ))
+                .toList();
+
+        // 참여한 소모임
+        List<DtoClubSummary> clubSummaries = account.getClubMembers().stream()
+                .map(clubMember -> new DtoClubSummary(
+                        clubMember.getClub().getClubName(),
+                        clubMember.getClub().getRegion().getLabel(), // 지역명
+                        clubMember.getJoinedAt().toLocalDate().toString(),
+                        clubMember.getUpdatedAt().toLocalDate().toString()
+                ))
+                .toList();
 
         return new DtoMypage(
                 account.getAccountid(),
                 account.getAccountname(),
-                account.getPassword(),
                 account.getNickname(),
                 account.getEmail(),
                 account.getBirthYear(),
-                account.getGrade(),
-                account.getRegion(),
-                account.getRole(),
+                account.getGrade().toString(),
+                account.getRegion().getLabel(),
+                account.getRole().toString(),
                 account.getScore(),
                 account.getReviewCnt(),
                 account.getCreatedAt(),
-                account.getUpdatedAt()
+                account.getUpdatedAt(),
+                boardSummaries,
+                commentSummaries,
+                clubSummaries
         );
-
     }
+
 
     public Account getAccountByName(String accountName) {
         return accountRepository.findByAccountname(accountName).orElse(null);
