@@ -124,19 +124,41 @@
     .button-group {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 40px;
+      align-items: center;
+      margin-bottom: 24px;
     }
 
-    .list-button,
-    .like-button {
-      padding: 10px 20px;
-      font-size: 14px;
-      background-color: #3b82f6;
-      color: white;
+    .actions-right {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .list-button {
+      height: 40px;
+      padding: 0 20px;
+      background: #2563eb;
+      color: #fff;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .like-button {
+      height: 40px;
+      padding: 0 20px;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
     }
 
     .list-button:hover,
@@ -211,9 +233,40 @@
       color: #3B82F6;
     }
 
+    #reportArea {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
     #reportFormArea {
       display: none;
-      margin-top: 12px;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
+      min-width: 220px;
+      z-index: 10;
+    }
+
+    #reportFormArea select,
+    #reportFormArea input,
+    #reportFormArea textarea {
+      width: 100%;
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+
+    #reportFormArea textarea {
+      resize: vertical;
+      min-height: 40px;
     }
   </style>
 </head>
@@ -270,13 +323,13 @@
 
     <div class="button-group">
       <a href="/api/boards" class="list-button">게시글 목록</a>
-
-      <div style="display: flex; gap: 10px;">
+      <div class="actions-right">
         <button type="button" class="like-button" onclick="likePost(${board.boardId})">
           좋아요 ❤️ <span id="like-count">${board.likecount}</span>
         </button>
         <div id="reportArea">
-          <button id="reportToggleBtn" type="button" onclick="reportPost(${board.boardId})">신고하기</button>
+          <button id="reportToggleBtn" type="button" class="like-button"
+                  onclick="reportPost(${board.boardId})">신고하기</button>
           <div id="reportFormArea">
             <select id="reportType">
               <option value="INAPPROPRIATE_BEHAVIOR">부적절한 행동</option>
@@ -298,20 +351,26 @@
 
     <!-- 댓글 목록 -->
     <div class="comments">
-      <div>댓글</div>
+      <div style="font-weight: bold; font-size: 24px;">댓글 ${comments.size()}개</div>
+      <!-- 댓글 작성 폼 -->
+      <form id="commentForm" data-board-id="${board.boardId}">
+        <textarea name="content" placeholder="댓글을 작성하세요..." required></textarea>
+        <button type="submit">댓글 작성</button>
+      </form>
+
       <c:forEach var="comment" items="${comments}">
         <div class="comment-box" id="comment-${comment.commentId}">
-          <strong>${comment.account.nickname}</strong>
+          <strong style="font-size: 24px; color: #3b82f6;">${comment.account.nickname}</strong>
 
-          <p id="content-${comment.commentId}">${comment.content}</p>
+          <p id="content-${comment.commentId}" style="font-size: 24px;">${comment.content}</p>
 
           <textarea id="editInput-${comment.commentId}"
                     style="display: none;">${comment.content}</textarea>
 
           <div style="margin-top: 8px;">
             <button type="button" onclick="startEdit(${comment.commentId})">수정</button>
-            <button type="button" onclick="submitEdit(${comment.commentId})" id="saveBtn-${comment.commentId}"
-                    style="display: none;">저장</button>
+            <button type="button" onclick="submitEdit(${comment.commentId})"
+                    id="saveBtn-${comment.commentId}" style="display: none;">저장</button>
             <button type="button" onclick="deleteComment(${comment.commentId})">삭제</button>
           </div>
         </div>
@@ -319,11 +378,7 @@
 
 
 
-      <!-- 댓글 작성 폼 -->
-      <form id="commentForm" data-board-id="${board.boardId}">
-        <textarea name="content" placeholder="댓글을 작성하세요..." required></textarea>
-        <button type="submit">댓글 작성</button>
-      </form>
+
 
     </div>
   </div>
