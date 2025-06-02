@@ -1,0 +1,254 @@
+body {
+    background: linear-gradient(0deg, #ffffff, #EFF6FF);
+    background-size: 1728px 1944px; /* 1920*0.9, 2160*0.9 */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 45px; /* 50*0.9 */
+}
+.logo {
+    font-size: 45px; /* 50*0.9 */
+    margin-bottom: 18px; /* 20*0.9 */
+    color: #3B82F6;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -27px; /* -30*0.9 */
+}
+.logo:hover {
+    text-decoration-skip: underline;
+}
+h2 {
+    font-size: 36px; /* 40*0.9 */
+    margin-bottom: -31.5px; /* -35*0.9 */
+}
+p {
+    font-size: 18px; /* 20*0.9 */
+    margin-top: 54px; /* 60*0.9 */
+    margin-bottom: 27px; /* 30*0.9 */
+}
+a {
+    font-size: 18px; /* 20*0.9 */
+    text-decoration: none;
+    color: #3B82F6;
+}
+a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+.popular-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 45px; /* 50*0.9 */
+    width: 81%; /* 90*0.9 */
+    height: 270px; /* 300*0.9 */
+    background-color: #ffffff;
+    border-radius: 21.6px; /* 24*0.9 */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 5.4px 3.6px rgba(0, 0, 0, 0.05); /* 6*0.9, 4*0.9 */
+    margin-bottom: -90px; /* -100*0.9 */
+    position: relative;
+    animation-delay: 0s;
+}
+.village-container {
+    width: 27%; /* 30*0.9 */
+    height: 135px; /* 150*0.9 */
+    background-color: #F9FAFB;
+    border-radius: 18px; /* 20*0.9 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21.6px; /* 24*0.9 */
+    margin-top: 63px; /* 70*0.9 */
+    position: relative;
+}
+.left_up-coner {
+    position: absolute;
+    top: 24px;   /* 원하는 만큼 조절 */
+    left: 32px;  /* 원하는 만큼 조절 */
+    font-size: 28.8px;
+    top: 0px;
+    width: auto;
+    text-align: left;
+    z-index: 2;
+}
+.title {
+    font-size: 25.2px; /* 28*0.9 */
+    color: #000000;
+    font-weight: bold;
+    margin-left: -63%; /* -70*0.9 */
+    margin-top: -4.5%; /* -5*0.9 */
+}
+.percent {
+    color: #22C55E;
+    position: absolute;
+    margin-top: -4.5%; /* -5*0.9 */
+    margin-left: 63%; /* 70*0.9 */
+    font-size: 18px; /* 20*0.9 */
+}
+.neighbor {
+    position: absolute;
+    color: #4B5563;
+    margin-right: 40.5%; /* 45*0.9 */
+    margin-top: 18%; /* 20*0.9 */
+}
+.info_detail {
+    /* position: absolute; */  /* ← 이 줄을 삭제 또는 주석 처리 */
+    color: #4B5563;
+    /* margin-top: 27%; */     /* 필요 없다면 이 줄도 삭제 */
+    margin-top: 10px;             /* 기본값으로 */
+}
+.info-detail_num {
+    font-size: 25.2px; /* 28*0.9 */
+    color: #000000;
+    font-weight: bold;
+    margin-top: 10.8%; /* 12*0.9 */
+    margin-bottom: 24px; /* 숫자와 설명글 사이 간격 추가 */
+}
+.start-button {
+    background: #3B82F6;
+    margin-top: 45px; /* 50*0.9 */
+    border-radius: 8999.1px; /* 9999*0.9 */
+    text-align: center;
+    padding: 9px 10px; /* 10*0.9, 20*0.9 */
+    font-size: 22px; /* 20*0.9 */
+    font-style: normal;
+    margin-top: 0px;
+    color: #ffffff;
+    border: 0px;
+    width: 15.5%; /* 15*0.9 */
+    height: 66.8px; /* 62*0.9 */
+}
+.withyou-info {
+    width: 81%; /* 90*0.9 */
+    height: 63%; /* 70*0.9 */
+    background-color: #ffffff;
+    border-radius: 14.4px; /* 16*0.9 */
+    display: flex;
+    flex-direction: column; /* ← 이 줄 추가 */
+    justify-content: center;
+    align-items: center;
+    font-size: 21.6px; /* 24*0.9 */
+    margin-top: 63px; /* 70*0.9 */
+    box-shadow: 0px 1.8px 2.7px rgba(0, 0, 0, 0.1); /* 2*0.9, 3*0.9 */
+    margin-left: 0.9%; /* 1*0.9 */
+    margin-right: 0.9%; /* 1*0.9 */
+    position: relative;
+}
+.withyou-info img {
+    margin-top: 22px;
+    margin-bottom: 32px; /* 원하는 만큼 간격 조절 */
+}
+.join {
+    position: fixed;
+    left: 3vw;           /* 왼쪽에서 3vw만큼 띄움 */
+    bottom: 5vh;         /* 아래에서 5vh만큼 띄움 */
+    z-index: 2000;
+    background-color: #ffffff;
+    border-radius: 16.2px;
+    box-shadow: 0px 3.6px 5.4px rgba(0, 0, 0, 0.1);
+    width: 18%;
+    height: 90px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    animation: popupUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    animation-delay: 1.3s;
+    animation-fill-mode: both;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s;
+}
+.now {
+    margin-top: 15.3px; /* 17*0.9 */
+    margin-left: 22.5%; /* 25*0.9 */
+    font-size: 16.2px; /* 18*0.9 */
+    padding: auto;
+    position: absolute;
+}
+.join_now {
+    position : absolute;
+    margin-top: 45px; /* 50*0.9 */
+    margin-left: 22.5%; /* 25*0.9 */
+    font-size: 16.2px; /* 18*0.9 */
+    color: #4B5563;
+}
+.invisible_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 90px; /* 100*0.9 */
+    width: 82.8%; /* 92*0.9 */
+    height: 270px; /* 300*0.9 */
+    border-radius: 9px; /* 10*0.9 */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px; /* 50*0.9 */
+    animation-delay: 0.15s;
+}
+.invisible_container1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 18px; /* 20*0.9 */
+    width: 18%; /* 20*0.9 */
+    height: 9px; /* 10*0.9 */
+    border-radius: 9px; /* 10*0.9 */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px; /* 50*0.9 */
+    animation-delay: 0.45s;
+}
+.start-button:hover {
+  background-color: #3498db;
+  color: white;
+}
+.button-link {
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.button-link:hover, .button-link:focus {
+    box-shadow: 0 0 12px 2px #3B82F6;
+    transform: translateY(-4px) scale(1.03);
+    outline: none;
+}
+
+/* 팝업/카드 등장 애니메이션 */
+@keyframes popupUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 각 주요 컨테이너에 애니메이션과 딜레이 개별 적용 */
+.popular-container {
+    animation: popupUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    animation-delay: 0s;
+    animation-fill-mode: both;
+}
+.invisible_container {
+    animation: popupUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    animation-delay: 0.15s;
+    animation-fill-mode: both;
+}
+.join {
+    animation: popupUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    animation-delay: 1.3s;
+    animation-fill-mode: both;
+}
+.invisible_container1 {
+    animation: popupUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    animation-delay: 0.45s;
+    animation-fill-mode: both;
+}
+.join.hide-on-scroll {
+    transform: translateY(120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+
