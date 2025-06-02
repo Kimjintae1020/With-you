@@ -77,11 +77,19 @@
             max-width: 1000px;
             margin: 60px auto;
             padding: 0 20px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         h1 {
             font-size: 20px;
             font-weight: bold;
             margin: 40px 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         hr.hr_info {
             border: 0;
@@ -89,12 +97,13 @@
             margin-bottom: 20px;
         }
         table {
-            width: 100%;
+            width: 50%;
             border-collapse: collapse;
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 40px;
+
         }
         th, td {
             padding: 12px 16px;
@@ -110,6 +119,29 @@
             text-align: center;
             padding: 20px;
             color: #9ca3af;
+        }
+
+        .wrapTable {
+            width: 70%;
+        }
+
+        .wrapTable table {
+            margin: auto;
+            width: 100%;
+        }
+
+        .wrap_myInfo {
+            display: flex;
+            flex-direction: row;
+            width: 70%;
+        }
+
+        .wrap_myInfo img {
+            margin: auto;
+
+        }
+        .wrap_myInfo table {
+            margin: auto;
         }
     </style>
 </head>
@@ -132,87 +164,101 @@
         <a href="${pageContext.request.contextPath}/api/login">로그인</a>
         <a href="${pageContext.request.contextPath}/api/register">회원가입</a>
         <a href="${pageContext.request.contextPath}/api/mypage">마이페이지</a>
-        <a href="#" class="start-btn">시작하기</a>
+
     </div>
+    <a href="${pageContext.request.contextPath}/api/boards" class="start-btn">시작하기</a>
 </nav>
 
 <!-- 마이페이지 내용 -->
 <div class="wrapInside">
+
     <h1>내 정보</h1>
     <hr class="hr_info">
-    <table>
-        <tr><td>아이디</td><td>${mypage.accountname}</td></tr>
-        <tr><td>닉네임</td><td>${mypage.nickname}</td></tr>
-        <tr><td>이메일</td><td>${mypage.email}</td></tr>
-        <tr><td>탄생년도</td><td>${mypage.birthYear}</td></tr>
-        <tr><td>등급</td><td>${mypage.grade}</td></tr>
-        <tr><td>거주지</td><td>${mypage.region}</td></tr>
-        <tr><td>사용자 평점</td><td>${mypage.score} / 100</td></tr>
-        <tr><td>받은 평가 수</td><td>${mypage.reviewCnt}</td></tr>
-        <tr><td>가입일</td><td>${fn:substring(mypage.createdAt, 0, 10)}</td></tr>
-    </table>
+    <div class="wrap_myInfo">
+        <img src="/images/mypage/userImg.svg" alt="">
+        <table>
+            <tr><td>아이디</td><td>${mypage.accountname}</td></tr>
+            <tr><td>닉네임</td><td>${mypage.nickname}</td></tr>
+            <tr><td>이메일</td><td>${mypage.email}</td></tr>
+            <tr><td>탄생년도</td><td>${mypage.birthYear}</td></tr>
+            <tr><td>등급</td><td>${mypage.grade}</td></tr>
+            <tr><td>거주지</td><td>${mypage.region}</td></tr>
+            <tr><td>사용자 평점</td><td>${mypage.score} / 100</td></tr>
+            <tr><td>받은 평가 수</td><td>${mypage.reviewCnt}</td></tr>
+            <tr><td>가입일</td><td>${fn:substring(mypage.createdAt, 0, 10)}</td></tr>
+        </table>
+    </div>
 
+
+    <div class="wrapTable">
     <h1>작성한 게시글</h1>
     <hr class="hr_info">
-    <table>
-        <thead>
-        <tr><th>제목</th><th>내용</th><th>작성일</th></tr>
-        </thead>
-        <tbody>
-        <c:forEach var="board" items="${mypage.boardSummaries}">
-            <tr>
-                <td>${board.title}</td>
-                <td>${board.content}</td>
-                <td>${board.createdAt}</td>
-            </tr>
-        </c:forEach>
-        <c:if test="${empty mypage.boardSummaries}">
-            <tr><td colspan="3" class="empty-message">작성한 게시글이 없습니다.</td></tr>
-        </c:if>
-        </tbody>
-    </table>
+        <table>
+            <thead>
+            <tr><th>제목</th><th>내용</th><th>작성일</th></tr>
+            </thead>
+            <tbody>
+            <c:forEach var="board" items="${mypage.boardSummaries}">
+                <tr>
+                    <td>${board.title}</td>
+                    <td>${board.content}</td>
+                    <td>${board.createdAt}</td>
+                </tr>
+            </c:forEach>
+            <c:if test="${empty mypage.boardSummaries}">
+                <tr><td colspan="3" class="empty-message">작성한 게시글이 없습니다.</td></tr>
+            </c:if>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="wrapTable">
 
     <h1>작성한 댓글</h1>
     <hr class="hr_info">
-    <table>
-        <thead>
-        <tr><th>게시판</th><th>댓글 내용</th><th>작성일</th><th>수정일</th></tr>
-        </thead>
-        <tbody>
-        <c:forEach var="comment" items="${mypage.commentSummaries}">
-            <tr>
-                <td>${comment.boardTitle}</td>
-                <td>${comment.content}</td>
-                <td>${comment.createdAt}</td>
-                <td>${comment.updatedAt}</td>
-            </tr>
-        </c:forEach>
-        <c:if test="${empty mypage.commentSummaries}">
-            <tr><td colspan="4" class="empty-message">작성한 댓글이 없습니다.</td></tr>
-        </c:if>
-        </tbody>
-    </table>
+        <table>
+            <thead>
+            <tr><th>게시판</th><th>댓글 내용</th><th>작성일</th><th>수정일</th></tr>
+            </thead>
+            <tbody>
+            <c:forEach var="comment" items="${mypage.commentSummaries}">
+                <tr>
+                    <td>${comment.boardTitle}</td>
+                    <td>${comment.content}</td>
+                    <td>${comment.createdAt}</td>
+                    <td>${comment.updatedAt}</td>
+                </tr>
+            </c:forEach>
+            <c:if test="${empty mypage.commentSummaries}">
+                <tr><td colspan="4" class="empty-message">작성한 댓글이 없습니다.</td></tr>
+            </c:if>
+            </tbody>
+        </table>
+    </div>
 
+    <div class="wrapTable">
     <h1>참여한 소모임</h1>
     <hr class="hr_info">
-    <table>
-        <thead>
-        <tr><th>동호회 이름</th><th>지역</th><th>등록일</th><th>수정일</th></tr>
-        </thead>
-        <tbody>
-        <c:forEach var="club" items="${mypage.clubSummaries}">
-            <tr>
-                <td>${club.clubName}</td>
-                <td>${club.region}</td>
-                <td>${club.joinedAt}</td>
-                <td>${club.updatedAt}</td>
-            </tr>
-        </c:forEach>
-        <c:if test="${empty mypage.clubSummaries}">
-            <tr><td colspan="4" class="empty-message">참여한 소모임이 없습니다.</td></tr>
-        </c:if>
-        </tbody>
-    </table>
+        <table>
+            <thead>
+            <tr><th>동호회 이름</th><th>지역</th><th>등록일</th><th>수정일</th></tr>
+            </thead>
+            <tbody>
+            <c:forEach var="club" items="${mypage.clubSummaries}">
+                <tr>
+                    <td>${club.clubName}</td>
+                    <td>${club.region}</td>
+                    <td>${club.joinedAt}</td>
+                    <td>${club.updatedAt}</td>
+                </tr>
+            </c:forEach>
+            <c:if test="${empty mypage.clubSummaries}">
+                <tr><td colspan="4" class="empty-message">참여한 소모임이 없습니다.</td></tr>
+            </c:if>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 </body>
