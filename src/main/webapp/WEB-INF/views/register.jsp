@@ -250,7 +250,6 @@
             <label for="email">이메일</label>
             <div class="email-verify">
                 <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required />
-                <button type="button" class="verify-button">인증번호 받기</button>
             </div>
             <!-- <input type="text" name="verificationCode" placeholder="인증번호 입력" required /> -->
         </div>
