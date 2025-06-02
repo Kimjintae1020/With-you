@@ -133,16 +133,20 @@
         .wrap_myInfo {
             display: flex;
             flex-direction: row;
-            width: 70%;
+            width: 100%;
         }
 
         .wrap_myInfo img {
             margin: auto;
 
+
         }
         .wrap_myInfo table {
+            width: 400px;
             margin: auto;
         }
+
+
     </style>
 </head>
 <body>
@@ -172,21 +176,23 @@
 <!-- 마이페이지 내용 -->
 <div class="wrapInside">
 
-    <h1>내 정보</h1>
-    <hr class="hr_info">
-    <div class="wrap_myInfo">
-        <img src="/images/mypage/userImg.svg" alt="">
-        <table>
-            <tr><td>아이디</td><td>${mypage.accountname}</td></tr>
-            <tr><td>닉네임</td><td>${mypage.nickname}</td></tr>
-            <tr><td>이메일</td><td>${mypage.email}</td></tr>
-            <tr><td>탄생년도</td><td>${mypage.birthYear}</td></tr>
-            <tr><td>등급</td><td>${mypage.grade}</td></tr>
-            <tr><td>거주지</td><td>${mypage.region}</td></tr>
-            <tr><td>사용자 평점</td><td>${mypage.score} / 100</td></tr>
-            <tr><td>받은 평가 수</td><td>${mypage.reviewCnt}</td></tr>
-            <tr><td>가입일</td><td>${fn:substring(mypage.createdAt, 0, 10)}</td></tr>
-        </table>
+    <div class="wrapTable">
+        <h1>내 정보</h1>
+        <hr class="hr_info">
+        <div class="wrap_myInfo">
+            <img src="/images/mypage/userImg.svg" alt="">
+            <table>
+                <tr><td>아이디</td><td>${mypage.accountname}</td></tr>
+                <tr><td>닉네임</td><td>${mypage.nickname}</td></tr>
+                <tr><td>이메일</td><td>${mypage.email}</td></tr>
+                <tr><td>탄생년도</td><td>${mypage.birthYear}</td></tr>
+                <tr><td>등급</td><td>${mypage.grade}</td></tr>
+                <tr><td>거주지</td><td>${mypage.region}</td></tr>
+                <tr><td>사용자 평점</td><td>${mypage.score} / 100</td></tr>
+                <tr><td>받은 평가 수</td><td>${mypage.reviewCnt}</td></tr>
+                <tr><td>가입일</td><td>${fn:substring(mypage.createdAt, 0, 10)}</td></tr>
+            </table>
+        </div>
     </div>
 
 
