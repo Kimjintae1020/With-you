@@ -385,7 +385,7 @@
   </div>
   <div class="menu">
     <a href="${pageContext.request.contextPath}/api/main" class="menu-button">홈</a>
-    <a href="#연결필요" class="menu-button">소개</a>
+    <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
     <a href="${pageContext.request.contextPath}/api/boards" class="menu-button">커뮤니티</a>
     <a href="${pageContext.request.contextPath}/api/map" class="menu-button">지도</a>
     <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>
@@ -414,11 +414,16 @@
   <div class="sidebar">
     <div class="section">
       <p style="display: flex; justify-content: center; font-weight:bold; font-size: 32px; color: #ffffff;">
-        홍길동</p>
+        <c:out value="${nickname}" />
+      </p>
       <div
               style="width: 187px; height: 129px; border-radius: 10px; background-color: rgba(210, 232, 116, 0.25); display: flex; justify-content: center; align-items: center;">
-        <p style="font-weight: bold; font-size: 64px; color: #57e24b;">SEED</p>
+        <p style="font-weight: bold; font-size: 30px; color: #57e24b;">
+          <c:out value="${grade}" />
+        </p>
       </div>
+
+
       <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 20px;">
         <a href="/api/board" class="button">글쓰기</a>
         <a href="${pageContext.request.contextPath}/api/mypage" class="button">내 정보</a>
@@ -453,6 +458,7 @@
             <div class="post-stats">
               <div class="stat">
                 <span class="icon">💬</span>
+                <span class="count">${post.commentCount}</span>
               </div>
               <div class="stat">
                 <span class="icon">❤️</span>

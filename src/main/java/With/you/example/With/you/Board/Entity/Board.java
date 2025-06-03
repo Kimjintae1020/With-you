@@ -2,13 +2,16 @@ package With.you.example.With.you.Board.Entity;
 
 import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Account.Enum.Region;
+import With.you.example.With.you.Comment.Entity.Comment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -47,10 +50,13 @@ public class Board {
     @Column(name = "ACCOUNT_NAME")
     private Set<String> likedAccountNames = new HashSet<>();
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACCOUNT_ID", nullable = false) // FK 컬럼명 지정
+    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
     private Account account;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
 
     @PrePersist
     protected void onCreate() {

@@ -133,16 +133,16 @@
             <h2>With You</h2>
         </a>
         <div class="box_2">
-            <a href="/api/main">홈</a>
-            <a href="#소개">소개</a>
-            <a href="/api/boards">커뮤니티</a>
-            <a href="/api/map">지도</a>
-            <a href="/api/rank">랭킹</a>
-            <a href="/api/faq">문의하기</a>
-            <a href="/api/club/list/account">동호회</a>
-            <a href="/api/login">로그인</a>
-            <a href="/api/register">회원가입</a>
-            <a href="/api/mypage">마이페이지</a>
+            <a href="${pageContext.request.contextPath}/api/main" class="menu-button">홈</a>
+            <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
+            <a href="${pageContext.request.contextPath}/api/boards" class="menu-button">커뮤니티</a>
+            <a href="${pageContext.request.contextPath}/api/map" class="menu-button">지도</a>
+            <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>
+            <a href="${pageContext.request.contextPath}/api/faq" class="menu-button">문의하기</a>
+            <a href="${pageContext.request.contextPath}/api/club/list/account" class="menu-button">동호회</a>
+            <a href="${pageContext.request.contextPath}/api/login" class="menu-button">로그인</a>
+            <a href="${pageContext.request.contextPath}/api/register" class="menu-button">회원가입</a>
+            <a href="${pageContext.request.contextPath}/api/mypage" class="menu-button">마이페이지</a>
         </div>
         <div class="box_3">
             <button onclick="location.href='/api/boards'">시작하기</button>

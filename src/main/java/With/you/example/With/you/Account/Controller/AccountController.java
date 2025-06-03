@@ -57,6 +57,10 @@ public class AccountController {
     @GetMapping("/map")
     public String mapForm() { return "map"; }
 
+    @GetMapping("/introduction")
+    public String introductionForm() { return "introduction"; }
+
+
     @GetMapping("/admin_2_approve")
     public String admin_2_approveForm(Model model) {
         List<Account> accounts = accountRepository.findAll();
@@ -77,13 +81,15 @@ public class AccountController {
     // 로그인
     @PostMapping("/login")
     public String login(@ModelAttribute DtoLogin dtoLogin, HttpSession session) throws NotEqualAccountIdAndPwException, AccountNotFoundException, AccounNametNotFoundException {
-        Optional<Account> account = accountService.accountLogin(dtoLogin);
+        Optional<Account> optionalAccount = accountService.accountLogin(dtoLogin);
 
-        System.out.println(account.get().getAccountname());
-        session.setAttribute("LoginAccountName", dtoLogin.getAccountname());
+        Account account = optionalAccount.get();
+        System.out.println(account.getAccountname());
+        session.setAttribute("LoginAccountName", account.getAccountname());
+        session.setAttribute("LoginAccount", account);
 
         // 관리자 일시 Role 값 추가
-        if ("admin".equals(account.get().getAccountname())) {
+        if ("admin".equals(account.getAccountname())) {
             session.setAttribute("Role", Role.ROLE_ADMIN);
             log.info("관리자 로그인");
             return "redirect:/api/admin_1_report";

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static With.you.example.With.you.Exception.ErrorCode.*;
 
@@ -35,18 +36,22 @@ public class CommentService {
     @Transactional
     public List<Comment> createComment(DtoComment dtoComment, Long boardId, String loginAccountName) {
 
-        Account createName = accountRepository.findByAccountname(loginAccountName)
-                .orElseThrow(() -> new CustomException(ACCOUNT_NOT_FOUND));
+        Optional<Account> optionalAccount = accountRepository.findByAccountname(loginAccountName);
 
         Board findBoard = boardRepository.findById(boardId)
                 .orElseThrow(() -> new CustomException(BOARD_NOT_FOUND));
 
+        Account account = optionalAccount.get();
+
         Comment comment = new Comment();
-        comment.setAccount(createName);
+        comment.setAccount(account);
         comment.setContent(dtoComment.getContent());
         comment.setBoard(findBoard);
         comment.setCreateAt(LocalDate.now());
         comment.setUpdateAt(LocalDate.now());
+
+        account.setScore(account.getScore() + 3);
+        account.updateGrade();
 
         commentRepository.save(comment);
         return commentRepository.findByBoardBoardId(boardId);
