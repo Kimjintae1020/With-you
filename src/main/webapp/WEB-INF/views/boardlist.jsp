@@ -59,11 +59,19 @@
     }
 
     .section {
-      background-color: #f9f9f9;
-      border-radius: 8px;
+      background-color: #3b82f6;
+      border-radius: 50px;
       padding: 16px;
       margin-bottom: 20px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-1 {
+      margin-bottom: 20px;
+      padding: 16px;
     }
 
     .section h3 {
@@ -71,18 +79,19 @@
     }
 
     .button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
+      display: flex;
+      width: 90px;
+      height: 45px;
       font-size: 14px;
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 6px;
+      font-weight: bold;
+      background-color: #EDF1FF;
+      color: #000000;
+      border-radius: 10px;
       cursor: pointer;
       text-align: center;
       text-decoration: none;
+      justify-content: center;
+      align-items: center;
     }
 
     .search-container {
@@ -101,7 +110,7 @@
 
     .board {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       gap: 16px;
       margin-top: 24px;
     }
@@ -235,10 +244,10 @@
       color: #007bff;
     }
 
-     .post-link {
-       text-decoration: none;
-       color: inherit;
-     }
+    .post-link {
+      text-decoration: none;
+      color: inherit;
+    }
 
     .post-item {
       display: flex;
@@ -248,12 +257,12 @@
       border: 1px solid #e5e7eb;
       border-radius: 10px;
       background-color: #f9fafb;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       transition: box-shadow 0.2s;
     }
 
     .post-item:hover {
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .post-content {
@@ -314,7 +323,7 @@
       display: flex;
       height: 55px;
       padding: 5px;
-      margin:auto;
+      margin: auto;
       text-align: center;
 
 
@@ -362,7 +371,6 @@
       margin-left: 10px;
       color: #3B82F6;
     }
-
   </style>
 </head>
 
@@ -377,7 +385,7 @@
   </div>
   <div class="menu">
     <a href="${pageContext.request.contextPath}/api/main" class="menu-button">홈</a>
-    <a href="#연결필요" class="menu-button">소개</a>
+    <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
     <a href="${pageContext.request.contextPath}/api/boards" class="menu-button">커뮤니티</a>
     <a href="${pageContext.request.contextPath}/api/map" class="menu-button">지도</a>
     <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>
@@ -405,11 +413,21 @@
 <div class="container">
   <div class="sidebar">
     <div class="section">
-      <h3>👤 사용자 정보</h3>
-      <p><strong>이름:</strong> 홍길동</p>
-      <p><strong>등급:</strong> 골드</p>
-      <a href="/api/board" class="button">✏️ 글쓰기</a>
-      <a href="/boards/my" class="button">📄 내 글 보기</a>
+      <p style="display: flex; justify-content: center; font-weight:bold; font-size: 32px; color: #ffffff;">
+        <c:out value="${nickname}" />
+      </p>
+      <div
+              style="width: 187px; height: 129px; border-radius: 10px; background-color: rgba(210, 232, 116, 0.25); display: flex; justify-content: center; align-items: center;">
+        <p style="font-weight: bold; font-size: 30px; color: #57e24b;">
+          <c:out value="${grade}" />
+        </p>
+      </div>
+
+
+      <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 20px;">
+        <a href="/api/board" class="button">글쓰기</a>
+        <a href="${pageContext.request.contextPath}/api/mypage" class="button">내 정보</a>
+      </div>
     </div>
 
 
@@ -430,18 +448,17 @@
             <div class="post-content">
               <h2 class="post-title">${post.title}</h2>
               <div class="post-meta">
-            <span class="date">
-              작성일: <fmt:parseDate value="${post.createdAt}" pattern="yyyy-MM-dd" var="parsedDate" />
-
-              <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" /> |
-            </span>
-                직성자: <span class="nickname">${post.writerNickname}</span> |
+                                    <span class="date">
+                                        <span class="date" data-date="${post.createdAt}"></span>
+                                    </span>
+                | <span class="nickname">${post.writerNickname}</span> |
                 <span class="region">${post.regionLabel}</span>
               </div>
             </div>
             <div class="post-stats">
               <div class="stat">
                 <span class="icon">💬</span>
+                <span class="count">${post.commentCount}</span>
               </div>
               <div class="stat">
                 <span class="icon">❤️</span>
@@ -456,8 +473,7 @@
 
     <div class="pagination">
       <c:forEach begin="1" end="${totalPages}" var="i">
-        <a href="/api/boards?page=${i}&size=10"
-           class="${i == currentPage ? 'active' : ''}">
+        <a href="/api/boards?page=${i}&size=10" class="${i == currentPage ? 'active' : ''}">
           [${i}]
         </a>
       </c:forEach>
@@ -465,12 +481,17 @@
   </div>
 
   <div class="rightbar">
-    <div class="section">
-      <h3>🎯 동호회란?</h3>
+    <div class="section-1">
+      <p>
+        <a href="/clubCreate"
+           style="font-weight: bold; font-size: 18px; color: #2563eb; text-decoration: none;">
+          동호회
+        </a>
+      </p>
       <p>같은 관심사를 가진 사람들끼리 자유롭게 모이고 소통하는 공간이에요.</p>
       <p>당신의 취미를 공유해보세요!</p>
     </div>
-    <%-- short rank   --%>
+
     <div class="wrap_R">
       <div class="content_R">
         <p class="title_R">동네 랭킹</p>
@@ -511,7 +532,7 @@
 
 
 
-    <%--    --%>
+
   </div>
 </div>
 
@@ -548,7 +569,7 @@
   const eleTitle = document.getElementById("main_title");
 
   (params === undefined) ? eleTitle.innerHTML = "인기" :
-    eleTitle.innerHTML = regionList[params];
+          eleTitle.innerHTML = regionList[params];
 
 
   input.addEventListener("input", function () {
@@ -607,13 +628,35 @@
 
   setInterval(() => { setContent() }, 3000);
 
+  function getRelativeDate(dateString) {
+    var safeDateString = dateString.replace(/-/g, '/');
+    const today = new Date();
+    const created = new Date(safeDateString);
+    created.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+    const diffTime = today - created;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays === 0) {
+      return "오늘";
+    } else if (diffDays < 30) {
+      return diffDays + "일 전";
+    } else if (diffDays < 365) {
+      const months = Math.floor(diffDays / 30);
+      return months + "달 전";
+    } else {
+      const years = Math.floor(diffDays / 365);
+      return years + "년 전";
+    }
+  }
 
-  /* ---short rank ---- */
-  /* ------------------ */
+  document.querySelectorAll('.date').forEach(function (el) {
+    const dateStr = el.getAttribute('data-date');
+    if (dateStr) {
+      el.textContent = getRelativeDate(dateStr);
+    }
+  });
 </script>
 
 </body>
-
-
 
 </html>

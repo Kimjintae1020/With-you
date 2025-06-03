@@ -245,7 +245,7 @@
     </div>
     <div class="menu">
         <a href="${pageContext.request.contextPath}/api/main" class="menu-button">홈</a>
-        <a href="#연결필요" class="menu-button">소개</a>
+        <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
         <a href="${pageContext.request.contextPath}/api/boards" class="menu-button">커뮤니티</a>
         <a href="${pageContext.request.contextPath}/api/map" class="menu-button">지도</a>
         <a href="${pageContext.request.contextPath}/api/rank" class="menu-button">랭킹</a>

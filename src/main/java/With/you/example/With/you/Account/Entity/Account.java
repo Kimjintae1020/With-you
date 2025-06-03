@@ -104,4 +104,19 @@ public class Account {
         this.score = score;
         this.reviewCnt = reviewCnt;
     }
+
+    public void updateGrade() {
+        if (this.score <= 10) {
+            this.grade = Grade.SEED;
+        } else if (this.score <= 30) {
+            this.grade = Grade.SPROUT;
+        } else if (this.score <= 50) {
+            this.grade = Grade.TREE;
+        } else if (this.score <= 80) {
+            this.grade = Grade.BLOOM;
+        } else {
+            this.grade = Grade.SUN;
+        }
+    }
+
 }

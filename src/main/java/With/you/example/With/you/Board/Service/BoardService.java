@@ -37,6 +37,8 @@ public class BoardService {
         }
 
         Account account = createName.get();
+        account.setScore(account.getScore() + 5);
+        account.updateGrade();
 
         Board board = new Board();
         board.setAccount(account);
@@ -76,10 +78,14 @@ public class BoardService {
         if (board.getLikedAccountNames().contains(loginAccountName)) {
             throw new IllegalStateException("이미 좋아요한 게시글입니다.");
         }
+        Account account = board.getAccount();
 
         // 좋아요 처리
         board.setLikecount(board.getLikecount() + 1);
         board.getLikedAccountNames().add(loginAccountName);
+
+        account.setScore(account.getScore() + 1);
+        account.updateGrade();
         return boardRepository.save(board);
     }
 
@@ -93,4 +99,15 @@ public class BoardService {
         Optional<Board> board = boardRepository.findById(boardId);
         return board.orElseThrow(() -> new CustomException(BOARD_NOT_FOUND));
     }
+
+    public Account findAccountByName(String accountName) {
+        return accountRepository.findByAccountname(accountName)
+                .orElseThrow(() -> new RuntimeException("사용자 정보를 찾을 수 없습니다."));
+    }
+
+    public Account findAccountById(Long accountId) {
+        return accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("사용자 정보를 찾을 수 없습니다."));
+    }
+
 }

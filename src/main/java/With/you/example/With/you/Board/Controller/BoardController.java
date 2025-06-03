@@ -1,12 +1,12 @@
 package With.you.example.With.you.Board.Controller;
 
+import With.you.example.With.you.Account.Entity.Account;
 import With.you.example.With.you.Board.Dto.BoardPageResponse;
 import With.you.example.With.you.Board.Entity.Board;
 import With.you.example.With.you.Board.Service.BoardService;
 import With.you.example.With.you.Board.Dto.DtoCreateBoard;
 import With.you.example.With.you.Comment.Entity.Comment;
 import With.you.example.With.you.Comment.Service.CommentService;
-import With.you.example.With.you.Exception.NotLoginException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,17 +41,21 @@ public class BoardController {
     // 게시글 생성
     @PostMapping("/create/board")
     public ResponseEntity<?> createBoard(@ModelAttribute DtoCreateBoard dtoCreateBoard, HttpSession session) {
-        String Loginname = (String) session.getAttribute("LoginAccountName");
-        boardService.createBoard(dtoCreateBoard,Loginname);
+        String logiName = (String) session.getAttribute("LoginAccountName");
+        boardService.createBoard(dtoCreateBoard,logiName);
+
+        Account updatedAccount = boardService.findAccountByName(logiName);
+        session.setAttribute("LoginAccount", updatedAccount);
+
         return ResponseEntity.status(HttpStatus.OK).body("게시글이 작성되었습니다.");
     }
 
     //  게시글 목록 조회, 페이지당 10개
     @GetMapping("/boards")
     public String getPosts(@RequestParam(defaultValue = "1") int page,
-                            @RequestParam(defaultValue = "10") int size,
-                            Model model)   {
-
+                           @RequestParam(defaultValue = "10") int size,
+                           HttpSession session,
+                           Model model) {
 
         Pageable pageable = PageRequest.of(page - 1, size);
         BoardPageResponse response = boardService.getBoardList(pageable);
@@ -60,9 +64,19 @@ public class BoardController {
         model.addAttribute("totalPages", response.getTotal_pages());
         model.addAttribute("currentPage", response.getPage());
 
+        // 🔥 최신 Account 조회 및 세션 갱신
+        Account sessionAccount = (Account) session.getAttribute("LoginAccount");
+        if (sessionAccount != null) {
+            Account refreshedAccount = boardService.findAccountById(sessionAccount.getAccountid());
+            session.setAttribute("LoginAccount", refreshedAccount);
+
+            model.addAttribute("nickname", refreshedAccount.getNickname());
+            model.addAttribute("grade", refreshedAccount.getGrade().getDisplayName());
+        }
 
         return "boardlist";
     }
+
 
     // 좋아요 수 증가
     @PostMapping("/board/like/{boardId}")

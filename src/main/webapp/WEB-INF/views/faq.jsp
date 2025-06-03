@@ -19,7 +19,7 @@
 
             <div class="box_2">
                 <a href="${pageContext.request.contextPath}/api/main">홈</a>
-                <a href="#소개">소개</a>
+                <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
                 <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
                 <a href="${pageContext.request.contextPath}/api/map">지도</a>
                 <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
