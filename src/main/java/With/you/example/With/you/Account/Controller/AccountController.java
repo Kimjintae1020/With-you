@@ -104,6 +104,7 @@ public class AccountController {
     @PostMapping("/logout")
     @ResponseBody
     public String logout(HttpSession session) {
+        log.info("로그아웃 되었습니다.");
         // 전체 세션 무효화
         session.invalidate();
         return "ok";
