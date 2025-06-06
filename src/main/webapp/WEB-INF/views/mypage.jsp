@@ -13,8 +13,15 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+
+        html {
+            overflow-y: scroll; /* 항상 스크롤바 공간 확보 */
+        }
+
         body {
-            font-family: 'Pretendard', sans-serif;
+
+            font-family: Arial, sans-serif;
             background-color: #f9fafb;
             color: #111827;
         }
@@ -37,14 +44,10 @@
             text-decoration: none;
             color: #2563eb;
         }
-        #logo img {
-            height: 20px;
-            margin-right: 8px;
-        }
+
         #logo h2 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #2563eb;
+            margin-left: 10px;
+            color: #3B82F6;
         }
         .nav-links a {
             margin-left: 24px;
@@ -146,32 +149,105 @@
             margin: auto;
         }
 
+        /* Navigation menu */
+        .box_2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex: 1;
+            margin-left: 60px;
+        }
+
+        /* Left side nav links */
+        .nav-left {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-left a {
+            font-size: 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .box_2 a:hover {
+            color: #2563EB;
+        }
+
+        /* Right side user/auth links */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: auto;
+        }
+
+        .nav-right a {
+            font-size: 14px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .welcome-text {
+            font-weight: bold;
+            color: #3B82F6;
+        }
+
+        .main_wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+        }
+        .container_1 {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
 
     </style>
 </head>
 <body>
+<div class="main_wrap">
 
-<!-- 네비게이션 바 -->
-<nav>
+<!-- 네비게이션 바 --><div class="container_1">
     <a href="${pageContext.request.contextPath}/api/main" id="logo">
-        <img src="/images/login/Frame.png" alt="With You">
+        <img src="/images/login/Frame.png" alt="경로 에러">
         <h2>With You</h2>
     </a>
-    <div class="nav-links">
-        <a href="${pageContext.request.contextPath}/api/main">홈</a>
-        <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
-        <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
-        <a href="${pageContext.request.contextPath}/api/map">지도</a>
-        <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
-        <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
-        <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
-        <a href="${pageContext.request.contextPath}/api/login">로그인</a>
-        <a href="${pageContext.request.contextPath}/api/register">회원가입</a>
-        <a href="${pageContext.request.contextPath}/api/mypage">마이페이지</a>
 
+    <div class="box_2">
+        <div class="nav-left">
+            <a href="${pageContext.request.contextPath}/api/main">홈</a>
+            <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
+            <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
+            <a href="${pageContext.request.contextPath}/api/map">지도</a>
+            <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
+            <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
+            <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
+        </div>
+
+        <div class="nav-right">
+            <%
+                String name = (String) session.getAttribute("LoginAccountName");
+                if (name != null) {
+            %>
+            <span class="welcome-text">안녕하세요, <%= name %> 님!</span>
+            <a href="${pageContext.request.contextPath}/api/mypage">마이페이지</a>
+            <a href="javascript:void(0);" onclick="handleLogout()">로그아웃</a>
+            <%
+            } else {
+            %>
+            <a href="${pageContext.request.contextPath}/api/login">로그인</a>
+            <a href="${pageContext.request.contextPath}/api/register">회원가입</a>
+            <%
+                }
+            %>
+        </div>
     </div>
-    <a href="${pageContext.request.contextPath}/api/boards" class="start-btn">시작하기</a>
-</nav>
+</div>
 
 <!-- 마이페이지 내용 -->
 <div class="wrapInside">
@@ -266,6 +342,6 @@
         </table>
     </div>
 </div>
-
+</div>
 </body>
 </html>
