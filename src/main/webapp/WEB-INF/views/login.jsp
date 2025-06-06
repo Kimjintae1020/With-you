@@ -42,12 +42,12 @@
 <!-- ------------------------------------------- -->
 <div class="container_3">
     <p>아직 계정이 없으신가요?</p>
-    <a href="${pageContext.request.contextPath}/api/register">회원가입하기</a>
+    <a id="createAct" href="${pageContext.request.contextPath}/api/register">회원가입하기</a>
 </div>
 
 <!-- ------------------------------------------- -->
 <div class="container_4">
-    <a href="${pageContext.request.contextPath}/api/main">With You 둘러보기</a>
+    <a id="goMain" href="${pageContext.request.contextPath}/api/main">With You 둘러보기</a>
 </div>
 <!-- ------------------------------------------- -->
 <div class="container_5">

@@ -64,7 +64,7 @@
             <h1 id="h_2">우리 동네 커뮤니티</h1>
             <br>
             <p>당신의 동네가 중요합니다. 이웃들과 정보를 공유하고, 모임을 만들고, 지역 활동에</p>
-            <p>참여하세요. 모든 것이 한곳에서 이루어집니다.</p>
+            <p>참여하세요. 모든 것이 한 곳에서 이루어집니다.</p>
 
             <div id="div_bottom">
                 <button id="left_btn" onclick="location.href='${pageContext.request.contextPath}/api/boards'">커뮤니티 시작하기</button>
@@ -84,7 +84,7 @@
     <!-- -------------------------------- -->
     <div class="container_3">
         <div class="wrap">
-            <h2>Wity You와 함께하는 즐거운 동네생활</h2>
+            <h2>With You와 함께하는 즐거운 동네생활</h2>
             <br>
             <p id="p_1">이웃과 함께 만들어가는 따뜻한 우리 동네</p>
             <div class="wrap-box_1">

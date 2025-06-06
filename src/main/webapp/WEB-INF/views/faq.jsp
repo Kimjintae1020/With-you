@@ -18,21 +18,33 @@
             </a>
 
             <div class="box_2">
-                <a href="${pageContext.request.contextPath}/api/main">홈</a>
-                <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
-                <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
-                <a href="${pageContext.request.contextPath}/api/map">지도</a>
-                <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
-                <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
-                <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
-                <a href="${pageContext.request.contextPath}/api/login">로그인</a>
-                <a href="${pageContext.request.contextPath}/api/register">회원가입</a>
-                <a href="${pageContext.request.contextPath}/api/mypage">마이페이지</a>
+                <div class="nav-left">
+                    <a href="${pageContext.request.contextPath}/api/main">홈</a>
+                    <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
+                    <a href="${pageContext.request.contextPath}/api/boards">커뮤니티</a>
+                    <a href="${pageContext.request.contextPath}/api/map">지도</a>
+                    <a href="${pageContext.request.contextPath}/api/rank">랭킹</a>
+                    <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
+                    <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
+                </div>
 
-
-            </div>
-            <div class="box_3">
-                <button onclick="location.href='${pageContext.request.contextPath}/api/boards'">시작하기</button>
+                <div class="nav-right">
+                    <%
+                        String name = (String) session.getAttribute("LoginAccountName");
+                        if (name != null) {
+                    %>
+                    <span class="welcome-text">안녕하세요, <%= name %> 님!</span>
+                    <a href="${pageContext.request.contextPath}/api/mypage">마이페이지</a>
+                    <a href="javascript:void(0);" onclick="handleLogout()">로그아웃</a>
+                    <%
+                    } else {
+                    %>
+                    <a href="${pageContext.request.contextPath}/api/login">로그인</a>
+                    <a href="${pageContext.request.contextPath}/api/register">회원가입</a>
+                    <%
+                        }
+                    %>
+                </div>
             </div>
         </div> <!-- container_1 -->
         <!-- -------------------------------- -->

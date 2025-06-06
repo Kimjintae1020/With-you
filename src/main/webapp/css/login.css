@@ -95,16 +95,30 @@ body {
 }
 
 
-.container_2 .container_2_box_1 .container_2_box_2 #findAcount
-
-{margin-left: 85px;
-
+.container_2 .container_2_box_1 .container_2_box_2 #findAcount{
+    margin-left: 85px;
     font-size: 11px;
+}
+
+#findAcount:hover {
+    color: #3B82F6;
+    cursor: pointer;
+}
+
+#createAct:hover {
+    color: #3B82F6;
+    cursor: pointer;
+}
+
+#goMain:hover {
+    color: #3B82F6;
+    cursor: pointer;
+
 }
 
 /* --------------------------- */
 
-.container_2 .container_2_box_1 #LoginBtn {
+#LoginBtn {
     width: 320px;
     height: 40px;
     border-radius: 40px;
@@ -113,6 +127,16 @@ body {
     background-color: #3B82F6;
     color: white;
     font-size: 11px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+
+}
+
+#LoginBtn:hover {
+    background-color: white;
+    color: #2563eb;
+    border: 1px #2563eb solid;
+
 }
 
 
@@ -179,3 +203,27 @@ body {
 }
 
 /* --------------------------- */
+
+#goTo_nPage_Btn {
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+#goTo_nPage_Btn:hover {
+    background-color: #2563EB;
+    color: white;
+    border: 1px #2563EB solid;
+}
+
+#goTo_nnPage_Btn {
+    cursor: pointer;
+    transition-duration: 0.5s;
+
+}
+
+#goTo_nnPage_Btn:hover {
+    background-color: #2563EB;
+    color: white;
+    border: 1px #2563EB solid;
+
+}
