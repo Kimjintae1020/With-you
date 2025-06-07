@@ -25,13 +25,22 @@ body {
 
 }
 
-.main_wrap .container_1 {
-    width: 100%;
-    height: 80px;
+.container_1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    height: 80px;
     padding: 0 40px;
+    background: white;
+    position: relative;
+}
+
+.nav-center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main_wrap .container_1 .box_1 {
@@ -50,9 +59,10 @@ body {
 #logo {
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-decoration-line: none;
-
+    text-decoration: none;
+    position: absolute;
+    left: 40px;
+    z-index: 10;
 }
 
 #logo h2 {
@@ -219,6 +229,8 @@ body {
 .nav-left {
     display: flex;
     gap: 30px;
+    justify-content: center;
+    width: auto;
 }
 
 .nav-left a {
@@ -236,7 +248,9 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-left: auto;
+    position: absolute;
+    right: 40px;
+    z-index: 10;
 }
 
 .nav-right a {

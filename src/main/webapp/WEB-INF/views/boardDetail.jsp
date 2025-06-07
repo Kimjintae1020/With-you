@@ -234,9 +234,10 @@
     #logo {
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-decoration-line: none;
-
+      text-decoration: none;
+      position: absolute;
+      left: 40px;
+      z-index: 10;
     }
 
     #logo h2 {
@@ -259,25 +260,25 @@
       background: #fff;
       border: 1px solid #e5e7eb;
       border-radius: 8px;
-      padding: 16px;
+      padding: 12px;         /* 패딩 축소 */
       box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
-      min-width: 220px;
+      min-width: 180px;      /* 최소 너비를 130px → 180px로 소폭만 조정 */
+      max-width: 220px;      /* 최대 너비 제한 */
       z-index: 10;
+      font-size: 13px;       /* 폼 내부 글씨 크기 축소 */
     }
-
     #reportFormArea select,
     #reportFormArea input,
     #reportFormArea textarea {
       width: 100%;
-      padding: 6px;
+      padding: 4px;          /* 내부 입력란 패딩 축소 */
       border-radius: 4px;
       border: 1px solid #d1d5db;
-      font-size: 14px;
+      font-size: 13px;       /* 입력란 글씨도 축소 */
     }
-
     #reportFormArea textarea {
-      resize: vertical;
-      min-height: 40px;
+      min-height: 32px;      /* 최소 높이 축소 */
+      font-size: 13px;
     }
 
     .main_wrap {
@@ -300,6 +301,8 @@
     .nav-left {
       display: flex;
       gap: 30px;
+      justify-content: center;
+      width: auto;
     }
 
     .nav-left a {
@@ -317,7 +320,9 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      margin-left: auto;
+      position: absolute;
+      right: 40px;
+      z-index: 10;
     }
 
     .nav-right a {
@@ -331,12 +336,21 @@
       color: #3B82F6;
     }
     .container_1 {
-      width: 100%;
-      height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
+      height: 80px;
       padding: 0 40px;
+      background: white;
+      position: relative;
+    }
+
+    .nav-center {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
   </style>
@@ -355,7 +369,7 @@
     <h2>With You</h2>
   </a>
 
-  <div class="box_2">
+  <div class="nav-center">
     <div class="nav-left">
       <a href="${pageContext.request.contextPath}/api/main">홈</a>
       <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
@@ -691,6 +705,25 @@
   window.startEdit = startEdit;
   window.submitEdit = submitEdit;
   window.deleteComment = deleteComment;
+
+
+    function handleLogout() {
+    fetch('/api/logout', {
+      method: 'POST'
+    })
+            .then(response => {
+              if (response.ok) {
+                alert("로그아웃 되었습니다.");
+                location.href = '/api/login';
+              } else {
+                alert("로그아웃 실패");
+              }
+            })
+            .catch(error => {
+              console.error('에러:', error);
+            });
+  }
+
 
 </script>
 

@@ -24,20 +24,23 @@
             width: 1400px;
             background: white;
         }
-        .main_wrap .container_1 {
-            width: 100%;
-            height: 80px;
+        .container_1 {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            width: 100%;
+            height: 80px;
             padding: 0 40px;
-
+            position: relative;
+            background: white;
         }
         #logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-decoration-line: none;
+            text-decoration: none;
+            position: absolute;
+            left: 40px;
+            z-index: 10;
         }
         #logo h2 { margin-left: 10px; color: #3B82F6; }
         /*.main_wrap .container_1 .box_2 { margin-left: 100px; }*/
@@ -133,17 +136,18 @@
 
         /* Navigation menu */
         .box_2 {
+            width: 100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            flex: 1;
-            margin-left: 60px;
         }
 
         /* Left side nav links */
         .nav-left {
             display: flex;
             gap: 30px;
+            justify-content: center;
+            width: auto;
         }
 
         .nav-left a {
@@ -161,7 +165,9 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-left: auto;
+            position: absolute;
+            right: 40px;
+            z-index: 10;
         }
 
         .nav-right a {
@@ -185,7 +191,6 @@
             <img src="/images/login/Frame.png" alt="경로 에러">
             <h2>With You</h2>
         </a>
-
         <div class="box_2">
             <div class="nav-left">
                 <a href="${pageContext.request.contextPath}/api/main">홈</a>
@@ -196,8 +201,8 @@
                 <a href="${pageContext.request.contextPath}/api/faq">문의하기</a>
                 <a href="${pageContext.request.contextPath}/api/club/list/account">동호회</a>
             </div>
-
-            <div class="nav-right">
+        </div>
+        <div class="nav-right">
                 <%
                     String name = (String) session.getAttribute("LoginAccountName");
                     if (name != null) {
@@ -241,5 +246,24 @@
         </div>
     </section>
 </div>
+
+<script>
+    function handleLogout() {
+        fetch('/api/logout', {
+            method: 'POST'
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("로그아웃 되었습니다.");
+                    location.href = '/api/login';
+                } else {
+                    alert("로그아웃 실패");
+                }
+            })
+            .catch(error => {
+                console.error('에러:', error);
+            });
+    }
+</script>
 </body>
 </html>
