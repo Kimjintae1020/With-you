@@ -32,6 +32,7 @@ body {
     display: flex;
     align-items: center;
     text-decoration: none;
+    width: 100rem;
 }
 
 #logo h2 {
@@ -46,7 +47,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex: 1;
+    width: 100%; /* 혹은 원하는 너비 */
     margin-left: 60px;
 }
 
@@ -54,6 +55,9 @@ body {
 .nav-left {
     display: flex;
     gap: 30px;
+    position: absolute; /* 절대 위치로 */
+    left: 50%; /* 가운데로 이동 */
+    transform: translateX(-50%); /* 정확히 가운데로 */
 }
 
 .nav-left a {

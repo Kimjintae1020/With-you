@@ -227,9 +227,10 @@
     #logo {
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-decoration-line: none;
-
+      text-decoration: none;
+      position: absolute;
+      left: 40px;
+      z-index: 10;
     }
 
     #logo h2 {
@@ -244,6 +245,12 @@
       background: white;
     }
 
+    .nav-center {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     /* Navigation menu */
     .box_2 {
@@ -258,6 +265,8 @@
     .nav-left {
       display: flex;
       gap: 30px;
+      justify-content: center;
+      width: auto;
     }
 
     .nav-left a {
@@ -275,7 +284,9 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      margin-left: auto;
+      position: absolute;
+      right: 40px;
+      z-index: 10;
     }
 
     .nav-right a {
@@ -290,12 +301,14 @@
     }
 
     .container_1 {
-      width: 100%;
-      height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
+      height: 80px;
       padding: 0 40px;
+      background: white;
+      position: relative;
     }
 
 
@@ -310,7 +323,7 @@
       <h2>With You</h2>
     </a>
 
-    <div class="box_2">
+    <div class="nav-center">
       <div class="nav-left">
         <a href="${pageContext.request.contextPath}/api/main">홈</a>
         <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
@@ -469,6 +482,23 @@
       alert("동호회 생성 중 오류가 발생했습니다.");
     }
   });
+
+  function handleLogout() {
+    fetch('/api/logout', {
+      method: 'POST'
+    })
+            .then(response => {
+              if (response.ok) {
+                alert("로그아웃 되었습니다.");
+                location.href = '/api/login';
+              } else {
+                alert("로그아웃 실패");
+              }
+            })
+            .catch(error => {
+              console.error('에러:', error);
+            });
+  }
 
 </script>
 

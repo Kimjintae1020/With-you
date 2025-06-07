@@ -18,7 +18,7 @@
             <h2>With You</h2>
         </a>
 
-        <div class="box_2">
+        <div class="nav-center">
             <div class="nav-left">
                 <a href="${pageContext.request.contextPath}/api/main">홈</a>
                 <a href="${pageContext.request.contextPath}/api/introduction">소개</a>
@@ -398,6 +398,23 @@
             right_div.style.display = "block";
             state = true;
         }
+    }
+
+    function handleLogout() {
+        fetch('/api/logout', {
+            method: 'POST'
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("로그아웃 되었습니다.");
+                    location.href = '/api/login';
+                } else {
+                    alert("로그아웃 실패");
+                }
+            })
+            .catch(error => {
+                console.error('에러:', error);
+            });
     }
 </script>
 
